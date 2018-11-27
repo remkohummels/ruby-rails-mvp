@@ -51,15 +51,19 @@ NOTE__: Grant the peer authentication to get pgsql working with rails (reference
 $ sudo nano /etc/postgresql/9.5/main/pg_hba.conf
 ```
 
-Need to change the below line. 
+Need to change the below line
 
 ```bash
 local   all             postgres                                peer
 ```
 
+To
+
 ```bash
 local   all             postgres                                md5
 ```
+
+Then, restart the postgresql server. 
 
 ```
 sudo service postgresql restart
