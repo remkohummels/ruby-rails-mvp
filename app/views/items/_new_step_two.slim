@@ -1,0 +1,20 @@
+- if item.start_price && current_user
+  - start_price = number_with_precision(item.start_price * current_user.currency.course, :precision => 2)
+- else
+  - start_price = nil
+
+.step-fields#s2
+  h2
+    | Listing Details
+  .form-groups.prices
+    .form-group.col-xs-12.col-sm-6.field_wrapper
+      = label_tag :start_price, 'Starting price', class: "coins"
+      = f.number_field :start_price, value: start_price, :label => false, min: 0, step: 0.01, placeholder: "Lowest price you’ll accept", id: 'form_price_current', class: "form-control price_field", oninput: "validity.valid;"
+      p.item_error
+
+  .form-groups
+    .form-group.field_wrapper
+      = label_tag :condition, 'Condition', class: "condition"
+      .form-control.select
+        = f.select :condition, options_for_select(enum_option_pairs(Item, Item.conditions))
+      p.item_error

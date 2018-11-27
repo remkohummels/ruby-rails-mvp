@@ -1,0 +1,4 @@
+= form_for(current_user.relationships.find_by(followed_id: @item), html: { method: :delete }) do |f|
+  = f.button :submit, class: "item_vote bz-square-btn mc" do
+  	span.fa.fa-thumbs-o-down
+  	| Unfollow

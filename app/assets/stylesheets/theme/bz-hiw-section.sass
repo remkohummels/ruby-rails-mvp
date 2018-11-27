@@ -1,0 +1,74 @@
+$hiw-bgc: $montecarlo
+$title-color: #fff
+$img-c-size: 195px
+$img-c-bgc: $darker-mc
+$img-size: 95px
+$hiw-item-title-c: #fff
+.bz-hiw-section
+  background-color: $hiw-bgc
+  padding-bottom: 70px
+  h2
+    position: relative
+    color: $title-color
+    text-align: center
+    padding: 20px 0
+    margin-top: 40px
+    margin-bottom: 60px
+    &::after
+      content: ""
+      border-bottom: 2px solid #fff
+      padding-left: 200px
+      position: absolute
+      bottom: 0px
+      +centrify($switcher: 'width')
+  .bz-hiw-items
+    +flex-centred
+    flex-direction: column
+    +MQ(M)
+      align-items: flex-start
+      flex-direction: row
+    .hiw-item
+      margin: 0 auto
+      height: auto
+      width: 75%
+      display: flex
+      justify-content: flex-start
+      align-items: center
+      flex-direction: column
+      margin-bottom: 20px
+      +MQ(M)
+        margin-bottom: 0
+      .hiw-item-img
+        width: $img-c-size
+        height: $img-c-size
+        border-radius: 50% !important
+        overflow: hidden
+        position: relative
+        background-color: $img-c-bgc
+        img
+          position: absolute
+          +centrify($switcher: 'both')
+          width: $img-size
+          height: auto
+      .hiw-item-title
+        display: flex
+        justify-content: center
+        align-items: center
+        flex-direction: column
+        font-size: 20px
+        color: $hiw-item-title-c
+        font-family: $bz-font-main
+        text-align: center
+        margin-top: 20px
+        width: 100%
+      .hiw-item-desc
+        font-size: 14px
+        color: $hiw-item-title-c
+        font-family: $bz-font-main
+        text-align: center
+        margin-top: 5px
+        width: 100%
+      span
+        margin-top: 5px
+        font-size: 12px
+        color: $darkest-mc

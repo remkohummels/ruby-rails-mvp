@@ -1,0 +1,5 @@
+= form_for(current_user.relationships.build(followed_id: @item.id)) do |f|
+  = f.hidden_field :followed_id
+  = f.button :submit, class: "item_vote bz-square-btn mc" do
+  	span.fa.fa-thumbs-o-up
+  	| Follow

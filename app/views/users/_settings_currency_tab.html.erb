@@ -1,0 +1,31 @@
+<div class="settings-currency-tab row">
+  <%= form_for current_user, method: :patch, remote: true do |f|%>
+    <div class="col-xs-12 col-sm-4 col-md-2">
+      <div class="currency-item" data-id="<%= Currency.find_by(name: 'CAD').id %>" >
+        <span>C$</span>
+      </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-4 col-md-2">
+      <div class="currency-item" data-id="<%= Currency.find_by(name: 'USD').id %>" >
+        <span>US$</span>
+      </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-4 col-md-2">
+      <div class="currency-item" data-id="<%= Currency.find_by(name: 'EUR').id %>" >
+        <span>&euro;</span>
+      </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-4 col-md-2">
+      <div class="currency-item" data-id="<%= Currency.find_by(name: 'GBP').id %>" >
+        <span>&pound;</span>
+      </div>
+    </div>
+    <div class="col-xs-12">
+      <%= f.hidden_field :currency_id , value: current_user.currency_id, id: 'currency_id'%>
+      <%= f.button 'Save', class: 'bz-oval-btn mc' %>
+    </div>
+  <% end %>
+</div>

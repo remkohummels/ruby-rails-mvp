@@ -1,0 +1,61 @@
+<section class="bz-browsing-section">
+  <div class="container">
+    <header class="row">
+      <div class="col-xs-12 col-md-3 line">
+        <h1 class="bz-title">Browse</h1>
+      </div>
+      <%= search_form_for @q, url: browse_path, html: {class: 'container row'} do |f| %>
+        <div class="col-xs-12 col-md-4 line">
+          <div class="choose">
+            <div class="title">Items</div>
+              <div class="select">
+                <%= f.select(:category_id_eq, (@categories.collect{ |c| [c.name, c.id] }), {include_blank: 'All Categories'}, { class: 'select send_on_change'} ) %>
+              </div>
+           </div>
+        </div>
+        <div class="col-xs-12 col-md-4 line">
+          <div class="choose">
+            <div class="title">Type</div>
+            <div class="select">
+              <%= f.select(:posting_type_eq, (Item.posting_types.map { |key, value| [key.humanize, key] }), {include_blank: 'All Posts'}, { class: 'select send_on_change'} ) %>
+            </div>
+          </div>
+        </div>
+        <% if user_signed_in? %>
+          <div class="col-xs-12 col-md-4 line">
+            <div class="choose">
+              <div class="title">group</div>
+              <div class="select">
+                <%= f.select(:groups_id_eq, (current_user.joined_groups.collect{ |g| [g.title, g.id] }), {include_blank: 'All Groups'}, { class: 'select send_on_change'} ) %>
+                <!-- , {include_blank: 'All Groups'} -->
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+      <div class="col-xs-12 col-md-3 line">
+        <%= search_form_for @q, url: browse_path, html: {class: 'bz-search'} do |f| %>
+          <%= f.search_field :title_cont, class: '', placeholder: 'Search' %>
+          <button class="wlt_button_search">
+            <i class="glyphicon glyphicon-search"></i>
+          </button>
+        <% end %>
+      </div>
+    </header>
+    <div class="bz-items-container">
+      <% @items.active.latest_items.each do |item| %>
+        <%= render 'partials/new_bid', :locals => {item: item} %>
+      <% end %>
+    </div>
+
+    <!-- row -->
+    <hr />
+    <h3 class="similar-item">Popular items</h3>
+    <div class="bz-items-container">
+      <% popular_items = all_popular_items() %>
+      <% popular_items.each do |popular_item| %>
+        <%= render 'partials/new_bid', :locals => {item: popular_item} %>
+      <% end %>
+    </div>
+  </div>
+</section>

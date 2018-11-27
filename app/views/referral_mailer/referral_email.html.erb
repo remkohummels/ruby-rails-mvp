@@ -1,0 +1,20 @@
+<%= "Dear #{@email}" %>
+<p>
+  You’ve been invited by your friend, <%= @user.full_name %>, to join GroupnShop.  Welcome!
+  <br>
+  To accept the invitation please click on the link below to confirm your email address.
+  <br>
+  <a href="<%= root_url(anchor: 'sign_section') %>?referral=<%= @user.id %>">Join GroupnShop now!</a>
+  <br>
+  GroupnShop is a community based buying and selling app, designed to help people better connect with their communities. It’s as simple as joining, buying and selling.
+  <br>
+  <%= link_to 'Click here to learn more.', help_url %>
+  <br>
+  If you have any questions please send us an email to help@groupnshop.com. 
+</p>
+<hr>
+<p>
+  Thank you,
+  <br>
+  Your GroupnShop Team 
+</p>

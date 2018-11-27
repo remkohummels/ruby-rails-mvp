@@ -1,0 +1,26 @@
+.csbtl-wrapper
+  display: block
+  width: 100%
+  flex-direction: column
+  position: relative
+  min-height: 250px
+  +MQ(S)
+    flex-direction: row
+  .csb-wrapper
+    display: flex
+    min-width: 100%
+    height: 100%
+    +MQ(S)
+      display: block
+      min-width: 240px
+      width: 240px
+  .tl-wrapper
+    width: 100%
+    +MQ(S)
+      position: absolute
+      top: 0
+      left: 240px
+      width: calc(100% - 240px)
+    h2
+      font-size: 24px !important
+      color: #818285

@@ -1,0 +1,29 @@
+<% @feed = locals[:feed] %>
+<ul class="list-group">
+  <li class="list-group-item">
+    <div class="row">
+      <div class="col-xs-6 col-md-3">
+        <small>
+          <%= link_to @feed.item.title, item_path(@feed.item) %>
+        </small>
+        <div id="wlt_feedbackstar_116" class="wlt_starrating" style="margin-top:10px;" title="poor">
+          <%= rating_for @feed.item, "rate", :half_show => true %>
+        </div>
+      </div>
+      <div class="col-xs-6 col-md-9">
+        <%= link_to user_path(@feed.user), class: 'hidden-xs pull-right' do %>
+            <img
+            alt=""
+            src="http://0.gravatar.com/avatar/9aa222a702c383a5cdd5941094b7b69e?s=50&amp;d=mm&amp;r=g"
+            srcset="http://0.gravatar.com/avatar/9aa222a702c383a5cdd5941094b7b69e?s=100&amp;d=mm&amp;r=g 2x"
+            class="avatar img-circle img-responsive avatar-50 photo"
+            height="50"
+            width="50">
+        <% end %>
+        <h4><%= @feed.title %></h4>
+
+        <div class="article116"><%= @feed.text %></div>
+      </div>
+    </div>
+  </li>
+</ul>

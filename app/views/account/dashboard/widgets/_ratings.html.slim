@@ -1,0 +1,21 @@
+.panel.b.widget-ratings
+  .panel-heading
+    h5 Ratings
+  .panel-body
+    - groups.each do |group|
+      .media
+        .media-left.media-middle
+          = image_tag group.banner, class: "media-object img-circle img-thumbnail thumb48"
+        .media-body.pt-sm
+          .pull-right
+            - status = current_user.group_status(group)
+            - if status == '' 
+              = link_to 'Ask to Join', group_path(group), class: "btn btn-purple btn-sm"
+            - elsif status == 'pending'
+              = link_to 'Pending...', group_path(group), class: "btn btn-warning btn-sm"
+            - else
+              = link_to status.capitalize, group_path(group), class: "btn btn-green btn-sm"
+          .text-bold
+            = group.title
+            .text-sm.text-muted
+              = pluralize(group.memberships.count, 'member')

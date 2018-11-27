@@ -1,0 +1,88 @@
+$col-title-c: $montecarlo
+.bz-settings-page
+  .bz-title
+    text-align: center
+    width: 100%
+    margin-bottom: 50px
+  .notifications-form
+    display: flex
+    justify-content: center
+    align-items: center
+    flex-direction: column
+    +MQ(M)
+      margin-top: 20px
+  .settings-admin-tab
+    .col-title
+      color: $col-title-c
+    .col-title, .col-item
+      text-align: left
+      display: flex
+      justify-content: center
+      align-items: center
+      +MQ(M)
+        justify-content: flex-start
+    .stg-from
+      background-image: image-url("from.png")
+    .stg-location
+      background-image: image-url("location.png")
+    .stg-email
+      background-image: image-url("mail.png")
+  .settings-transactions-tab
+    .coins
+      background-image: image-url("coins.png")
+    .date
+      background-image: image-url("date.png")
+    .box
+      background-image: image-url("box.png")
+    div:last-child
+      .col-title
+        background-position: 40%
+        padding-right: 22px !important
+        +MQ(M)
+          background-position: 70%
+        +MQ(XL)
+          background-position: 78%
+    .table-row
+      div:last-child
+        .col-item
+          text-align: right
+  .settings-currency-tab
+    .currency-item
+      border: 1px solid $light-gray
+      width: 150px
+      height: 150px
+      margin: 10px auto
+      cursor: pointer
+      +flex-centred
+      +MQ(M)
+        margin: 10px 0
+      &.active, &:hover
+        color: $montecarlo
+      &.active
+        border: 5px solid $montecarlo
+      & > span
+        font-family: 'Fjalla One', sans-serif
+        font-size: 60px
+        font-weight: 600
+    .mc
+      margin: 20px auto
+      +MQ(M)
+        margin: 0
+        margin-top: 20px
+  .checkbox
+    margin-bottom: 55px
+    max-width: 80% 
+    +MQ(M)
+      max-width: 450px
+    label
+      padding-left: 50px
+      margin-top: 0
+      font-size: 10px
+      +flex-centred
+      text-align: left
+      +MQ(M)
+        font-size: 20px
+
+    input[type='checkbox']
+      min-height: 35px
+      position: absolute !important

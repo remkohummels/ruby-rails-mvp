@@ -1,0 +1,116 @@
+<header id="header">
+  <!-- dashboard end -->
+  <div class="overlay">
+    <div id="core_header_navigation" class="hidden-xs">
+      <div class="container">
+      </div>
+    </div>
+    <div id="core_header_wrapper">
+      <div class="container header_style4 bidzone-header" id="core_header">
+        <div class="row">
+          <div class="col-xs-12 col-sm-4 col-md-3">
+            <%= link_to root_path, class: 'bz-main-logo' do %>
+                <%= image_tag 'logo.png'%> 
+            <% end %>
+          </div>
+          <div class="col-xs-12 col-sm-8 col-md-9 hidden-xs">
+            <div class="bz-main-menu">
+              <nav class="bz-navbar">
+
+                <div class="btn-group col-xs-1">
+                  <%= active_link_to "Browse", browse_path, class: 'bz-button'%>
+                </div>
+   
+                <div class="btn-group col-xs-2">
+                  <%= active_link_to "Join a group", groups_path, class: 'bz-button', active: [['groups'], ['index']]%>
+                </div>
+
+                <div class="btn-group col-xs-2">
+                  <%= active_link_to "Create a group", new_group_path, class: 'bz-button', active: [['groups'], ['new']]%>
+                </div>
+
+                <div class="btn-group col-xs-2">
+                  <%= active_link_to "Switch group", switch_groups_path, class: 'bz-button', active: [['groups'], ['switch']]%>
+                </div>
+
+                <div class="btn-group col-xs-2">
+                  <%= active_link_to "Invite friends", invite_path, class: 'bz-button'%>
+                </div>
+
+                <div class="btn-group col-xs-2">
+                  <%= button_to 'Post', choose_posting_type_path, :method => :get, class: 'bz-oval-btn'%>
+                </div>
+                <div class="col-xs-12 flex -end p-0">
+                  <%= search_form_for @q, url: browse_path, html: {class: 'bz-search'} do |f| %>
+                    <%= f.search_field :title_cont, class: '', placeholder: 'I’m looking for…' %>
+                    <%= f.select(:category_id_eq, (Category.all.collect{ |c| [c.name, c.id] }), {include_blank: 'All Categories'}, { class: 'select'} ) %>
+                    <button class="wlt_button_search">
+                      <i class="glyphicon glyphicon-search"></i>
+                    </button>
+                  <% end %>
+                </div>
+              </nav>
+            </div>
+          </div>
+          <div class="mobile-post-container">
+            <%= button_to 'Post', choose_posting_type_path, :method => :get, class: 'bz-oval-btn'%>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid" id="core_smallmenu">
+      <div class="row">
+<!--         <div id="wlt_smalldevicemenubar">
+          <a href="javascript:void(0);" class="b1" data-toggle="collapse" data-target=".wlt_smalldevicemenu">Website
+            Navigation <span class="glyphicon glyphicon-align-justify"></span></a>
+        </div>
+        <div class="wlt_smalldevicemenu hidden-md hidden-lg" > 
+          <%# if current_user %>
+            <nav>
+              <li class="">
+                <%#= link_to 'Messages', messages_path%>
+              </li>
+              <li class="">
+                <%#= link_to 'Notifications', notifications_path%>
+              </li>
+              <li class="">
+                <%#= link_to 'Settings', settings_path%>
+              </li>
+              <li class="">
+                <%#= link_to 'Support', support_path%>
+              </li>
+              <li class="">
+                <%#= link_to 'Security', security_path%>
+              </li>              
+              <li class="">
+                <%#= link_to "Join a group", groups_path%>
+              </li>
+              <li class="">
+                <%#= link_to "Switch groups", switch_groups_path%>
+              </li>
+              <li class="">
+                <%#= link_to "Create a group", new_group_path%>
+              </li>
+              <li class="">
+                <%#= link_to 'Invite Friends', invite_path%>
+              </li>
+              <li class="">
+                <%#= link_to 'Post new item', new_item_path%>
+              </li>
+              <li>
+                <%#= link_to 'Logout', destroy_user_session_path, method: :delete, class: "ua4 ex-main-link" %>
+              </li>
+            </nav>
+          <%# else %>
+            <nav>
+              <li><a href="/users/sign_in/">Login</a></li>
+              <li><a href="/users/sign_up/">Registration</a></li>
+            </nav>
+          <%# end %>
+        </div> -->
+      </div>
+    </div>
+  </div>
+</header>
+<i class="fa fa-bars bz-open-btn side_menu_open" aria-hidden="true"></i>
+<%= render 'layouts/sidemenu'%>

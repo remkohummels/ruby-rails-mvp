@@ -1,0 +1,133 @@
+nav.navbar.topnavbar.second[role="navigation"]
+  .navbar-header
+    button.navbar-toggle[type="button" data-toggle="collapse" data-target=".navbar-collapse"]
+      span.sr-only
+        | Toggle navigation
+      span.icon-bar
+      span.icon-bar
+      span.icon-bar
+    a.navbar-brand[href="/"]
+      .brand-logo
+        = image_tag 'logo.png', alt: 'App Logo', class: 'img-responsive'
+      .brand-logo-collapsed
+        = image_tag 'favicon.png', alt: 'App Logo', class: 'img-responsive'
+  .nav-wrapper
+    ul.nav.navbar-nav
+      li
+        a.hidden-xs[href="#" data-trigger-resize="" data-toggle-state="aside-collapsed"]
+          em.fa.fa-navicon
+        a.visible-xs.sidebar-toggle[href="#" data-toggle-state="aside-toggled" data-no-persist="true"]
+          em.fa.fa-navicon
+      li
+        a#user-block-toggle.hidden-xs[href="#user-block" data-toggle="collapse"]
+          em.icon-user
+    ul.nav.navbar-nav.navbar-collapse.collapse
+      li
+        = active_link_to "Browse", browse_path
+      li
+        = active_link_to "Join a Group", groups_path, active: [['groups'], ['index']]
+      li
+        = active_link_to "Invite friends", invite_path
+      li
+        = link_to 'Post', choose_posting_type_path, :method => :get
+      li
+        = active_link_to "My groups", switch_groups_path, active: [['groups'], ['switch']]
+
+    ul.nav.navbar-nav.navbar-right.navbar-collapse.collapse
+      li
+        = link_to how_it_works_path
+          |How To
+          i class="fa fa-lightbulb-o"
+
+      - if @inbox_msg_count
+        li.dropdown.dropdown-list
+          a[href="#" data-toggle="dropdown"]
+            em.icon-envelope
+            - if @inbox_msg_count > 0
+              .label.label-warning
+                = @inbox_msg_count
+          ul.dropdown-menu.animated.flipInX
+            li
+              .list-group
+                = link_to browse_path(following: true), class: "list-group-item"
+                  .media-box
+                    .pull-left
+                      em.fa.fa-shopping-cart.fa-2x.text-info
+                    .media-box-body.clearfix
+                      p.m0
+                        | Following Items
+                      p.m0.text-muted
+                        small
+                          | You are following #{pluralize(current_user.followed_items.active.count, 'item')} 
+                a.list-group-item[href="#"]
+                  .media-box
+                    .pull-left
+                      em.fa.fa-envelope.fa-2x.text-warning
+                    .media-box-body.clearfix
+                      p.m0
+                        | Mail
+                      p.m0.text-muted
+                        small
+                          | You have #{@inbox_msg_count} new emails
+
+        li
+          = link_to account_notifications_path
+            em.icon-bell
+            - if current_user.notifications.news.count > 0
+              .label.label-danger
+                = current_user.notifications.news.count
+
+      li.dropdown.dropdown-list
+        a[href="#" data-toggle="dropdown"]
+          - if current_user.avatar_url.present?
+            = image_tag current_user.avatar_url
+          - else
+            em.icon-user
+          = current_user.first_name + ' ' + current_user.last_name
+        ul.dropdown-menu.animated.flipInX
+          li
+            .list-group
+              = link_to account_dashboard_path, class: "list-group-item"
+                .media-box
+                  .pull-left
+                    / em.fa.fa-settings.fa-2x
+                  .media-box-body.clearfix
+                    p.m0 My Account
+              = link_to settings_path, class: "list-group-item"
+                .media-box
+                  .pull-left
+                    / em.fa.fa-settings.fa-2x
+                  .media-box-body.clearfix
+                    p.m0 Settings
+              = link_to transactions_path, class: "list-group-item"
+                .media-box
+                  .pull-left
+                  .media-box-body.clearfix
+                    p.m0 Transactions
+              = link_to account_feedback_service_path, class: "list-group-item"
+                .media-box
+                  .pull-left
+                  .media-box-body.clearfix
+                    p.m0 Feedback
+              = link_to security_path, class: "list-group-item"
+                .media-box
+                  .pull-left
+                  .media-box-body.clearfix
+                    p.m0 Security
+              = link_to destroy_user_session_path, method: :delete, class: "list-group-item"
+                .media-box
+                  .pull-left
+                  .media-box-body.clearfix
+                    p.m0 Logout
+      = render 'layouts/partials/flag'
+      li
+        a[href="#" data-search-open=""]
+          em.icon-magnifier
+      li.visible-lg
+        a[href="#" data-toggle-fullscreen=""]
+          em.fa.fa-expand
+
+  = search_form_for @q, url: browse_path, html: {class: 'navbar-form', role: 'search'} do |f|
+    .form-group.has-feedback
+      = f.search_field :title_cont, class: 'form-control', placeholder: 'I’m looking for…'
+      .fa.fa-times.form-control-feedback[data-search-dismiss=""]

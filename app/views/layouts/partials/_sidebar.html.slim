@@ -1,0 +1,56 @@
+.aside-inner
+  nav.sidebar[data-sidebar-anyclick-close=""]
+    ul.nav
+      li.has-user-block
+        #user-block.collapse
+          .item.user-block
+            .user-block-picture
+              .user-block-status
+                = image_tag current_user.avatar_url.blank? ? 'angle/dummy.png' : current_user.avatar_url , class: 'img-thumbnail img-circle', width: 60, width: 60
+                .circle.circle-success.circle-lg
+            .user-block-info
+              span.user-block-name
+                = "Hello, " + current_user.full_name
+      li.nav-heading
+        span
+          | Main Navigation
+      li class="#{'active' if controller?('account/dashboard') && action?('index')}"
+        = link_to account_dashboard_path, title: 'Dashboard'
+          em.icon-speedometer
+          span[data-localize="sidebar.nav.DASHBOARD"] Dashboard
+      li class="#{'active' if controller?('account/profile')}"
+        = link_to account_profile_path, title: 'Profile' do
+          em.icon-user
+          span[data-localize="sidebar.nav.extra.MYPROFILE"] My Profile
+      li class="#{'active' if controller?('account/messages')}"
+        = link_to account_messages_path, title: 'Mailbox' do
+          em.icon-envelope
+          - if @inbox_msg_count>0
+            .label.label-success.pull-right.inbox-count = @inbox_msg_count
+          span[data-localize="sidebar.nav.extra.MAILBOX"] Mailbox
+      li class="#{'active' if controller?('account/notifications')}"
+        = link_to account_notifications_path, title: 'Dashboard'
+          em.icon-bell
+          span[data-localize="sidebar.nav.DASHBOARD"] Notifications
+          - if current_user.notifications.news.count > 0
+            .label.label-danger.pull-right
+              = current_user.notifications.news.count
+      li class="#{'active' if controller?('account/dashboard') && action?('items')}"
+        = link_to account_items_path, title: 'My Posts' do
+          em.icon-list
+          span[data-localize="sidebar.nav.extra.MYITEMS"] My Posts
+      li class="#{'active' if controller?('account/dashboard') && action?('feedbacks')}"
+        = link_to account_feedbacks_path, title: 'My Reviews' do
+          em.icon-bubble
+          /.label.label-success.pull-right 
+          span[data-localize="sidebar.nav.extra.MYREVIEWS"] My Reviews
+      li
+        = link_to browse_path(favorites: true), title: 'My Favorites' do
+          em.icon-star
+          /.label.label-success.pull-right 
+          span[data-localize="sidebar.nav.extra.MAILBOX"] My Favorites
+      li class="#{'active' if controller?('account/dashboard') && action?('bids')}"
+        = link_to account_bids_path, title: 'My Bids' do
+          em.icon-calendar
+          /.label.label-success.pull-right 
+          span[data-localize="sidebar.nav.extra.MYREVIEWS"] Bids & Offers

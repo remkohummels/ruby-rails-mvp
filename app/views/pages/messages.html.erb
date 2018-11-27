@@ -1,0 +1,199 @@
+<div class="page-wrapper " id="listing_styles">
+
+
+  <div id="core_padding">
+
+
+    <div id="core_padding_inner">
+
+      <div class=" container widecontainer core_section_top_container">
+
+
+        <div class="row core_section_top_row wlt_main_2colsleft">
+
+
+          <div id="core_inner_wrap" class="clearfix">
+
+
+            <aside class="core_sidebar col-md-3 col-sm-3 hidden-xs" id="core_left_column">
+
+
+              <h2>sidebar partial</h2>
+
+            </aside>
+
+
+            <article class="col-md-820 col-sm-820" id="core_middle_column">
+              <div class="core_middle_wrap">
+                <div id="core_ajax_callback"></div>
+
+
+
+                  <!-- account messages start -->
+                  <div class="panel panel-default" id="MyMsgBlock" style="display:none;">
+                    <div class="panel-heading">My Messages</div>
+                    <div class="panel-body">
+                      <div id="msgAjax"></div>
+                      <form id="sendmsgform" name="sendmsgform" method="post" action="" class="alert" style="display:none;">
+                        <input type="hidden" name="action" value="sendmsg">
+                        <a href="#top" class="label label-warning" style="float:right;margin-top:30px;" onclick="jQuery('#sendmsgform').hide();">Hide Form</a>
+                        <h3>Send Message</h3>
+                        <p>Fill out the fields below to send a private message to one of our members.</p>
+                        <hr>
+                        <div class="input-group">
+                          <span class="input-group-addon" id="ajaxMsgUser">@</span>
+                          <input class="form-control" name="username" id="usernamefield" type="text" placeholder="Member Username" value="">
+                        </div>
+                        <script type="application/javascript">
+                        jQuery('#usernamefield').change(function () {
+                        WLTValidateUsername('bidzone.ca', this.value, 'ajaxMsgUser')
+                        });
+                        </script>
+                        <hr>
+                        <div class="form-group">
+                          <label>Subject</label>
+                          <input type="text" name="subject" id="subjectfield" value="" class="form-control">
+                        </div>
+                        <div class="form-group">
+                          <label>Message</label>
+                          <textarea id="sendMsgContent" rows="3" class="form-control" style="height:280px;" name="message"></textarea>
+                        </div>
+                        <button class="btn btn-warning">Send Message</button>
+                      </form>
+                      <form method="post" action="" id="messageDel" name="messageDel">
+                        <input type="hidden" name="action" value="deletemsg">
+                        <input type="hidden" name="messageID" id="messageID" value="">
+                      </form>
+                      <form method="post" action="">
+                        <input type="hidden" name="action" value="deletemsgs">
+                        <table class="table table-bordered table-striped">
+                          <thead>
+                            <tr>
+                              <th></th>
+                              <th style="width:80px;">Status</th>
+                              <th style="min-width:380px;">Subject</th>
+                              <th class="text-center">Date</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>
+                                <input class="checkbox1" type="checkbox" name="check[]" value="106">
+                              </td>
+                              <td style="text-align:center"><span class="label label-default">Read</span>
+                            </td>
+                            <td>
+                              <a onclick="WLTChangeMsgStatus('bidzone.ca', '106', 'msgAjax');" href="#my106" id="#my106_link" data-toggle="modal" style="text-decoration:underline;">werqwerqwer</a>
+                              <a href="javascript:void(0);" onclick="document.getElementById('messageID').value=106;messageDel.submit();" style="font-size:11px; float:right;"><i class="glyphicon glyphicon-trash"></i> Delete</a>
+                              <div id="my106" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                      <h3><b>werqwerqwer</b></h3>
+                                    </div>
+                                    <div class="modal-body">
+                                      <p style="font-size:11px;">saran says;</p>
+                                      <p></p>
+                                      <p>qwerqwerqer</p>
+                                      <p></p>
+                                      <textarea id="msg_content_106" style="display:none;">
+                                      ------------- April 19, 2016 11:09 am ------------------ qwerqwerqer
+                                      </textarea>
+                                    </div>
+                                    <div class="modal-footer"><a class="btn btn-primary" data-dismiss="modal" aria-hidden="true" style="float:left;" onclick="jQuery('#sendmsgform').show();jQuery('#usernamefield').val('saran');jQuery('#sendMsgContent').val(jQuery('#msg_content_106').text());jQuery('#subjectfield').val('RE:werqwerqwer');">Reply</a><a class="btn btn-default" data-dismiss="modal" aria-hidden="true">Back</a>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </td>
+                          <td style="text-align:center"><small>April 19, 2016 11:09 am</small>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <input class="checkbox1" type="checkbox" name="check[]" value="105">
+                          </td>
+                          <td style="text-align:center"><span class="label label-default">Read</span>
+                        </td>
+                        <td>
+                          <a onclick="WLTChangeMsgStatus('bidzone.ca', '105', 'msgAjax');" href="#my105" id="#my105_link" data-toggle="modal" style="text-decoration:underline;">1234 12</a>
+                          <a href="javascript:void(0);" onclick="document.getElementById('messageID').value=105;messageDel.submit();" style="font-size:11px; float:right;"><i class="glyphicon glyphicon-trash"></i> Delete</a>
+                          <div id="my105" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                  <h3><b>1234 12</b></h3>
+                                </div>
+                                <div class="modal-body">
+                                  <p style="font-size:11px;">123 123 says;</p>
+                                  <p></p>
+                                  <p>41241241234</p>
+                                  <p></p>
+                                  <textarea id="msg_content_105" style="display:none;">
+                                  ------------- April 19, 2016 11:07 am ------------------ 41241241234
+                                  </textarea>
+                                </div>
+                                <div class="modal-footer"><a class="btn btn-primary" data-dismiss="modal" aria-hidden="true" style="float:left;" onclick="jQuery('#sendmsgform').show();jQuery('#usernamefield').val('testUser');jQuery('#sendMsgContent').val(jQuery('#msg_content_105').text());jQuery('#subjectfield').val('RE:1234 12');">Reply</a><a class="btn btn-default" data-dismiss="modal" aria-hidden="true">Back</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                      <td style="text-align:center"><small>April 19, 2016 11:07 am</small>
+                      </td>
+                    </tr>
+                  </tbody>
+                  </table>
+                  <div class="selectionbox">
+                  <button type="submit" class="pull-right">Delete Selected</button>
+                  <input type="checkbox" id="selecctall"> Select All
+                  </div>
+                  </form>
+                  <script>
+                  jQuery(document).ready(function () {
+                  jQuery('#selecctall').click(function (event) { //on click
+                  if (this.checked) { // check select status
+                  jQuery('.checkbox1').each(function () { //loop through each checkbox
+                  this.checked = true; //select all checkboxes with class "checkbox1"
+                  });
+                  } else {
+                  jQuery('.checkbox1').each(function () { //loop through each checkbox
+                  this.checked = false; //deselect all checkboxes with class "checkbox1"
+                  });
+                  }
+                  });
+                  });
+                  </script>
+                  <hr>
+                  <a href="javascript:void(0);" class="btn btn-primary" onclick="jQuery('#sendmsgform').show();">Compose Message</a>
+                  <button class="btn btn-default pull-right" type="button" onclick="jQuery('#MyAccountBlock').show();jQuery('#MyMsgBlock').hide();">Back</button>
+                  </div>
+                  </div>
+
+                  <!-- messages content end -->
+
+                  <!-- memberships form -->
+                <form method="post" name="MEMBERSHIPFORM" action="http://bidzone.ca/index.php/my-account-3/" id="MEMBERSHIPFORM" style="margin:0px;padding:0px;">
+
+                  <input type="hidden" name="membershipID" id="membershipID" value="-1">
+                  <input type="hidden" name="showpaymentform" value="1">
+                </form>
+
+
+              </div>
+            </article>
+
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

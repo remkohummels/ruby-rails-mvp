@@ -1,0 +1,128 @@
+body
+  font-family: "Open Sans", sans-serif
+  font-size: 14px
+  line-height: 1.42857
+  color: #333
+
+  a
+    color: #666
+section
+  
+ul,ol,li 
+  list-style: none
+select
+  appearance: none
+.flag-icon
+  width: 20px
+  height: 15px
+  display: inline-block
+  background-size: cover
+  vertical-align: middle
+  &-us
+    background-image: image-url("flags/4x3/us.svg") !important
+  &-eu
+    background-image: image-url("flags/4x3/eu.svg") !important
+  &-gb
+    background-image: image-url("flags/4x3/gb.svg") !important
+  &-ca
+    background-image: image-url("flags/4x3/ca.svg") !important
+.row
+  max-width: 100%
+
+.navbar-wrapper
+  max-width: 1140px
+  margin-left: auto
+  margin-right: auto
+#AuthorSingle
+  .head
+    background-image: image-url('sign.jpg')
+    background-size: 100% auto
+.bz-group-page
+  .nav-tabs 
+    & > li
+      &.active
+        & > a
+          color: #23b7e5 !important
+.content-page
+  h2
+    font-size: 26px !important
+  h4
+    font-size: 16px !important
+  .tab-pane
+    margin-right: -1px
+    z-index: 10
+    padding-right: 0
+
+    a
+      display: block
+      background-color: #edf1f2
+      margin: 10px 0
+      padding: 10px 20px
+      border: 1px solid #ddd
+
+      &.active
+        background-color: #fff
+        border-right-color: #fff
+
+  .panel-body
+    ul
+      list-style: disc
+      & > li
+        list-style: disc
+    ol
+      list-style: decimal
+      & > li
+        list-style: decimal
+    li
+      text-align: justify
+      p
+        padding-left: 16px
+    p
+      text-align: justify
+      margin: 10px 0 15px
+    h2
+      text-align: center
+    h4
+      font-weight: 600 !important
+      margin-top: 24px
+    a
+      color: #5d9cec
+
+.content-wrapper
+  border-top-width: 0 !important
+
+.wrapper
+  & > header
+    position: fixed
+    width: 100%
+    top: 0
+    z-index: 9999
+    .topnavbar
+      background-color: rgb(85,68,163) !important
+      background-image: none !important
+      .navbar-header
+        background-color: rgb(85,68,163) !important
+        background-image: none !important
+        .brand-logo
+          padding: 8px 15px !important
+          & > img
+            height: 38px
+            margin: 0
+      .navbar-nav 
+        & > li 
+          & > a
+            &:hover, :focus
+              color: #ffcb02
+        & > .open 
+          & > a, & > a:hover, & > a:focus
+            color: #ffcb02
+
+  & > section
+    margin-top: 60px !important
+
+.layout-h
+  .wrapper
+    & > section
+      margin-bottom: 180px !important
+      +MQ(L)
+        margin-bottom: 100px !important

@@ -1,0 +1,13 @@
+$text-btn-c: $montecarlo
+$text-btn-ff: $bz-font-bold
+$text-btn-fz-s: 12px
+$text-btn-fz: 15px
+.bz-text-btn
+  color: $text-btn-c
+  font-family: $text-btn-ff !important
+  font-size: $text-btn-fz-s
+  cursor: pointer
+  &:hover
+    color: $main-gray
+  +MQ(S)
+    font-size: $text-btn-fz

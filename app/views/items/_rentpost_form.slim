@@ -1,0 +1,84 @@
+= semantic_form_for item, remote: true, :html => {:id => 'SUBMISSION_FORM', :class => 'validate-form new_item_form save_to_draft', role: :form, 'data-model' => 'item', :'data-type' => 'json'} do |f|
+  .form-group.field_wrapper[style="max-width: max-content; min-width: 500px;"]
+    = label_tag :image, 'Upload item images', class: "camera"
+    .uploadiconbox
+      .dropzone.upload-dropzone.modal-input.full-width data-action=("#{images_create_path(temp_key: @temp_key)}") data-count="#{item.allowed_images_count}" 
+        - item.images.each do |image|
+          = render 'partials/dz_image', image: image
+      = f.input :temp_key, as: "hidden", :input_html => {:value => @temp_key}
+  .form-group.field_wrapper
+    = label_tag :title, 'Title of item', class: "label"
+    = f.text_field :title, :label => false, class: "form-control", placeholder: "Title", required: 'required'
+    p.item_error
+  .form-group.field_wrapper
+    = label_tag :category, 'Select a category for your item', class: "squares"
+    .form-control.select
+      - selected_category = nil
+      - selected_category = item.category.id if item.category.present?
+      = f.input :category, :collection =>  Category.ordered_list, :selected => selected_category, include_blank: false, label: false, input_html: {class: "form-control"}
+    p.item_error
+  .form-group.field_wrapper
+    = label_tag :availability, 'Availibility status', class: "condition"
+    .form-control.select
+      = f.select :availability, options_for_select(enum_option_pairs(Item, Item.availabilities))
+    p.item_error
+  .form-group.field_wrapper
+    = label_tag :rent_item_location, 'Location', class: "location"
+    = f.text_field :rent_item_location, :label => false, class: "form-control", placeholder: "Mention your item pick-up location...", required: 'required'
+    p.item_error
+  .form-group.field_wrapper
+    = label_tag :rent_item_condition, 'Item condition', class: "desc"
+    = f.text_area :rent_item_condition, :label => false, class: "description form-control", :rows => 3, placeholder: "Describe your item condition here (10 words maximum)"
+    p.item_error
+  .form-group.field_wrapper
+    = label_tag :description, 'Item description', class: "desc"
+    = f.text_area :description, :label => false, class: "description form-control", :rows => 4, placeholder: "Describe your item in detail here..."
+    p.item_error
+  .form-group.field_wrapper
+    = label_tag :instruction, 'Instructions or notes', class: "desc"
+    = f.text_area :instruction, :label => false, class: "description form-control", :rows => 4, placeholder: "Mention important notes about the item here, or give instructions about the item usage if necessary..."
+    p.item_error
+  .form-group.field_wrapper
+    = label_tag :service, 'Add Drop off Service', class: "coins"
+    = f.number_field :service, :label => false, min: 0, placeholder: @currency.sign, class: "form-control price_field", oninput: "validity.valid;"
+    p.item_error
+
+  h3.bz-title
+    | Price Division
+  / .form-group.field_wrapper
+  /   = label_tag :hourly_rate, 'Set hourly rate of item', class: "coins"
+  /   .input-group
+  /     .input-group-addon $
+  /     = f.number_field :hourly_rate, value: 0, :label => false, min: 0, placeholder: @currency.sign, class: "form-control price_field", oninput: "validity.valid;"
+  /   p.item_error
+  .form-group.field_wrapper
+    = label_tag :daily_rate, 'Set daily rate of item', class: "coins"
+    .input-group
+      .input-group-addon $
+      = f.number_field :daily_rate, :label => false, min: 0, placeholder: @currency.sign, class: "form-control price_field", oninput: "validity.valid;"
+    p.item_error
+  .form-group.field_wrapper
+    = label_tag :weekly_rate, 'Set weekly rate of item', class: "coins"
+    .input-group
+      .input-group-addon $
+      = f.number_field :weekly_rate, :label => false, min: 0, placeholder: @currency.sign, class: "form-control price_field", oninput: "validity.valid;"
+    p.item_error
+  .form-group.field_wrapper
+    = label_tag :hold_amount, 'Set credit card hold amount for item', class: "coins"
+    .input-group
+      .input-group-addon $
+      = f.number_field :hold_amount, :label => false, min: 0, placeholder: @currency.sign, class: "form-control price_field", oninput: "validity.valid;"
+    p.item_error
+  .form-group.field_wrapper
+    .checkbox
+      .check
+        = f.input :accept_term, :label => false, as: :boolean, :label => '', class: "form-control", hidden_field_html: nil
+      = label_tag "item_accept_term", class: "accept-term"
+        | I accept
+        = link_to "terms & conditions", terms_of_use_path
+        | &
+        = link_to "privacy policy", privacy_policy_path
+
+  = f.input :location, as: 'hidden', :input_html => {:value => location}
+  = f.input :posting_type, as: 'hidden', :input_html => {:value => posting_type}
+  = f.submit 'preview post', id: 'finish_q', class: "bz-oval-btn post"

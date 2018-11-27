@@ -1,0 +1,25 @@
+<div class="remodal modal" data-remodal-id="message-form" data-remodal-options="hashTracking: false">
+  <div class="row">
+    <div class=" col-xs-12">
+      <div class="owl-carousel item-owl-carousel wlt_search_results grid_style owl-theme">
+
+        <% @item.images.each do |image| %>
+            <div class="itemdata icons" data-hash="image-<%= image.id %>">
+              <%= image_tag image.file.url %>
+            </div>
+        <% end %>
+
+      </div>
+      <div class="image_link">
+
+        <% @item.images.each do |image| %>
+            <%= link_to "#image-#{image.id}", class: "button secondary url" do %>
+                <%= image_tag image.file.small.url %>
+            <% end %>
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+  <button class="remodal-close" data-remodal-action="close"></button>
+</div>

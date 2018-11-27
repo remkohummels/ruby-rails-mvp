@@ -1,0 +1,19 @@
+<div class="row table-header settings-admin-tab">
+  <div class="col-xs-6 col-sm-4">
+    <div class="col-title stg-from"> Name</div>
+  </div>
+  <div class="col-xs-6 col-sm-4 ">
+    <div class="col-title stg-location">
+      Location
+    </div>
+  </div>
+  <div class="hidden-xs col-sm-4">
+    <div class="col-title stg-email">
+      Email
+    </div>
+  </div>
+</div>
+<% messages.each do |message| %>
+  <%= render 'messages/settings_message_item', msg: message %>
+  <%= render 'messages/message_content_modal', msg: message %>
+<% end %>

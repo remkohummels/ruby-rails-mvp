@@ -1,0 +1,7 @@
+.bz-newgroup-page
+  .container.newgroup-content
+    h2.bz-title
+      |Edit a Group
+    h4.bz-subtitle
+      |Edit this group as admin
+    = render "group_form", locals: { group: @group, type: 'Update Group' }

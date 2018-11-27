@@ -1,0 +1,15 @@
+.row.widget-items-closing-soon
+  - items.each do |item|
+    .col-lg-3.col-md-6.col-sm-12
+      .panel.item
+        .picture
+          = image_tag item.images.first.file.url, class: "img-responsive" if item.images.first.present?
+        .panel-body
+          div.text-center.m0.h2.text-success
+            = to_currency(item.start_price)
+          div.text-center.m0.h4
+            = item.title
+          div.text-center.m0.h1.text-danger
+            = item_time_left item
+        = link_to item_path(item), class: "btn btn-pink m0"
+          span.h3 Bid Now

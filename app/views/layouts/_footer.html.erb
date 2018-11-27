@@ -1,0 +1,42 @@
+<footer class="bz-footer" id="footer">
+    <div class="row">
+      <div class="footer-copyright col-lg-4 col-md-12 text-center">
+        © 2017 GroupnShop Corporation. All Rights Reserved.
+      </div>
+      <div class="footer-menu col-lg-6 col-md-8 col-sm-12">
+        <div class="row">
+          <div class="col-md-3 col-xs-6 text-center">
+            <%= link_to "Terms of Use", terms_of_use_path %>
+          </div>
+          <div class="col-md-3 col-xs-6 text-center">
+            <%= link_to "Prohibited Items", prohibited_items_path %>
+          </div>
+          <div class="col-md-3 col-xs-6 text-center">
+            <%= link_to "Privacy Policy", privacy_policy_path %>
+          </div>
+          <div class="col-md-3 col-xs-6 text-center">
+            <%= link_to "Contact", account_feedback_service_path %>
+          </div>
+        </div>
+      </div>
+      <div class="footer-soc col-lg-2 col-md-4 col-sm-12">
+        <div class="row">
+          <div class="col-xs-4 text-center">
+            <a href="https://www.instagram.com/groupnshop/">
+              <%= render 'partials/instagram_logo' %>
+            </a>
+          </div>
+          <div class="col-xs-4 text-center">
+            <a href="https://twitter.com/groupnshop">
+              <%= render 'partials/twitter_logo' %>
+            </a>
+          </div>
+          <div class="col-xs-4 text-center">
+            <a href="https://www.facebook.com/groupnshop/">
+              <%= render 'partials/facebook_logo' %>
+            </a>
+          </div>
+        </div>
+      </div>
+  </div>
+</footer>

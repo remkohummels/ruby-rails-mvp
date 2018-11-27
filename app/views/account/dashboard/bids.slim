@@ -1,0 +1,20 @@
+h3 Bids & Offers
+.panel.panel-default#MyAuctions
+  .panel-heading Current Bids/Offers
+  .panel-body
+    table.table.table-bordered
+      thead
+        tr
+          th Item
+          th style="text-align:center;" My Current Bid or Offer
+          th style="text-align:center;" Max Bid or Offer
+          th style="text-align:center;" Actions
+      tbody
+        - @bids.date_desc.each do |bid|
+          = render 'users/bid', bid: bid
+    hr
+    = link_to 'Back', :back, class: 'btn btn-default pull-right'
+= render 'account/dashboard/items/items'
+form method="post" name="MEMBERSHIPFORM" action="http://bidzone.ca/index.php/my-account-3/" id="MEMBERSHIPFORM" style="margin:0px;padding:0px;"
+  input type="hidden" name="membershipID" id="membershipID" value="-1"
+  input type="hidden" name="showpaymentform" value="1"

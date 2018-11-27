@@ -1,0 +1,24 @@
+<%= link_to anchor: 'msg-'+msg.id.to_s , :'data-remodal-target'=>'msg-'+msg.id.to_s do %>
+  <div class="row table-row">
+    <div class="col-xs-6 col-sm-4">
+      <div class="col-item">
+        <%= msg.title %>
+      </div>
+    </div>
+    <div class="col-xs-6 col-sm-3">
+      <div class="col-item">
+        <%= msg.sender_name%>
+      </div>
+    </div>
+    <div class="col-xs-3 hidden-xs">
+      <div class="col-item">
+        <%= msg.sender_email %>
+      </div>
+    </div>
+    <div class="col-xs-2 hidden-xs">
+      <div class="col-item">
+        <%= msg.created_date %>
+      </div>
+    </div>
+  </div>
+<% end %>

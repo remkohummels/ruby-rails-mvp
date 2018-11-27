@@ -1,0 +1,40 @@
+$btn-bg-c: $pink
+$btn-c: #fff
+$mc-width: 200px
+$mc-color: $montecarlo
+.bz-square-btn
+  font-size: 13px
+  background: $btn-bg-c
+  cursor: pointer
+  color: $btn-c !important
+  width: 90%
+  min-height: 24px
+  height: 34px
+  border: 1px solid $btn-bg-c
+  border-radius: 3px
+  padding: 0
+  text-decoration: none !important
+  outline: none !important
+  +flex-centred
+  text-align: center
+  +MQ(L)
+    width: 100%
+  &:hover
+    color: $btn-bg-c !important
+    background: transparent !important
+  &.fitted
+    width: $mc-width
+    margin-top: 20px
+  &.mc
+    width: $mc-width
+    border-color: $mc-color !important
+    background-color: $mc-color !important
+    &:hover
+      background-color: transparent !important
+      color: $mc-color !important
+      a.bz-text-btn
+        color: $montecarlo !important
+    a.bz-text-btn
+      color: #fff !important
+      &:hover
+        color: $montecarlo !important

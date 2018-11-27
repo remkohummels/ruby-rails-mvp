@@ -1,0 +1,75 @@
+- location = @item.location.split(' | ')
+- city = location[0]
+- state = location[1]
+- seller_items = seller_items(@item.user)
+.product-desciption
+  .container
+    div
+      .container-fliud
+        .wrapper.row
+          .col-sm-6.col-md-6
+            .singleimg.text-center
+              .fotorama data-arrows="true" data-click="true" data-loop="true" data-maxwidth="100%" data-nav="thumbs" data-ratio="16/9" data-width="900"
+                - @item.images.each do |image|
+                  = image_tag image.file.url
+          .col-sm-6.col-md-6.item_detail
+            h3.product-title= @item.title if @item.title
+            p.fontlight Rent Item
+            .price-division-section
+              .container
+                .row
+                  p.text-center Price Division
+                .row
+                  .col-sm-4.col-md-4.price-division
+                    h3.price-value = to_currency(@item.hourly_rate) if @item.hourly_rate
+                    h5.price-type Hourly
+                  .col-sm-4.col-md-4.price-division
+                    h3.price-value = to_currency(@item.daily_rate) if @item.daily_rate
+                    h5.price-type Daily
+                  .col-sm-4.col-md-4.price-division
+                    h3.price-value.no-border = to_currency(@item.weekly_rate) if @item.weekly_rate
+                    h5.price-type Weekly
+            .other-details-section
+              .detail
+                span.detail-title Amount of Days
+                span.detail-value
+                  input type="number" min="0" value="0" /
+              br
+              .detail
+                span.detail-title Availability Status:
+                span.detail-value = @item.availability if @item.availability
+              .detail
+                span.detail-title Location:
+                span.detail-value = @item.rent_item_location if @item.rent_item_location
+              .detail
+                span.detail-title Condition:
+                span.detail-value = @item.rent_item_condition if @item.rent_item_condition
+              .detail
+                span.detail-title Category:
+                span.detail-value = @item.category.name if @item.category
+            .description-section
+              p = @item.description if @item.description
+            .credit-card-hold-section
+              p.text-center Credit Card Hold Amount
+              input readonly="readonly" type="text" value="#{ to_currency(@item.hold_amount) if @item.hold_amount }" /
+            .service-section
+              .checkbox
+                label
+                  input type="checkbox" value="" /
+                  p Drop-off Service is available for customers. Mark this option to utilize it.
+                  p Service charges are #{ to_currency(@item.service) if @item.service }
+
+            - if user_signed_in?
+              - if @item.user == current_user
+                - if @item.pending?
+                  = render 'preview_controls', locals: {item: @item}
+                - elsif !@item.finished?
+                  = render 'posted_controls', locals: {item: @item}
+                - if @item.finished? && @item.winner.present?
+                  p= link_to 'Contact buyer', new_account_message_path(recipient_id: @item.winner.id, title: @item.title), class: 'contactSeller'
+              - elsif !@item.finished? && !@item.is_free?
+                p
+                  = link_to 'Proceed To Payment', new_charge_path(item_id: @item.id, charge_amount: @item.hold_amount),
+                          class: 'text-uppercase contactSeller btn-block'
+            - else
+              = link_to '+ Join to Buy or Sell', root_path(anchor: 'sign_section'), class: "bz-oval-btn"

@@ -1,0 +1,42 @@
+.bz-side-menu.side_menu
+  i.fa.fa-times.bz-close-btn.side_menu_close
+  / .col-xs-12
+  /   = link_to root_path
+  /     .bz-logo
+  /       = image_tag 'logo-white.png'
+  .col-xs-12
+    nav.bz-side-menu--nav
+      - if current_user
+        .bz-account-bubble
+          .account-thumb.dropdown-toggle
+            div class=("avatar #{' active' if current_user.avatar_url.present?}") 
+              = image_tag current_user.avatar_url
+            = current_user.first_name + ' ' + current_user.last_name
+          .dropdown-menu
+            .user-info
+              div class=("avatar #{' active' if current_user.avatar_url.present?}") 
+                = image_tag current_user.avatar_url
+              .name
+                span Welcome,
+                = current_user.first_name + ' ' + current_user.last_name
+            - if current_user.received_messages.pluck(:status).include?('new')
+              = link_to 'Messages', account_messages_path, class: "bz-button"
+            - else
+              = link_to 'Messages', account_messages_path, class: "bz-button"
+            = link_to 'Settings', settings_path, class: "bz-button"
+            = link_to 'Transactions', transactions_path, class: "bz-button"
+            = link_to 'Feedback', account_feedback_service_path, class: "bz-button"
+            = link_to 'Security', security_path, class: "bz-button"
+      = active_link_to "Home", root_path, class: 'bz-side-menu--nav-item', active: [['main'], ['index']]
+      = active_link_to "Browse", browse_path, class: 'bz-side-menu--nav-item'
+      = active_link_to "Join a group", groups_path, class: 'bz-side-menu--nav-item', active: [['groups'], ['index']]
+      = active_link_to "Create a group", new_group_path, class: 'bz-side-menu--nav-item', active: [['groups'], ['new']]
+      = active_link_to "Switch group", switch_groups_path, class: 'bz-side-menu--nav-item', active: [['groups'], ['switch']]
+      = active_link_to "Invite friends", invite_path, class: 'bz-side-menu--nav-item'
+  .bz-side-menu--controls
+    - if current_user
+      = link_to 'Logout', destroy_user_session_path, method: :delete, class: 'bz-side-menu--nav-item col-xs-6'
+      = link_to "Post", choose_posting_type_path, class: 'bz-side-menu--nav-item col-xs-6' 
+    -else
+      = link_to 'Sign Up', new_user_registration_path, class: 'bz-side-menu--nav-item col-xs-6'
+      = link_to 'Sign In', root_path(anchor: "sign_section"), class: 'bz-side-menu--nav-item col-xs-6 side_menu_close' 

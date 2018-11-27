@@ -1,0 +1,9 @@
+.step-fields#s3
+  h2
+    | Add pictures and/or documents with the specifications
+  .uploadiconbox.field_wrapper
+    .dropzone.upload-dropzone.modal-input.full-width data-action=("#{images_create_path(temp_key: @temp_key)}") data-count="#{item.allowed_images_count}" 
+      - item.images.each do |image|
+        = render 'partials/dz_image', image: image
+    = f.input :temp_key, as: "hidden", :input_html => {:value => @temp_key}
+

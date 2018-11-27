@@ -1,0 +1,3 @@
+<%= link_to remove_from_favorite_path({id: item, obj: item.class.name}), {method: :put, remote: true, class: "item_vote"} do %>
+    <span>Remove from favorites</span>
+<% end %>

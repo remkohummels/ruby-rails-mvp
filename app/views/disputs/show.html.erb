@@ -1,0 +1,69 @@
+<div class="home">
+  <div id="core_padding">
+    <div id="core_padding_inner">
+      <div class=" container widecontainer core_section_top_container">
+        <div class="row core_section_top_row wlt_main_2colsright">
+          <div id="core_inner_wrap" class="clearfix">
+            <article class="col-md-12" id="core_middle_column">
+              <div class="core_middle_wrap">
+                <div id="core_ajax_callback"></div>
+                <div class="row">
+                  <div class="col-md-8 col-sm-8 col-xs-12 adminedit2 item-form">
+
+                    <div class="panel panel-default" id="MyMsgBlock">
+                      <div class="panel-heading">Dispute for
+                        <%= link_to @disput.item.title, item_path(@disput.item) %> <%= '(Resolved)' if @disput.winner %></div>
+                      <div class="panel-body">
+                        <% if @disput.winner %>
+                        <div class="alert bs-callout bs-callout-alert" id="editlistingbox">
+                          <h4>The dispute is resolved in favor of the <%= link_to @disput.winner.full_name, user_path(@disput.winner) %></h4>
+                          <p>
+                            <%= @disput.resolve_reason %>
+                          </p>
+                        </div>
+                        <% end %>
+                        <h3><%= @disput.reason%></h3>
+                        <p><%= @disput.description%></p>
+                        <% unless @disput.comments.blank? %>
+                          <hr>
+                          <h3>Comments:</h3>
+                          <div class="field_wrapper form-group">
+                            <div class="comments">
+                              <% @disput.comments.each do |comment| %>
+                                <%= render 'disputs/comments/comment', locals: {comment: comment} %>
+                              <% end %>
+                            </div>
+                          </div>
+                        <% end %>
+                      <hr>
+                        <%= semantic_form_for DisputComment.new, remote: true, :html => {:class => 'validate-form', role: :form, 'data-model' => 'disput_comment', :'data-type' => 'json'} do |f| %>
+                          <% if !@disput.winner || current_user.admin? %>
+                            <div class="field_wrapper form-group text-left">
+                                <label>Your Message</label>
+                                <%= f.input :message, :as => :text, :label => false, input_html: {class: " form-control"} %>
+                                <input type="hidden" value="<%= @disput.id %>" name='disput_comment[disput_id]'>
+                                <input type="hidden" value="<%= current_user.id %>" name='disput_comment[user_id]'>
+                            </div>
+                            <button class="btn btn-info" type="submit">Send comment</button>
+                          <% end %>
+                          <% if current_user.admin? %>
+                            <%= link_to 'Resolve disput', resolve_disput_modal_path,
+                            class: "resolve-disput btn btn-success pull-right",
+                              data: {
+                                :'target-id' => 'resolve-disput',
+                                :'disput-id' => @disput.id
+                                } %>
+                          <% end %>
+                        <% end %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

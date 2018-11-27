@@ -1,0 +1,12 @@
+<% if item.image.present?%>
+  <% category_image = item.image_url %>
+<% else %>
+  <% category_image = item.static_image %>
+<% end %>
+<%= link_to browse_path(q: {category_id_eq: item.id}), class: 'category-item-wrapper' do %>
+  <div class="bz-category-item">
+    <div class="category-img">
+      <%= image_tag category_image if category_image%>    </div>
+    <div class="category-title" style="color:<%=item.color%>;"><%= item.name %></div>
+  </div>
+<% end %>

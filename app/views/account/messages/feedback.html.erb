@@ -1,0 +1,26 @@
+<div class="bz-newgroup-page">
+  <div class="container newgroup-content">
+    <h2 class="bz-title">
+      Feedback
+    </h2>
+    <h4 class="bz-subtitle">
+      Tell Us What You Think
+    </h4>
+    <%= semantic_form_for @message, url: account_messages_path(format:'js'), remote: true, :html => {:class => 'validate-form', role: :form, 'data-model' => 'message'} do |f| %>
+      <%= f.hidden_field :recipient_id, value: @admin.id%>
+      <%= f.hidden_field :recipient_type, value: 'AdminUser' %>
+      <div class="form-group field_wrapper">
+        <%= f.label 'title', 'Subject', class: "light" %>
+        <%= f.input :title, required: true, :label => false, input_html: {class: " form-control", placeholder: "Subject"} %>
+      </div>
+      <div class="form-group field_wrapper">
+        <%= f.label 'body', 'Please tell us what you need or what you think', class: "light" %>
+        <%= f.input :body, required: true, :label => false, input_html: {class: " form-control"} %>
+      </div>
+      <div class="btn-area"></div>
+        <button class="bz-oval-btn mc">
+          Send Message
+        </button>
+      </div>
+    <% end %>
+</div>

@@ -1,0 +1,31 @@
+<% if type == 'sent' %>
+  <% messages = current_user.send_messages %>
+  <% sent = true %>
+<% else type == 'received'%>
+  <% messages = current_user.received_messages%>
+  <% sent = false %>
+<% end %>
+<div class="row table-header">
+  <div class="col-xs-6 col-sm-4">
+    <div class="col-title msg-subject"> Subject</div>
+  </div>
+  <div class="col-xs-6 col-sm-3">
+    <div class="col-title msg-from">
+      <%= sent ? 'To' : 'From' %>
+    </div>
+  </div>
+  <div class="col-xs-3 hidden-xs">
+    <div class="col-title msg-email">
+      Email
+    </div>
+  </div>
+  <div class="col-xs-2 hidden-xs">
+    <div class="col-title msg-time">
+      Time
+    </div>
+  </div>
+</div>
+<% messages.each do |message| %>
+  <%= render 'message_item', msg: message, sent: sent %>
+  <%= render 'message_content_modal', msg: message, sent: sent %>
+<% end %>

@@ -1,0 +1,248 @@
+<% location = @item.location.split(' | ') %>
+<% city = location[0] %>
+<% state = location[1] %>
+<% seller_items = seller_items(@item.user) %>
+<% if @item.rent_post? %>
+  <%= render 'items/rental_preview', item: @item %>
+<% else %>
+  <!-- post-item -->
+  <div class="product-desciption">
+    <div class="container">
+      <div class="">
+         <div class="container-fliud">
+            <div class="wrapper row">
+               <div class="col-sm-4 col-md-4">
+                 <div class="singleimg text-center">
+                   <div class="fotorama" data-arrows="true" data-click="true" data-nav="thumbs" data-loop="true" data-width="900" data-maxwidth="100%" data-ratio="16/9">
+                     <% @item.images.each do |image| %>
+                       <%= image_tag image.file.url %>
+                     <% end %>
+                   </div>
+                 </div>
+               </div>
+               <div class="col-sm-8 col-md-8 item_detail">
+                  <h3 class="product-title"><%= @item.title if @item.title%></h3>
+                  <% if @item.group_post? %>
+                    <p class="fontlight">Group Post item</p>
+                  <% elsif @item.quick_post? %>
+                    <p class="fontlight">Quick Post item</p>
+                  <% end %>
+                  <table class="table customtable">
+                     <tbody>
+                        <tr>
+                           <td>Location</td>
+                           <td><span> <%= city %> </span><span> <%= ' | ' + state  if state.present?%></span></td>
+                        </tr>
+                        <tr>
+                          <td>Price</td>
+                          <% if @item.is_free? %>
+                            <td><span>Item is free</span></td>
+                          <% else %>
+                            <% if @item.buy_now_price %>
+                              <% current_price = to_currency(@item.buy_now_price) %>
+                            <% elsif @item.start_price %>
+                              <% current_price = to_currency(@item.start_price) %>
+                            <% else %>
+                              <% current_price = 'Not specified' %>
+                            <% end %>
+                            <td><span><%= current_price %></span></td>
+                          <% end %>
+                        </tr>
+                        <tr>
+                           <td>Category</td>
+                           <td><span><%= @item.category.name if @item.category%></span></td>
+                        </tr>
+                        <tr>
+                           <td>Condition</td>
+                           <td><span><%= @item.condition %></span></td>
+                        </tr>
+                     </tbody>
+                  </table>
+
+                  <p class="product-desc"><%= @item.description.html_safe if @item.description%></p>
+                  <p><a href="" class="readMore">Read More >> </a></p>
+
+
+                  <div class="col-xs-12 col-md-12 bz-item">
+                    <div class="item-bid-section">
+                      <% if @item.group_post? %>
+                        <div class="desc-item">
+                          <h4 class="light">Posting expires in</h4>
+                            <% if @item.pending? %>
+                              <h2 class="bz-subtitle">48 HOURS AFTER PUBLICATION</h2>
+                            <% else %>
+                              <%= item_time_left @item %>
+                            <% end %>
+                        </div>
+
+                        <% if user_signed_in? %>
+                          <% if @item.finished? %>
+                            <%= render 'auction_ended', locals: {item: @item} %>
+                          <% elsif @item.user == current_user%>
+                          <% else %>
+                            <% if !current_user.is_joined_groups?(@item.groups) %>
+                              <%= link_to '+ Join Group to Bid', group_path(@item.groups.first), class: "bz-oval-btn" %>
+                            <% elsif @item.is_free? %>
+                              <%= render 'auction_free', locals: {item: @item} %>
+                            <% else %>
+                              <%= render 'auction_bids', locals: {item: @item} %>
+                            <% end %>
+                          <% end %>
+                        <% end %>
+                      <% elsif @item.quick_post? %>
+                        <% if @item.finished? %>
+                          <%= render 'auction_ended', locals: {item: @item} %>
+                        <% else %>
+                          <div class="desc-item">
+                            <% if @item.is_free? %>
+                            <% else %>
+                              <div class="price-group">
+                                <div class="row">
+                                  <div class="col-xs-12">
+                                    <% if @item.user == current_user%>
+                                      <% if @item.bids.present? %>
+                                        <div class="item-offers">
+                                          <div class="item-offers-wrapper">
+                                            <% @item.bids.each do |bid| %>
+                                              <% bid_price = to_currency(bid.price) %>
+                                              <div class="item-offer">
+                                                <div class="user">
+                                                  <%= link_to bid.user.first_name + ' | ' + bid_price, new_account_message_path(recipient_id: bid.user.id), class: ''%>
+                                                </div>
+                                                <div class="action">
+                                                  <%= link_to 'Accept Offer', set_winner_path(id: @item.id, bid_id: bid.id), method: :post, class: 'bz-button' %>
+                                                </div>
+                                              </div>
+                                            <% end %>
+                                          </div>
+                                        </div>
+                                      <% end %>
+                                    <% end %>
+                                  </div>
+                                </div>
+                              </div>
+                            <% end %>
+                          </div>
+                          <% if user_signed_in? %>
+                            <% if @item.user != current_user %>
+                              <% offers = @item.bids.where(user: current_user)%>
+                              <% if offers.present? %>
+                                <div class="desc-item">
+                                  <h4 class="light">Make an offer</h4>
+                                  <h3 class="color-mc">
+                                    You’ve made an offer for <%= to_currency(offers.first.price) %>
+                                  </h3>
+                                </div>
+                              <% else %>
+                                <% if @item.is_free? %>
+                                  <%= render 'auction_free', locals: {item: @item} %>
+                                <% elsif @item.buy_now_price == 0 %>
+                                <% else %>
+                                  <% link_to 'Make an offer', make_an_offer_path(id: @item.id), method: :post, class: 'bz-oval-btn mc' %>
+                                  <div class="desc-item">
+                                    <h4 class="light">Make an offer</h4>
+                                    <h2 class="bz-title bid-form">
+                                      <%= semantic_form_for Bid.new, :url => make_an_offer_path, :html => {:id => 'SUBMISSION_FORM', :class => 'row clearfix validate-form', role: :form, 'data-model' => 'bid', :'data-type' => 'json'} do |f| %>
+                                        <%= f.input :item_id, as: "hidden", :input_html => {:value => @item.id} %>
+                                        <div class="flex -centred column">
+                                          <div class="field_wrapper bid flex -centred">
+                                            <span><%= @currency.sign %></span>
+                                            <%= f.number_field :price, :required => true, min: 0, :label => false, id: 'bid_amount', class: 'form-control input-lg' %>
+                                            <button class="bz-oval-btn mc" type="submit">Make an offer</button>
+                                          </div>
+                                        </div>
+                                      <% end %>
+                                    </h2>
+                                  </div>
+                                <% end %>
+                              <% end %>
+                            <% end %>
+                          <% end %>
+                        <% end %>
+                      <% end %>
+                    </div>
+                  </div>
+
+                  <ul class="shareMenu">
+                    <li><% if user_signed_in? %>
+                      <span id="follow_form">
+                        <% if current_user.following?(@item) %>
+                          <%= render "items/unfollow", item: @item %>
+                        <% else %>
+                          <%= render "items/follow", item: @item %>
+                        <% end %>
+                      </span>
+                    <% end %></li>
+                    <li><%= link_to new_account_message_path(recipient_id: @item.user.id, title: @item.title), target: :_blank do %>
+                      <span class="fa fa-comments"></span> Get Answer</a>
+                    <% end %></li>
+
+                    <li><button type="button" data-toggle="collapse" data-target="#share_block" aria-expanded="false" aria-controls="share_block" id="share_btn">
+                      <span class="fa fa-share-alt"></span> Share</a>
+                    </button></li>
+
+                  </ul>
+                  <div class="col-xs-12 flex -between collapse" id="share_block">
+                    <%= render 'items/share' %>
+                  </div>
+
+                  <% if user_signed_in? %>
+                    <% if @item.user == current_user%>
+                      <% if @item.pending? %>
+                       <%= render 'preview_controls', locals: {item: @item} %>
+                      <% elsif !@item.finished? %>
+                        <%= render 'posted_controls', locals: {item: @item} %>
+                      <% end %>
+                      <% if @item.finished? && @item.winner.present? %>
+                          <p><%= link_to 'Contact buyer', new_account_message_path(recipient_id: @item.winner.id, title: @item.title), class: 'contactSeller'%></p>
+                        </div>
+                      <% end %>
+                    <% elsif !@item.finished? && !@item.is_free? %>
+                      <p><%= link_to 'Contact Seller', new_account_message_path(recipient_id: @item.user.id, title: @item.title), class: 'contactSeller'%>
+                      </p>
+
+                    <% end %>
+                  <% else %>
+                    <%= link_to '+ Join to Buy or Sell', root_path(anchor: 'sign_section'), class: "bz-oval-btn" %>
+                  <% end %>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- row -->
+      <hr />
+      <h3 class="similar-item">Similar items</h3>
+      <div class="bz-items-container">
+        <% similar_items = similar_items(@item) %>
+        <% similar_items.each do |similar_item| %>
+          <%= render 'partials/new_bid', :locals => {item: similar_item} %>
+        <% end %>
+      </div>
+
+      <!-- row -->
+
+      <% if seller_items.count <= 4 %>
+        <hr />
+        <h3 class="similar-item">More items by the seller</h3>
+        <div class="bz-items-container">
+          <% seller_items.each do |seller_item| %>
+            <%= render 'partials/new_bid', :locals => {item: seller_item} %>
+          <% end %>
+        </div>
+      <% end %>
+
+
+      <!-- row -->
+      <hr />
+      <h3 class="similar-item">Popular items</h3>
+      <div class="bz-items-container">
+        <% popular_items = popular_items(@item) %>
+        <% popular_items.each do |popular_item| %>
+          <%= render 'partials/new_bid', :locals => {item: popular_item} %>
+        <% end %>
+      </div>
+
+     </div>
+     <!-- container -->
+  </div>
+<% end %>

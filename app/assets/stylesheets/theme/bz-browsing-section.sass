@@ -1,0 +1,140 @@
+$span-c: $montecarlo
+$title-color: $dark-gray
+$choose-title-c: $main-gray
+$choose-select-bgc: $montecarlo
+$choose-select-c: #fff
+$choose-ff: $bz-font-main
+$search-color: $montecarlo
+.bz-browsing-section
+  min-height: calc(100vh - 293px)
+  form
+    display: flex
+    justify-content: space-between
+    align-items: center
+    flex-direction: column
+    .line
+      justify-content: flex-start !important
+    .line:last-child
+      justify-content: flex-start !important
+      +MQ(M)
+        justify-content: flex-end !important
+      +MQ(L)
+        justify-content: flex-start !important
+    +MQ(M)
+      flex-direction: row
+  header
+    margin-bottom: 65px
+    +flex-centred
+    flex-direction: column
+    .line
+      padding: 0
+      +flex-centred
+      margin: 15px
+      .bz-search
+        width: 100%
+        max-width: 90%
+        +MQ(L)
+          max-width: 100%
+      &:last-child
+        .title
+          margin-right: 35px
+          +MQ(M)
+            margin-right: 15px
+    +MQ(XM)
+      flex-direction: row
+
+    .col-xs-3
+      padding: 0 !important
+    .bz-title
+      margin: 0
+      position: relative
+      &::after
+        content: ""
+        border-bottom: 2px solid $montecarlo
+        position: absolute
+        bottom: -5px
+        left: 0
+        right: 0
+        +MQ(XM)
+          transform: none
+        +MQ(L)
+          border-bottom: 3px solid $montecarlo
+          bottom: -10px
+    .choose
+      text-transform: capitalize
+      display: flex
+      justify-content: flex-start
+      align-items: center
+      font-family: $choose-ff
+      .title
+        font-size: 15px
+        color: $choose-title-c
+        margin-right: 15px
+      .select
+        font-size: 20px
+        padding-left: 15px
+        padding-right: 9%
+        color: $choose-select-c
+        font-family: $choose-ff
+        background-color: $choose-select-bgc
+        border-radius: 50px !important
+        height: 30px
+        position: relative
+        min-width: 180px
+        max-width: 205px
+        &::after
+          content: ""
+          width: 10px
+          height: 10px
+          background-color: #FFF
+          border-radius: 50px
+          position: absolute
+          right: 10px
+          +centrify($switcher: 'height')
+        form
+          width: 100%
+          height: 100%
+        select
+          border: none !important
+          background-color: transparent !important
+          color: $choose-select-c
+          font-family: $choose-ff
+          font-size: 14px
+          text-transform: capitalize
+          z-index: 1
+          appearance: none !important
+          width: 100%
+          height: 100%
+          outline: none !important
+          position: absolute
+          +centrify($switcher: 'both')
+          &::-ms-expand
+            display: none
+    .bz-search
+      border-radius: 50px !important
+      color: $search-color
+      height: 40px
+      +flex-centred
+      input
+        border-radius: 50px !important
+        color: $search-color
+      button
+        background: transparent
+        border: 0
+        outline: none
+        padding: 0
+        color: $search-color
+        top: 18px
+  h2
+    position: relative
+    color: $title-color
+    text-align: center
+    span
+      color: $span-c
+    &::after
+      content: ""
+      border-bottom: 2px solid $light-gray
+      padding-left: 200px
+      position: absolute
+      bottom: 0px
+      +centrify($switcher: 'width')

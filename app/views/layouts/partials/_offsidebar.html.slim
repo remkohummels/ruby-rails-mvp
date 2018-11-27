@@ -1,0 +1,192 @@
+nav
+  div[role="tabpanel"]
+    ul.nav.nav-tabs.nav-justified[role="tablist"]
+      li.active[role="presentation"]
+        a[href="#app-settings" aria-controls="app-settings" role="tab" data-toggle="tab"]
+          em.icon-equalizer.fa-lg
+      li[role="presentation"]
+        a[href="#app-chat" aria-controls="app-chat" role="tab" data-toggle="tab"]
+          em.icon-user.fa-lg
+    .tab-content
+      #app-settings.tab-pane.fade.in.active[role="tabpanel"]
+        h3.text-center.text-thin
+          | Settings
+        .p
+          h4.text-muted.text-thin
+            | Layout
+          .clearfix
+            p.pull-left
+              | Fixed
+            .pull-right
+              label.switch
+                input#chk-fixed[type="checkbox" data-toggle-state="layout-fixed"]
+                span
+          .clearfix
+            p.pull-left
+              | Boxed
+            .pull-right
+              label.switch
+                input#chk-boxed[type="checkbox" data-toggle-state="layout-boxed"]
+                span
+          .clearfix
+            p.pull-left
+              | RTL
+            .pull-right
+              label.switch
+                input#chk-rtl[type="checkbox"]
+                span
+        .p
+          h4.text-muted.text-thin
+            | Aside
+          .clearfix
+            p.pull-left
+              | Collapsed
+            .pull-right
+              label.switch
+                input#chk-collapsed[type="checkbox" data-toggle-state="aside-collapsed"]
+                span
+          .clearfix
+            p.pull-left
+              | Collapsed Text
+            .pull-right
+              label.switch
+                input#chk-collapsed-text[type="checkbox" data-toggle-state="aside-collapsed-text"]
+                span
+          .clearfix
+            p.pull-left
+              | Float
+            .pull-right
+              label.switch
+                input#chk-float[type="checkbox" data-toggle-state="aside-float"]
+                span
+          .clearfix
+            p.pull-left
+              | Hover
+            .pull-right
+              label.switch
+                input#chk-hover[type="checkbox" data-toggle-state="aside-hover"]
+                span
+          .clearfix
+            p.pull-left
+              | Show Scrollbar
+            .pull-right
+              label.switch
+                input#chk-hover[type="checkbox" data-toggle-state="show-scrollbar" data-target=".sidebar"]
+                span
+      #app-chat.tab-pane.fade[role="tabpanel"]
+        h3.text-center.text-thin
+          | Connections
+        ul.nav
+          li.p
+            small.text-muted
+              | ONLINE
+          li
+            a.media-box.p.mt0[href="#"]
+              span.pull-right
+                span.circle.circle-success.circle-lg
+              span.pull-left
+                |  <img src="
+                = image_path('angle/user/05.jpg')
+                | " alt="Image" class="media-box-object img-circle thumb48" /> 
+              span.media-box-body
+                span.media-box-heading
+                  strong
+                    | Juan Sims
+                  br
+                  small.text-muted
+                    | Designeer
+            a.media-box.p.mt0[href="#"]
+              span.pull-right
+                span.circle.circle-success.circle-lg
+              span.pull-left
+                |  <img src="
+                = image_path('angle/user/06.jpg')
+                | " alt="Image" class="media-box-object img-circle thumb48" /> 
+              span.media-box-body
+                span.media-box-heading
+                  strong
+                    | Maureen Jenkins
+                  br
+                  small.text-muted
+                    | Designeer
+            a.media-box.p.mt0[href="#"]
+              span.pull-right
+                span.circle.circle-danger.circle-lg
+              span.pull-left
+                |  <img src="
+                = image_path('angle/user/07.jpg')
+                | " alt="Image" class="media-box-object img-circle thumb48" /> 
+              span.media-box-body
+                span.media-box-heading
+                  strong
+                    | Billie Dunn
+                  br
+                  small.text-muted
+                    | Designeer
+            a.media-box.p.mt0[href="#"]
+              span.pull-right
+                span.circle.circle-warning.circle-lg
+              span.pull-left
+                |  <img src="
+                = image_path('angle/user/08.jpg')
+                | " alt="Image" class="media-box-object img-circle thumb48" /> 
+              span.media-box-body
+                span.media-box-heading
+                  strong
+                    | Tomothy Roberts
+                  br
+                  small.text-muted
+                    | Designer
+          li.p
+            small.text-muted
+              | OFFLINE
+          li
+            a.media-box.p.mt0[href="#"]
+              span.pull-right
+                span.circle.circle-lg
+              span.pull-left
+                |  <img src="
+                = image_path('angle/user/09.jpg')
+                | " alt="Image" class="media-box-object img-circle thumb48" /> 
+              span.media-box-body
+                span.media-box-heading
+                  strong
+                    | Lawrence Robinson
+                  br
+                  small.text-muted
+                    | Developer
+            a.media-box.p.mt0[href="#"]
+              span.pull-right
+                span.circle.circle-lg
+              span.pull-left
+                |  <img src="
+                = image_path('angle/user/10.jpg')
+                | " alt="Image" class="media-box-object img-circle thumb48" /> 
+              span.media-box-body
+                span.media-box-heading
+                  strong
+                    | Tyrone Owens
+                  br
+                  small.text-muted
+                    | Designer
+          li
+            .p-lg.text-center
+              a.btn.btn-purple.btn-sm[href="#" title="See more contacts"]
+                strong
+                  | Load more..
+        .p
+          p
+            small.text-muted
+              | Tasks completion
+          .progress.progress-xs.m0
+            .progress-bar.progress-bar-success.progress-80[role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"]
+              span.sr-only
+                | 80% Complete
+        .p
+          p
+            small.text-muted
+              | Upload quota
+          .progress.progress-xs.m0
+            .progress-bar.progress-bar-warning.progress-40[role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"]
+              span.sr-only
+                | 40% Complete

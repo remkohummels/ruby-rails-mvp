@@ -1,0 +1,34 @@
+= semantic_form_for locals[:group], remote: true, :html => {:id => 'SUBMISSION_FORM', :class => 'validate-form', role: :form, 'data-model' => 'group', :'data-type' => 'json'} do |f|
+  .form-group.field_wrapper
+    = label_tag 'title', 'Name Your Group', class: "light"
+    = f.input 'title', label: false, class: 'form-control', placeholder: '', input_html: {class: "form-control"}
+  .form-group.field_wrapper
+    = label_tag 'description', 'Describe Your Group', class: "light"
+    = f.text_area 'description', label: false , class: 'form-control', rows: 4, placeholder: '', input_html: {class: "form-control"}
+  .form-group.field_wrapper
+    = label_tag 'file', 'Select group images', class: "light"
+    .image-fields-group
+      .col-xs-6.p-0 
+        .image-field.custom_image_field
+          = label_tag 'file', 'Select a banner for your Group', class: "light image_field_text" 
+          = f.input :banner, type: :file, label: false, input_html: {class: 'image_field_input'}
+      .col-xs-6.p-0
+        .image-field.custom_image_field
+          = label_tag 'file', 'Select a Group Admin image', class: "light image_field_text"
+          = f.input :file, type: :file, label: false, input_html: {class: 'image_field_input'}
+  / = label_tag 'rules', 'Rules and regulations of group', class: "light"
+  / = f.text_area 'rules', label: false , class: 'form-control', rows: 4, placeholder: '', input_html: {class: "form-control"}
+  .form-group.field_wrapper
+    = label_tag 'terms', 'Set the Code of Conduct for your Group', class: "light"
+    = f.text_area 'terms', label: false , class: 'form-control', rows: 4, placeholder: '', input_html: {class: "form-control"}
+
+  - if locals[:group].new_record?
+    .form-group.field_wrapper.group_rules
+      = label_tag 'terms_of_gns', 'Read GroupnShop Terms of Use below', class: "light"
+      iframe style="width: 100%; height: 300px" src="#{terms_of_use_path(no_layout: true)}"
+      .checkbox
+        = check_box_tag :check
+        = label_tag 'check', 'By checking the box you are agreeing to the Terms of Use of Groupnshop', class: "light"
+  .btn-area
+    button.bz-oval-btn type="submit"
+      =locals[:type]

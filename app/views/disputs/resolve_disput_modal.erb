@@ -1,0 +1,22 @@
+<div class="remodal modal" data-remodal-id="resolve-disput" data-remodal-options="hashTracking: false">
+  <div class="row">
+    <div class=" col-xs-12">
+      <%= semantic_form_for @disput, remote: true, :html => {:class => 'validate-form', role: :form, 'data-model' => 'disput', :'data-type' => 'json'} do |f| %>
+          <h3>Resolve Dispute</h3>
+          <p>Please choose in favor of one to resolve the dispute.</p>
+
+          <div class="field_wrapper form-group text-left">
+            <label>Select Winner</label>
+            <%= f.input :winner_id, :as => :select, :collection => [["Seller", @disput.item.user.id], ["Customer", @disput.user.id]], input_html: {class: " form-control"} %>
+          </div>
+
+          <div class="field_wrapper form-group text-left">
+            <label>Resolve Reason</label>
+            <%= f.input :resolve_reason, :as => :text, :label => false, input_html: {class: " form-control"} %>
+          </div>
+          <button class="btn btn-success btn-lg" type="submit">Resolve Dispute</button>
+      <% end %>
+    </div>
+  </div>
+  <button class="remodal-close" data-remodal-action="close"></button>
+</div>

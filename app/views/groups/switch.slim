@@ -1,0 +1,14 @@
+.bz-groups-section
+  .container
+    h2.bz-title
+      | List of My Groups
+    h4.bz-subtitle
+      | Select the Group You Want to Visit
+    .bz-groups
+      - @groups.each do |group|
+        .col-xs-12.col-md-6
+          = render 'switch_group', group: group
+    .groups-action
+      =link_to browse_select_path
+        h2.bz-title
+          | Continue Browsing

@@ -1,0 +1,26 @@
+.bz-overlay
+  position: absolute
+  top: 0
+  left: 0
+  bottom: 0
+  right: 0
+  text-align: center
+  cursor: pointer
+  z-index: 999
+  a
+    color: #000
+    font-size: 20px
+    background: #fff
+    padding: 10px 12px
+    border-radius: 50% !important
+
+  .lbox
+    display: none
+    position: absolute
+    +centrify($switcher: 'both')
+    z-index: 999
+    width: 140px
+    transition: all .7s ease
+.bz-overlay:hover
+  .lbox 
+    display: block

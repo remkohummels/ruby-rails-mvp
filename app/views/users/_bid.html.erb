@@ -1,0 +1,21 @@
+<tr>
+  <td>
+    <b>
+      <%= link_to bid.item.title, item_path(bid.item) %>
+    </b><br>
+    <span style="font-size:11px;"><%= bid.item.created_date %> | Status: <%= bid.item.status %></span>
+    <% if bid.item.active? %>
+        <div class="timer2 clearfix" data-time="<%= bid.item.end_date %>"></div>
+    <% end %>
+  </td>
+  <td style="text-align:center;">
+    <%= to_currency(bid.item.bids.maximum(:price)) %>
+  </td>
+  <td style="text-align:center;"><%= to_currency(bid.price) %>
+    <br>
+    <small>now <%= to_currency(bid.item.start_price) %></small>
+  </td>
+  <td style="text-align:center;">
+    <%= link_to 'View Auction or Sale', item_path(bid.item), class: 'btn btn-primary' %>
+  </td>
+</tr>

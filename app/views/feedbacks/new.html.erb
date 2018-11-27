@@ -1,0 +1,24 @@
+<div class="page-wrapper " id="listing_styles">
+ <div id="core_padding">
+  <div id="core_padding_inner">
+   <div class=" container widecontainer core_section_top_container">
+    <div class="row core_section_top_row wlt_main_2colsleft">
+     <div id="core_inner_wrap" class="clearfix">
+      <%= render 'items/search_sidebar', :locals => {q: @q} %>
+      <article class="col-md-820 col-sm-820" id="core_middle_column">
+       <div class="core_middle_wrap">
+        <div id="core_ajax_callback"></div>
+        <%= render 'feedback_content', locals: {item: @item} %>
+        <!-- memberships form -->
+        <form method="post" name="MEMBERSHIPFORM" action="http://bidzone.ca/index.php/my-account-3/" id="MEMBERSHIPFORM" style="margin:0px;padding:0px;">
+         <input type="hidden" name="membershipID" id="membershipID" value="-1">
+         <input type="hidden" name="showpaymentform" value="1">
+        </form>
+       </div>
+      </article>
+     </div>
+    </div>
+   </div>
+  </div>
+ </div>
+</div>

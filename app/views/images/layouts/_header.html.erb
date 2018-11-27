@@ -1,0 +1,90 @@
+<header id="header">
+  <!-- dashboard -->
+  <%= render 'layouts/dashboard' %>
+  <!-- dashboard end -->
+  <div class="overlay">
+    <div id="core_header_navigation" class="hidden-xs">
+      <div class="container">
+      </div>
+    </div>
+    <div id="core_header_wrapper">
+      <div class="container header_style4" id="core_header">
+        <div class="row">
+          <div class="col-md-6 col-sm-6 col-xs-12" id="core_logo">
+            <%= link_to root_path do %>
+              <div class="logowrapper">
+                <%= image_tag 'logo.png'%>
+              </div>
+            <% end %>
+          </div>
+          <div class="col-md-6 col-sm-6 col-xs-12" id="core_header_searchbox">
+            <%= search_form_for @q, url: browse_path, html: {class: 'Search list-group'} do |f| %>
+                <div class="wlt_searchbox clearfix">
+                  <div class="inner">
+                    <div class="wlt_button_search"><i class="glyphicon glyphicon-search"></i>
+                    </div>
+                    <%= f.search_field :title_cont, class: 'form-control' %>
+                  </div>
+                </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid" id="core_smallmenu">
+      <div class="row">
+        <div id="wlt_smalldevicemenubar">
+          <a href="javascript:void(0);" class="b1" data-toggle="collapse" data-target=".wlt_smalldevicemenu">Website
+            Navigation <span class="glyphicon glyphicon-align-justify"></span></a>
+        </div>
+      </div>
+    </div>
+    <div id="core_menu_wrapper" class="menu_style4">
+      <div class="container">
+        <div class="row">
+          <nav class="navbar">
+            <div class="pull-left visible-lg">
+              <div class="btn-group">
+                <a href="/" class="btn btn-default menu-header">Back to home</a>
+              </div>
+            </div>
+
+            <div class="pull-right visible-lg">
+              <div class="btn-group">
+                <button type="button" class="btn btn-default menu-header dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Browse <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                  <% controller.categories.each do |category| %>
+                    <li>
+                      <%= link_to category.name, items_category_path(category: category.slug)%>
+                    </li>
+                  <%end%>
+                </ul>
+              </div>
+            </div>
+
+            <div class="pull-right visible-lg">
+              <div class="btn-group">
+                <a href="#" class="btn btn-default menu-header">Join a group</a>
+              </div>
+            </div>
+
+            <div class="pull-right visible-lg">
+              <div class="btn-group">
+                <a href="#" class="btn btn-default menu-header">Create a group</a>
+              </div>
+            </div>
+
+            <div class="pull-right visible-lg">
+              <div class="btn-group">
+                <%= link_to 'Add listing', new_item_path, class: "btn btn-default menu-header" %>
+              </div>
+            </div>
+
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

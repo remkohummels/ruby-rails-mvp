@@ -1,0 +1,10 @@
+<%= "Dear #{@user.full_name}" %>
+<p>On your listing: <%= link_to @listing.title, item_url(@listing) %></p>
+<p>Was open the disput: </p>
+<%= link_to @disput.reason, disput_url(@disput) %>
+<hr>
+<p>
+  Thank you,
+  <br>
+  Your GroupnShop Team 
+</p>

@@ -1,0 +1,59 @@
+$border-c: $montecarlo
+$active-color: $border-c
+$search-color: $montecarlo
+.bz-tabs-section
+  .bz-search
+    position: relative
+    width: 300px
+    border-radius: 50px !important
+    border: 1px solid $search-color
+    height: 40px
+    display: flex
+    justify-content: space-between
+    align-items: center
+    flex-direction: row
+    overflow: hidden
+    margin-top: 20px
+    .select
+      width: 115px
+      cursor: pointer
+      position: absolute
+      height: 100%
+      right: 45px
+      top: 0
+      background: transparent
+      border: 0
+      outline: none
+    input[type='search']
+      width: 145px
+      border: 0
+    button
+      background: transparent
+      border: 0
+      outline: none
+      padding: 0
+      color: $search-color
+      top: 18px
+  .bz-navbar
+    margin: 25px auto !important
+    flex-flow: wrap
+    .btn-group
+      &.post
+        flex-basis: 15%
+      .bz-oval-btn
+        width: 100%
+        min-height: 20px
+      .active
+        color: $active-color !important
+        &::after
+          content: ""
+          border-bottom: 1px solid $border-c
+          padding-left: 65%
+          position: absolute
+          top: 30px
+          +centrify($switcher: 'width')
+          +MQ(L)
+            border-bottom: 2px solid $border-c
+            top: 40px
+  .tab-content
+    border-style: none

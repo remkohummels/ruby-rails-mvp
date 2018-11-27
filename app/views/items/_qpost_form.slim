@@ -1,0 +1,46 @@
+-if item.buy_now_price && current_user
+  -buy_now_price = number_with_precision(item.buy_now_price * current_user.currency.course, precision: 2)
+- else
+  - buy_now_price = nil
+= semantic_form_for item, remote: true, :html => {:id => 'SUBMISSION_FORM', :class => 'validate-form new_item_form save_to_draft', role: :form, 'data-model' => 'item', :'data-type' => 'json'} do |f|
+  .form-group.field_wrapper
+    = label_tag :image, 'Add pictures', class: "camera"
+    .uploadiconbox
+      .dropzone.upload-dropzone.modal-input.full-width data-action=("#{images_create_path(temp_key: @temp_key)}") data-count="#{item.allowed_images_count}" 
+        - item.images.each do |image|
+          = render 'partials/dz_image', image: image
+      = f.input :temp_key, as: "hidden", :input_html => {:value => @temp_key}
+  .form-group.field_wrapper
+    =label_tag :title, 'Name your item', class: "label"
+    = f.text_field :title, :label => false, class: "form-control", placeholder: "Title", required: 'required'
+    p.item_error
+  .form-group.field_wrapper
+    = label_tag :category, 'Select a category for your item', class: "squares"
+    .form-control.select
+      - selected_category = nil
+      - selected_category = item.category.id if item.category.present?
+      = f.input :category, :collection =>  Category.ordered_list, :selected => selected_category, include_blank: false, label: false, input_html: {class: "form-control"}
+    p.item_error
+  .form-group.field_wrapper
+    =label_tag :description, 'Provide a detailed description', class: "desc"
+    p.counter
+      |20 symbols to complete description
+    = f.text_area :description, :label => false, class: "description form-control",:rows=>4, placeholder: ""
+    p.item_error
+  .form-group.field_wrapper
+    .checkbox
+      .check.item_is_free_btn
+        = f.input :free_item, :label => false, as: :boolean, :label => '', class: "form-control"
+      = label_tag :free_item, 'This item is free'
+    =label_tag :buy_now_price, 'Set your price', class: "coins"
+    = f.number_field :buy_now_price, value: buy_now_price, :label => false, min: 0, placeholder: @currency.sign, class: "form-control price_field", oninput: "validity.valid;"
+    p.item_error
+  .form-group.field_wrapper
+    = label_tag :condition, 'Condition', class: "condition"
+    .form-control.select
+      = f.select :condition, options_for_select(enum_option_pairs(Item, Item.conditions))
+    p.item_error
+
+  = f.input :location, as: 'hidden', :input_html => {:value => location}
+  = f.input :posting_type, as: 'hidden', :input_html => {:value => posting_type}
+  = f.submit 'preview', id: 'finish_q', class: "bz-oval-btn mc"

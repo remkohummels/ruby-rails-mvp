@@ -1,0 +1,44 @@
+<tr class="<%= " message_#{message.id}" %>">
+  <td>
+    <input class="checkbox1" type="checkbox" name="message[]" value="<%= message.id %>">
+  </td>
+  <td style="text-align:center">
+    <span class="label <%= message.new? ? 'label-success' : 'label-default' %> <%= "message_#{message.id}_status" %>"><%= message.status.upcase %></span>
+  </td>
+  <td>
+    <a onclick="change_message_status(<%= message.id %>);" href="<%= " #message_#{message.id}" %>" id="#my106_link" data-toggle="modal" style="text-decoration:underline;"><%= message.title %></a>
+    <%= link_to message_path(message), method: 'DELETE', remote: true, class: 'remove-messages' do %>
+        <i class="glyphicon glyphicon-trash"></i>
+        Delete
+    <% end %>
+    <div id="<%= "message_#{message.id}" %>" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3>
+              <b><%= message.title %></b>
+            </h3>
+          </div>
+          <div class="modal-body">
+            <p style="font-size:11px;">
+              <%= message.sender.full_name if message.sender.present? %>
+              says;
+            </p>
+            <p></p>
+            <p><%= message.body %></p>
+          </div>
+          <div class="modal-footer">
+            <%= link_to 'Reply', new_account_message_path(
+                reply_message: message
+            ), class: 'btn btn-primary' %>
+            <a class="btn btn-default" data-dismiss="modal" aria-hidden="true">Back</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </td>
+  <td style="text-align:center">
+    <small><%= message.created_date %></small>
+  </td>
+</tr>

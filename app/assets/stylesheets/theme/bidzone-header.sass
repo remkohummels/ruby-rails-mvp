@@ -1,0 +1,51 @@
+.bidzone-header
+  position: relative
+  top: 40px
+  margin: 0
+  margin-bottom: 35px
+  +MQ(M)
+    margin-top: 45px
+    // margin-bottom: 35px
+  .bz-main-logo
+    margin-top: 0
+    padding: 0px
+    width: 100%
+    max-width: 275px
+    img
+      width: 100%
+      height: auto
+
+  .mobile-post-container
+    display: flex
+    justify-content: center
+    align-items: center
+    width: 100%
+    padding: 20px 0
+    +MQ(M)
+      display: none
+    form
+      width: 100%
+    .bz-oval-btn
+      height: 30px
+      max-width: 75%
+  .bz-main-menu
+    width: 100%
+    padding: 0
+    display: flex
+    justify-content: flex-end
+    align-items: center
+    .bz-navbar
+      width: 100%
+      max-width: 100%
+      .btn-group
+        +flex-centred
+        padding: 0
+        a.bz-button
+          font-size: 9px
+          +MQ(L)
+            font-size: 14px
+          +MQ(LG)
+            font-size: 16px
+        .button_to
+          width: 100%
+          +flex-centred

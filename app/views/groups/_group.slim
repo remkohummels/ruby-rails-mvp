@@ -1,0 +1,34 @@
+- if !group.state.blank?
+  - country_or_state = ' | ' +  group.state.upcase + ' '
+-elsif !group.country.blank?
+  - country_or_state = ' | ' + group.country.upcase + ' '
+-else
+  - country_or_state = ' | '
+-if current_user
+  - member_status = current_user.group_status(group)
+-else
+  - member_status = ""
+.bz-group
+  .col-md-7.col-xs-6
+    = link_to group_path(group)
+      h4 class="bold"
+        = 'View ' + group.title
+    h4.bz-subtitle
+      - if !group.city.blank? && !country_or_state.blank?
+        = group.city.capitalize + country_or_state
+      -if group.memberships.count == 1
+        | #{group.memberships.count} member
+      - else
+        | #{group.memberships.count} members 
+      / | 4km away
+  .col-md-5.col-xs-6
+    .bz-group-controls
+      -if current_user
+        -if member_status == "pending"
+          =render "groups/invite_buttons/pending_group_btn", locals: {group: group}
+        -if member_status == "joined"
+          =render "groups/invite_buttons/leave_group_btn", locals: {group: group}
+        -if member_status == ""
+          =render "groups/invite_buttons/join_group_btn", locals: {group: group}
+      -else
+        = link_to '+Join to Buy or Sell', root_path(anchor: 'sign_section'), class: " bz-text-btn join_group"

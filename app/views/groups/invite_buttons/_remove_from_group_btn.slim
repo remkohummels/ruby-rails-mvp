@@ -1,0 +1,2 @@
+= link_to remove_from_group_path({user_id: locals[:user].id, group_id:  locals[:group].id}), {method: :delete, remote: true, class: "remove_from_group", data:{:confirm => 'Are you sure you want to remove ' + locals[:user].full_name + ' from the group?'}} do
+    button.bz-button Remove From Group

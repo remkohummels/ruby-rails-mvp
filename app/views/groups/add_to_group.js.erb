@@ -1,0 +1,6 @@
+$('.add_to_group').on('ajax:send', function () {
+}).on('ajax:complete', function () {
+  $(this).parents('.controls').html("<%= j render 'groups/invite_buttons/remove_from_group_btn', locals: {group: @group, user: @user}%>");
+}).on('ajax:error', function () {
+}).on('ajax:success', function (data) {
+});

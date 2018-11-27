@@ -1,0 +1,65 @@
+$label-c: $main-gray
+$text-color: $darker-gray
+$input-mw: 500px
+.bz-newgroup-page
+  min-height: calc(100vh - 293px)
+  margin-bottom: 60px
+  .bz-subtitle
+    text-align: center
+  .newgroup-content
+    +flex-centred
+    flex-direction: column
+    .form-group 
+      width: 100%
+      max-width: $input-mw
+    .parsley-error
+      border-color: $errors
+    .parsley-errors
+      font-weight: normal
+      padding: 0
+  form
+    margin-top: 75px
+    +flex-centred
+    flex-direction: column
+    width: 100%
+  li
+    +flex-centred
+    width: 100%
+  .checkbox
+    margin-bottom: 55px
+    max-width: 80% 
+    +MQ(M)
+      max-width: 450px
+    label
+      margin-top: 0
+      font-size: 10px
+      +flex-centred
+      text-align: left
+      +MQ(M)
+        font-size: 20px
+
+  label
+    color: $label-c !important
+    margin: 15px 0
+    font-size: 20px
+    width: 100%
+    max-width: $input-mw
+  .form-control
+    border-radius: 0 !important
+    margin-bottom: 15px
+    max-width: $input-mw
+    width: 100%
+    @extend .regular
+    color: $text-color !important
+  .input-group-addon
+    border-radius: 0 !important
+  .btn-area
+    +flex-centred
+    width: 100%
+  .bz-oval-btn
+    max-width: 195px
+    width: 100%
+    min-height: 45px
+    padding: 0 25px
+    font-size: 15px
+    box-sizing: border-box

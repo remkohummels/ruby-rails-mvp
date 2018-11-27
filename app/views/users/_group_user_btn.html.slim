@@ -1,0 +1,42 @@
+.text-center
+
+  - if user == current_user
+    - if user.group_status(group).blank?
+      = link_to join_group_path(group_id: group.id), {method: :post, remote: true, class: "bz-oval-btn mc join_group"}
+        span.regular
+          |Join to &nbsp;
+          = group.title
+    - else
+      - if !group.user_is_admin?(user) || group.group_admins.length > 1
+        = link_to leave_group_path({group_id: group.id}), {method: :post, remote: true, class: "bz-oval-btn mc leave_group", data:{:confirm => 'Are you sure you want to leave this group?'}}
+          span.regular
+            |Leave &nbsp;
+            = group.title
+  
+  - elsif group.user == current_user || (group.user_is_admin?(current_user) && !group.user_is_admin?(user))
+    - if user.group_status(group) == 'joined'
+        = link_to block_user_group_path(group, user_id: user.id), {class: "bz-oval-btn fitted block_member", confirm: "Are you sure you want to block this user?"}
+          span.regular
+            |Block Member
+    - elsif user.group_status(group) == 'blocked'
+      = link_to unblock_user_group_path(group, user_id: user.id), {method: :post, class: "bz-oval-btn mc unblock_member", data: {confirm: "Would you like to unblock this member?"}}
+        span.regular
+          |Unblock Member
+
+
+- if group.user == current_user || (group.user_is_admin?(current_user) && !group.user_is_admin?(user))
+  - if user.group_status(group) == 'joined'
+    - content_for :body_area
+      .remodal.group_rules_modal data-remodal-id="blcok-reason" data-remodal-options="closeOnOutsideClick: false, closeOnEscape: false"
+        = form_tag block_user_group_path(group, user_id: user.id), method: :post
+          h4.text-left
+            = group.title
+          .form-group.text-left
+            label.light 
+              |Leave the reason to block this user
+            = text_field_tag :reason, '', {class: "form-control", required: true, placeholder: "#{user.first_name} is blocked beacase ..."}
+
+          button.remodal-confirm
+            | Block User
+          button.remodal-cancel data-remodal-action="confirm"
+            | Cancel

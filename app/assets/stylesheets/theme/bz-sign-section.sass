@@ -1,0 +1,23 @@
+$sign-section-c: $darker-gray
+.bz-sign-section
+  color: $sign-section-c !important
+  background-image: image-url("sign.jpg") !important
+  background-blend-mode: screen
+  padding: 25px !important
+  display: flex
+  +MQ(M)
+    padding: 55px !important
+  .bz-sign-content
+    .lines
+      height: 400px
+      +flex-centred
+  .textarea
+    max-width: 400px
+    h1,h2,h3,h4
+      text-transform: uppercase !important
+      &:first-child
+        text-transform: capitalize !important
+  h4.light
+    font-size: 15px !important
+  .sign-area
+    +flex-centred

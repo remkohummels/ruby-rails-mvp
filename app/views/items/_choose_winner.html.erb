@@ -1,0 +1,41 @@
+<% @item = locals[:item] %>
+<% max_bid = @item.bids.max %>
+
+<li class="list-group-item pricebits">
+  <div class="row">
+    <div class="col-md-6">
+      Current Price:
+      <% if @item.free_item == '0' %>
+      <strong>
+        <%= to_currency(@item.start_price) %> &nbsp;
+      </strong>
+      <% else %>
+        <strong>
+          Free
+        </strong>
+      <%end%>
+      <br>
+      <i>
+        <%if max_bid.present? %>
+          by <%= max_bid.user.first_name + ' ' + max_bid.user.last_name %>
+        <% else %>
+          no one made bid on this item
+        <% end %>
+      </i>
+      <div class="clearfix"></div>
+    </div>
+    <div class="col-md-6 text-right">
+    <% if max_bid.present? %>
+      <%= semantic_form_for @item, url: choose_winner_path(id: @item.id), html: { method: :post } do |f|%>
+        <%= f.submit 'Choose winner', class: 'bz-oval-btn mc' %>
+      <% end %>
+    <% else %>
+      <%= semantic_form_for @item, url: finish_item_path(id: @item.id), html: { method: :post } do |f|%>
+        <%= f.submit 'Close item', class: 'bz-oval-btn mc' %>
+      <% end %>
+    <% end %>
+      <!-- <button class="btn btn-primary btn-lg" href="javascript:void(0);">Make Bid -->
+      <!-- </button> -->
+    </div>
+  </div>
+</li>

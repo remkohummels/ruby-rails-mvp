@@ -1,0 +1,75 @@
+<div class="page-wrapper " id="listing_styles">
+  <div id="core_padding">
+    <div id="core_padding_inner">
+      <div class=" container widecontainer core_section_top_container">
+        <div class="row core_section_top_row wlt_main_2colsleft">
+          <div id="core_inner_wrap" class="clearfix">
+            <article class="col-md-820 col-sm-820" id="core_middle_column">
+              <div class="core_middle_wrap">
+                <div id="core_ajax_callback"></div>
+                <!-- account content start -->
+                <div class="panel panel-default" id="MyDetailsBlock">
+                  <div class="panel-heading">Withdraw</div>
+                  <div class="panel-body">
+                    <%= semantic_form_for @withdraw, remote: true, :html => {:class => 'validate-form', role: :form, 'data-model' => 'withdraw', :'data-type' => 'json'} do |f| %>
+                        <h4>Withdraw</h4>
+                        <hr>
+                        <div class="col-md-12">
+
+                          <div class="form-group">
+                            <label class="control-label"><i class="icon-globe"></i> Card Number</label>
+
+                            <div class="controls field_wrapper">
+                              <%= f.input :card_number, input_html: {class: "form-control", placeholder: "Card Number"}, label: false %>
+                            </div>
+                          </div>
+
+
+                          <div class="form-group">
+                            <label class="control-label"><i class="icon-globe"></i>Amount</label>
+
+                            <div class="controls field_wrapper">
+                              <%= f.input :amount, input_html: {class: "form-control", placeholder: "Amount"}, label: false %>
+                            </div>
+                          </div>
+
+                          <div class="form-group">
+                            <label class="control-label"><i class="icon-globe"></i>Comment (optional)</label>
+
+                            <div class="controls field_wrapper">
+                              <%= f.input :comment, as: "text", input_html: {class: "form-control", placeholder: "Comment"}, label: false %>
+                            </div>
+                          </div>
+
+
+
+                        </div>
+
+
+                        <!--</div>-->
+                        <div class="clearfix"></div>
+                        <div class="clearfix"></div>
+                        <hr>
+                        <div class="clearfix"></div>
+                        <div class="clearfix"></div>
+                        <hr>
+                        <button class="btn btn-primary" type="submit">Save</button>
+                        <%= link_to 'Back', dashboard_path, class: 'btn btn-default pull-right' %>
+                    <% end %>
+                  </div>
+                </div>
+                <!-- account content end -->
+
+                <!-- memberships form -->
+                <form method="post" name="MEMBERSHIPFORM" action="http://bidzone.ca/index.php/my-account-3/" id="MEMBERSHIPFORM" style="margin:0px;padding:0px;">
+                  <input type="hidden" name="membershipID" id="membershipID" value="-1">
+                  <input type="hidden" name="showpaymentform" value="1">
+                </form>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

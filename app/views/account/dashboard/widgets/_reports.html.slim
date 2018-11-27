@@ -1,0 +1,22 @@
+.panel.panel-default
+  .panel-heading
+    .panel-title Reports
+  .table-responsive
+    table.table.table-bordered.table-hover.table-striped
+      thead
+        tr
+          td Item
+          td Status
+          td Date
+          td Price
+      tbody
+        - items.each do |item|
+          tr
+            td
+              = link_to item.title, item_path(item)
+            td
+              = current_user == item.user ? 'Sold' : 'Bought'
+            td
+              = item.end_date.to_date
+            td
+              = item.is_free? ? "Free" : to_currency(item.start_price)

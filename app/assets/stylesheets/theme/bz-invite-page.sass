@@ -1,0 +1,33 @@
+$btn-color: $montecarlo
+$label-c: $main-gray
+.bz-invite-page
+  min-height: calc(100vh - 293px)
+  padding-bottom: 45px
+.invite-content
+  +flex-centred
+  flex-direction: column
+  form
+    margin-top: 45px
+    width: 80%
+    +MQ(L)
+      width: 45%
+    h4
+      color: $label-c !important
+      margin: 15px 0
+    .label
+      padding-left: 25px
+      background-image: image-url("inv-mail.png")
+      background-position: 1%
+      background-size: 15px
+      background-repeat: no-repeat
+    .email
+      border-radius: 0px !important
+  .bz-oval-btn
+    margin-top: 35px
+    background-color: $btn-color
+    border-color: $btn-color
+    max-width: 195px
+    min-height: 45px
+    &:hover
+      color: $btn-color
+      background-color: transparent

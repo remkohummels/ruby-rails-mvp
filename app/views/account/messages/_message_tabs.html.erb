@@ -1,0 +1,26 @@
+<div class="bz-tabs-section">
+  <div class="nav bz-navbar row" role="tablist">
+    <div class="btn-group col-xs-4 col-md-2">
+      <a href="#t1" aria-controls="t1" role="tab" data-toggle="tab" aria-expanded="false" class="bz-button bz-tab active">RECEIVED</a>
+    </div>
+    <div class="btn-group col-xs-4 col-md-2">
+      <a href="#t2" aria-controls="t2" role="tab" data-toggle="tab" data-select-like-a-boss="1" aria-expanded="true" class="bz-button bz-tab">SENT</a>
+    </div>
+  </div>
+
+  <div class="tab-content container">
+    <div role="tabpanel" class="tab-pane active" id="t1">
+      <div class="row wlt_search_results grid_style"> 
+        <!--RENDER SLIDER-->
+        <%= render 'message_tab', messages: @messages, type: 'received' %>
+        <!--RENDER SLIDER-->
+      </div>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="t2">
+      <div class="row wlt_search_results grid_style">
+        <%= render 'message_tab', messages: @messages, type: 'sent'%>
+      </div>
+    </div>
+  </div>
+
+</div>

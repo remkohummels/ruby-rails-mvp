@@ -1,0 +1,11 @@
+<div class="remodal" data-remodal-id="msg-<%= msg.id.to_s %>">
+  <button data-remodal-action="close" class="remodal-close"></button>
+  <h1><%= msg.title %></h1>
+  <p>
+    <%= msg.body %>
+  </p>
+  <br>
+  <% if !sent %>
+    <%= link_to 'Reply', new_account_message_path(reply_message: msg), method: :get, class: 'remodal-confirm' %>
+  <% end %>
+</div>

@@ -1,0 +1,58 @@
+<%= content_for(:extra_body_classes, 'search') %>
+<div id="core_padding">
+
+
+  <div id="core_padding_inner">
+
+    <div class=" container widecontainer core_section_top_container">
+
+
+      <div class="row core_section_top_row wlt_main_2colsleft">
+
+
+        <div id="core_inner_wrap" class="clearfix">
+          <%= render 'search_sidebar', :locals => {q: @q} %>
+          <article class="col-md-820 col-sm-820" id="core_middle_column">
+            <% if @items.count > 0%>
+              <div class="core_middle_wrap">
+                <div id="core_ajax_callback"></div>
+
+
+                <div class="_searchresultsdata">
+
+
+                  <a name="topresults"></a>
+
+                  <div class="wlt_search_results grid_style">
+
+                    <!--RENDER SLIDER-->
+                    <% @items.each do |item| %>
+                        <%= render 'partials/new_bid', :locals => {item: item} %>
+                    <% end %>
+                    <!--RENDER SLIDER-->
+
+                    <script>
+                      jQuery(document).ready(function () {
+                        setTimeout(function () {
+                          equalheight('.grid_style .itemdata');
+                        }, 2000);
+                      });
+                    </script>
+
+                    <div class="pagnavbar text-right col-md-12 col-sm-12 col-xs-12">
+                      <%= paginate @items %>
+                    </div>
+
+                    <div class="clearfix"></div>
+                  </div>
+                </div>
+              <%else%>
+                <%= render 'items/nothing_found', category: @category %>
+              <%end%>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,55 @@
+$group-border-c: $light-gray
+$group-c: $main-gray 
+$group-border-c_active: $montecarlo
+$group-c_active: #fff
+.bz-group
+  border: 1px solid $group-border-c
+  width: 100%
+  padding: 10px 0
+  height: 85px
+  max-height: 85px
+  margin-bottom: 20px
+  +flex-centred
+  h4
+    color: $group-c
+    text-align: left !important
+    font-size: 16px !important
+    font-weight: 600 !important
+    +MQ(M)
+      font-size: 20px !important
+  .bz-subtitle
+    text-transform: none !important
+    font-size: 12px !important
+    font-weight: 400
+    +MQ(M)
+      font-size: 16px !important
+  .bz-group-controls
+    display: flex
+    justify-content: flex-end
+    align-items: center
+    .bz-text-btn
+      span
+        margin-left: 2px
+  &.new
+    border: 1px dashed $montecarlo
+    justify-content: flex-start
+    padding: 15px
+    cursor: pointer
+    .bz-text-btn
+      font-size: 16px
+      +MQ(M)
+        font-size: 20px
+    &:hover
+      .bz-text-btn
+        color: $main-gray
+  &.active
+    background-color: $group-border-c_active
+    border-color: $group-border-c_active
+    h4
+      color: $group-c_active
+      &:hover
+        color: #fff
+      &:first-child
+        font-family: $bz-font-bold !important
+    .bz-text-btn
+      color: $group-c_active

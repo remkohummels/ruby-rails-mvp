@@ -1,0 +1,15 @@
+h3 Dashboard
+
+.row
+  .col-lg-8.col-md-6.col-sm-12
+    = render 'account/dashboard/widgets/weather'
+    = render 'account/dashboard/widgets/reports', {items: @reports_items}
+  .col-lg-4.col-md-6.col-sm-12
+    = render 'account/dashboard/widgets/date_timer'
+    = render 'account/dashboard/widgets/ratings', {groups: @rating_groups}
+.row
+  .col-lg-12
+    = render 'account/dashboard/widgets/items_closing_soon', {items: @closing_items}
+.row
+  .col-lg-12
+    = render 'account/dashboard/widgets/group_admins', {groups: @group_admins}

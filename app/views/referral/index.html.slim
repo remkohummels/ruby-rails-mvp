@@ -1,0 +1,20 @@
+.bz-invite-page
+  .container.invite-content
+    h2.bz-title
+      |Invite Friends
+    h4.bz-subtitle
+      |Invite Your Friends to Join Your Group.
+    = form_tag(send_invite_path) do
+      .form-group
+        .field_wrapper 
+          h4.light.label
+            |Enter your friends’ email
+          = text_field_tag 'email', nil, class: 'email', placeholder: '', required: 'required'
+          h4.subtitle.light
+            |Enter multiple emails separated with commas.
+      / .form-group
+      /   .field_wrapper
+      /     = label_tag 'comments', 'Comments'
+      /     = text_area_tag 'comments', nil, class: 'form-control', rows: 4, placeholder: 'Comments...'
+      .btn-area
+        = submit_tag 'Send Invite', class: 'bz-oval-btn mc'

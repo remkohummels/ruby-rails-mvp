@@ -1,0 +1,60 @@
+/! layout-one
+.layout-one
+  .container
+    h2.title-heading Choose posting type
+    h4.title-tag Quick Post, Group Post or Rent It
+    .row.boxes
+      .col-md-offset-1.col-md-10.col-md-offset-1.itemBox
+        .row.text-center
+          .col-sm-4.col-md-3
+            = link_to new_item_path(type: 'quick'), class: 'choose-type'
+              .boxIcon.hvr-sink
+                = image_tag "box1.png"
+              h4 Quick Post
+              p Price your item, post and sell
+          .col-sm-4.col-md-3.col-md-offset-1
+            - if !current_user.nil? && current_user.is_group_member?
+              = link_to new_item_path(type: 'group'), class: 'choose-type'
+                .boxIcon.hvr-sink
+                  = image_tag "box2.png"
+                h4 Group Post
+                p
+                  | Post your item to your Group(s) and start your auction.
+            - else
+              a class="choose-type" data-toggle="modal" data-target="#myModal"
+                .boxIcon.hvr-sink
+                  = image_tag "box2.png"
+                h4 Group Post
+                p
+                  | Post your item to your Group(s) and start your auction.
+          .col-sm-4.col-md-3.col-md-offset-1
+            = link_to new_item_path(type: 'rent'), class: 'choose-type'
+              .boxIcon.hvr-sink
+                = image_tag "box3.png"
+              h4 Rent It
+              p Post item for rent
+        /! inner-row
+      /! col-10
+    /! row
+  /! container
+/! layout-one
+
+- if current_user.nil? || !current_user.is_group_member?
+  - content_for :body_area
+    #myModal tabindex="-1" role="dialog" aria-labelledby="redirectModal" aria-hidden="true" class="modal fade"
+      .modal-dialog
+        .modal-content
+          .modal-header
+            button type="button" data-dismiss="modal" aria-label="Close" class="close"
+              span aria-hidden="true"
+                |&times
+          .modal-body
+            p
+              |Please join or create a group before posting items into group
+          .modal-footer
+            = link_to new_group_path, class:'btn btn-default'
+              |Create a group
+            = link_to groups_path, class:'btn btn-default'
+              |Join a group
+            button type="button" data-dismiss="modal" class="btn btn-danger"
+              |Cancel

@@ -1,0 +1,20 @@
+.panel.widget.widget-weather
+  .row.row-table
+    .col-md-2.col-sm-3.col-xs-6.text-center.bg-info.pv-xl
+      em class="wi wi-#{@weather[:current][:icon]} fa-4x"
+    .col-md-2.col-sm-3.col-xs-6.pv.br
+      .h1.m0.text-bold
+        = @weather[:current][:temperature]
+        |&deg;C
+      .text-uppercase
+        = @weather[:current][:summary]
+
+    - @weather[:hours].each do |obj|
+      .col-md-2.col-sm-3.hidden-xs.pv.text-center.br
+        .text-info.text-sm.timestamp
+          = "#{obj[:time]}"
+        .text-muted.text-md
+          em class="wi wi-#{obj[:icon]}""
+        .text-mute
+          = obj[:temperature]
+          |&deg;C

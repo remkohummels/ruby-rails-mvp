@@ -1,0 +1,54 @@
+doctype html
+html
+  head
+    meta charset="utf-8"
+    meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"
+    meta name="viewport" content="width=device-width, initial-scale=1"
+    = yield :head_area
+    title GroupnShop
+    = favicon_link_tag 'favicon.png'
+    = yield :css
+    / =============== VENDOR STYLES ===============-->
+    = stylesheet_link_tag 'base'
+    / =============== VIEW VENDOR STYLES ===============-->
+    = stylesheet_link_tag params[:controller] if stylesheet_exists?(params[:controller])
+    / =============== APP STYLES ===============-->
+    = stylesheet_link_tag 'account/base'
+    = render partial: "layouts/partials/gtag_script"
+    = csrf_meta_tags
+    -if @item && @item.images.present?
+      link rel="image_src" href="#{@item.images.first.file.url}"
+
+  body.page-aside-left class="#{controller.controller_name} #{body_class}"
+    = render partial: "layouts/partials/gtag_iframe"
+    .wrapper
+      /-- top navbar--
+      header.topnavbar-wrapper
+        = render partial: "layouts/partials/topnavbar"
+      /-- sidebar--
+      aside.aside
+        = render partial: 'layouts/partials/sidebar'
+      /-- offsidebar--
+      /-- Main section--
+      section
+        /-- Page content--
+        div.content-wrapper
+          = yield
+      /-- Page footer--
+      footer
+        = render partial: "layouts/partials/footer"
+    = yield :js
+    /-- =============== VENDOR SCRIPTS ===============--
+    = javascript_include_tag 'account/base'
+    /-- =============== VIEW VENDOR SCRIPTS ===============--
+    = javascript_include_tag params[:controller] if javascript_exists?(params[:controller])
+    /-- =============== APP SCRIPTS ===============--
+    
+
+    = javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/jquery.blockUI/2.70/jquery.blockUI.min.js'
+
+    = yield :body_area
+
+    .modal-container
+
+    = render 'layouts/partials/google_analytics'

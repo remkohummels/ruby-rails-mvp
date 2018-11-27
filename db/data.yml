@@ -1,0 +1,409 @@
+
+---
+admin_users:
+  columns:
+  - id
+  - email
+  - encrypted_password
+  - reset_password_token
+  - reset_password_sent_at
+  - remember_created_at
+  - sign_in_count
+  - current_sign_in_at
+  - last_sign_in_at
+  - current_sign_in_ip
+  - last_sign_in_ip
+  - created_at
+  - updated_at
+  records: 
+  - - '1'
+    - admin@example.com
+    - "$2a$10$2EgQz7wuB//9Jvq2EqSZOeuQGKDBPCfD3U8aoDtjap0HTl1wUZIz6"
+    - 
+    - 
+    - 
+    - '9'
+    - '2016-04-21 20:45:49.889079'
+    - '2016-04-21 10:35:32.917061'
+    - 10.0.2.2
+    - 10.0.2.2
+    - '2016-04-11 09:19:58.047559'
+    - '2016-04-21 20:45:49.892342'
+
+---
+items:
+  columns:
+  - id
+  - title
+  - description
+  - start_price
+  - reverse_price
+  - condition
+  - created_at
+  - updated_at
+  - keywords
+  - user_id
+  - type
+  - buy_now_price
+  - shipping_price
+  - bids_count
+  - end_date
+  - winner_id
+  records: 
+  - - '18'
+    - gth
+    - 'rhbgffg fgd dh dgh dg rhbgffg fgd dh dgh dg rhbgffg fgd dh dgh dg rhbgffg fgd
+      dh dgh dg rhbgffg fgd dh dgh dg rhbgffg fgd dh dgh dg rhbgffg fgd dh dgh dg
+      rhbgffg fgd dh dgh dg rhbgffg fgd dh dgh dg rhbgffg fgd dh dgh dg rhbgffg fgd
+      dh dgh dg rhbgffg fgd dh dgh dg rhbgffg fgd dh dgh dg rhbgffg fgd dh dgh dg
+      rhbgffg fgd dh dgh dg <font size="6">rhbgffg fgd dh dgh dg rhbgffg fgd dh dgh
+      dg rhbgffg fgd dh dgh dg rhbgffg fgd dh dgh dg rhbgffg fgd dh dgh dg </font>rhbgffg
+      fgd dh dgh dg rhbgffg fgd dh dgh dg rhbgffg fgd dh dgh dg rhbgffg fgd dh dgh
+      dg rhbgffg fgd dh dgh dg '
+    - '68'
+    - '3'
+    - new
+    - '2016-04-19 09:10:00.330195'
+    - '2016-04-21 11:18:53.44101'
+    - 'ds gsfg sfg '
+    - '1'
+    - 
+    - '123'
+    - 
+    - '4'
+    - '2016-06-23 14:23:08'
+    - 
+  - - '19'
+    - '1231232222222222222222'
+    - sadfsadfasd sdf sdf sdfsadfsadfasd sdf sdf sdfsadfsadfasd sdf sdf sdfsadfsadfasd
+      sdf sdf sdfsadfsadfasd sdf sdf sdfsadfsadfasd sdf sdf sdfsadfsadfasd sdf sdf
+      sdfsadfsadfasd sdf sdf sdfsadfsadfasd sdf sdf sdfsadfsadfasd sdf sdf sdfsadfsadfasd
+      sdf sdf sdfsadfsadfasd sdf sdf sdfsadfsadfasd sdf sdf sdfsadfsadfasd sdf sdf
+      sdfsadfsadfasd sdf sdf sdfsadfsadfasd sdf sdf sdfsadfsadfasd sdf sdf sdfsadfsadfasd
+      sdf sdf sdfsadfsadfasd sdf sdf sdf
+    - '124'
+    - '123'
+    - new
+    - '2016-04-19 13:45:49.120016'
+    - '2016-04-21 21:12:24.509642'
+    - qweqwe
+    - '1'
+    - 
+    - '12'
+    - 
+    - '1'
+    - '2016-04-21 21:12:24.50612'
+    - '5'
+  - - '20'
+    - test
+    - 'asdfs afd asdfs afd asdfs afd asdfs afd asdfs afd asdfs afd asdfs afd asdfs
+      afd asdfs afd asdfs afd asdfs afd asdfs afd asdfs afd asdfs afd asdfs afd asdfs
+      afd asdfs afd asdfs afd asdfs afd asdfs afd asdfs afd asdfs afd asdfs afd asdfs
+      afd asdfs afd asdfs afd asdfs afd asdfs afd asdfs afd asdfs afd asdfs afd asdfs
+      afd asdfs afd asdfs afd asdfs afd asdfs afd '
+    - '497'
+    - '22'
+    - new
+    - '2016-04-20 10:46:41.065624'
+    - '2016-04-20 14:18:18.574055'
+    - 'asdfs afd '
+    - '5'
+    - 
+    - 
+    - 
+    - '1'
+    - '2016-05-20 14:23:08.691416'
+    - 
+  - - '21'
+    - asdf
+    - vasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdf
+    - '23234'
+    - '234'
+    - new
+    - '2016-04-21 20:38:51.713225'
+    - '2016-04-21 20:38:51.713225'
+    - asdfasdfasdf
+    - '5'
+    - 
+    - 
+    - 
+    - '0'
+    - '2016-05-20 14:23:08.691416'
+    - 
+
+---
+users:
+  columns:
+  - id
+  - email
+  - encrypted_password
+  - reset_password_token
+  - reset_password_sent_at
+  - remember_created_at
+  - sign_in_count
+  - current_sign_in_at
+  - last_sign_in_at
+  - current_sign_in_ip
+  - last_sign_in_ip
+  - created_at
+  - updated_at
+  - status
+  - first_name
+  - last_name
+  - role
+  records: 
+  - - '1'
+    - admin@admin.com
+    - "$2a$10$cCbX88deJPdb2D2wHwXIuOWhe1sgD04q1bhF1kGsOg4nxYty4LIM."
+    - 
+    - 
+    - 
+    - '24'
+    - '2016-04-21 20:33:12.549017'
+    - '2016-04-21 10:27:03.572896'
+    - 10.0.2.2
+    - 10.0.2.2
+    - '2016-04-11 10:34:07.939661'
+    - '2016-04-21 20:33:12.552729'
+    - active
+    - 
+    - 
+    - admin
+  - - '4'
+    - a33333dmin@admin.com
+    - "$2a$10$PGyJnyyq50lTUvkZgs2r2u8vGNjVkJPsV4KK2k79KIJcujlsZgjnC"
+    - 
+    - 
+    - 
+    - '15'
+    - '2016-04-11 12:28:05.542895'
+    - '2016-04-11 12:27:17.197747'
+    - 10.0.2.2
+    - 10.0.2.2
+    - '2016-04-11 11:10:21.621581'
+    - '2016-04-11 12:28:53.007495'
+    - active
+    - 
+    - 
+    - 
+  - - '5'
+    - cotoha_92@mail.ri
+    - "$2a$10$5SCF8CBn84A1m8c2afpWLekZ5Xp7XINEFEKXT5H.nf1VvYBm.lllm"
+    - 
+    - 
+    - 
+    - '11'
+    - '2016-04-21 20:33:44.345313'
+    - '2016-04-21 11:18:24.992474'
+    - 10.0.2.2
+    - 10.0.2.2
+    - '2016-04-11 19:49:32.111041'
+    - '2016-04-21 20:33:44.347962'
+    - active
+    - "Денис"
+    - "Салаев"
+    - 
+  - - '6'
+    - qwe@qwe.qwe
+    - "$2a$10$8FeHJh97BhvTR8GAvAHc/eZexYW6VtygqwZ3ckaYjuV.CDgnK91sW"
+    - 
+    - 
+    - 
+    - '1'
+    - '2016-04-21 10:26:33.555813'
+    - '2016-04-21 10:26:33.555813'
+    - 10.0.2.2
+    - 10.0.2.2
+    - '2016-04-21 10:26:33.547507'
+    - '2016-04-21 10:26:33.558884'
+    - active
+    - '123'
+    - '123'
+    - 
+
+---
+votes:
+  columns:
+  - id
+  - votable_id
+  - votable_type
+  - voter_id
+  - voter_type
+  - vote_flag
+  - vote_scope
+  - vote_weight
+  - created_at
+  - updated_at
+  records: 
+  - - '36'
+    - '12'
+    - Item
+    - '5'
+    - User
+    - true
+    - 
+    - '1'
+    - '2016-04-18 14:08:40.561997'
+    - '2016-04-18 14:08:40.561997'
+  - - '37'
+    - '14'
+    - Item
+    - '5'
+    - User
+    - true
+    - 
+    - '1'
+    - '2016-04-18 14:13:40.85999'
+    - '2016-04-18 14:13:40.85999'
+  - - '41'
+    - '13'
+    - Item
+    - '5'
+    - User
+    - true
+    - 
+    - '1'
+    - '2016-04-18 14:40:16.999439'
+    - '2016-04-18 14:40:16.999439'
+  - - '44'
+    - '18'
+    - Item
+    - '5'
+    - User
+    - true
+    - 
+    - '1'
+    - '2016-04-21 13:51:00.182094'
+    - '2016-04-21 13:51:00.182094'
+  - - '45'
+    - '20'
+    - Item
+    - '5'
+    - User
+    - true
+    - 
+    - '1'
+    - '2016-04-21 13:51:17.597864'
+    - '2016-04-21 13:51:17.597864'
+  - - '46'
+    - '21'
+    - Item
+    - '5'
+    - User
+    - true
+    - 
+    - '1'
+    - '2016-04-21 20:39:45.077862'
+    - '2016-04-21 20:39:45.077862'
+
+---
+bids:
+  columns:
+  - id
+  - price
+  - user_id
+  - item_id
+  - created_at
+  - updated_at
+  records: 
+  - - '15'
+    - '1'
+    - '5'
+    - '20'
+    - '2016-04-20 11:00:47.560797'
+    - '2016-04-20 11:00:47.560797'
+  - - '16'
+    - '1'
+    - '5'
+    - '19'
+    - '2016-04-20 11:19:06.628817'
+    - '2016-04-20 11:19:06.628817'
+  - - '18'
+    - '1'
+    - '5'
+    - '18'
+    - '2016-04-20 12:03:36.251945'
+    - '2016-04-20 12:03:36.251945'
+  - - '19'
+    - '4'
+    - '5'
+    - '18'
+    - '2016-04-20 12:06:32.811034'
+    - '2016-04-20 12:06:32.811034'
+  - - '27'
+    - '17'
+    - '1'
+    - '18'
+    - '2016-04-21 10:05:49.991971'
+    - '2016-04-21 10:05:49.991971'
+  - - '28'
+    - '35'
+    - '5'
+    - '18'
+    - '2016-04-21 11:18:53.429287'
+    - '2016-04-21 11:18:53.429287'
+
+---
+images:
+  columns:
+  - id
+  - file
+  - temp_key
+  - item_id
+  - created_at
+  - updated_at
+  records: 
+  - - '52'
+    - KAPITAN_-_WIN_20131024_180139.JPG
+    - UzKhRVqSVqDiNvnrTITPYDwGkQsqvYDviCqwHYnzPpgDKKkqHW
+    - '18'
+    - '2016-04-19 10:03:39.730974'
+    - '2016-04-19 10:03:45.949299'
+  - - '53'
+    - KAPITAN_-_WIN_20131024_185153.JPG
+    - UzKhRVqSVqDiNvnrTITPYDwGkQsqvYDviCqwHYnzPpgDKKkqHW
+    - '18'
+    - '2016-04-19 10:03:40.783691'
+    - '2016-04-19 10:03:45.999316'
+  - - '54'
+    - KAPITAN_-_WIN_20131024_185214.JPG
+    - UzKhRVqSVqDiNvnrTITPYDwGkQsqvYDviCqwHYnzPpgDKKkqHW
+    - '18'
+    - '2016-04-19 10:03:43.750985'
+    - '2016-04-19 10:03:46.047065'
+  - - '56'
+    - KAPITAN_-_WIN_20131024_180139.JPG
+    - sqpJoyPGsDwlwGSwcNJEPQRdLuJMeFWmAwyrVRYBqybixaVclf
+    - '19'
+    - '2016-04-19 13:45:27.937437'
+    - '2016-04-19 13:45:49.166077'
+  - - '57'
+    - KAPITAN_-_WIN_20131024_185153.JPG
+    - sqpJoyPGsDwlwGSwcNJEPQRdLuJMeFWmAwyrVRYBqybixaVclf
+    - '19'
+    - '2016-04-19 13:45:29.223994'
+    - '2016-04-19 13:45:49.225021'
+  - - '58'
+    - KAPITAN_-_WIN_20131024_180139.JPG
+    - JKboJfbDvVzRPWuwwQthbPzRxeZHqvhDTDyNSTXyjQYhnMRecv
+    - '20'
+    - '2016-04-20 10:46:36.867011'
+    - '2016-04-20 10:46:41.107514'
+  - - '59'
+    - KAPITAN_-_WIN_20131024_185153.JPG
+    - JKboJfbDvVzRPWuwwQthbPzRxeZHqvhDTDyNSTXyjQYhnMRecv
+    - '20'
+    - '2016-04-20 10:46:37.970483'
+    - '2016-04-20 10:46:41.160676'
+  - - '60'
+    - 678.jpg
+    - VQyxhLirguhElsTFSxdmyMhysjbatXqRGEYDqKZgkGkzQuHtlX
+    - '21'
+    - '2016-04-21 20:38:30.183365'
+    - '2016-04-21 20:38:51.753059'
+  - - '61'
+    - 686.jpg
+    - VQyxhLirguhElsTFSxdmyMhysjbatXqRGEYDqKZgkGkzQuHtlX
+    - '21'
+    - '2016-04-21 20:38:49.115201'
+    - '2016-04-21 20:38:51.811661'

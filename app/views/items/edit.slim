@@ -1,0 +1,34 @@
+.bz-newgroup-page.bz-newitem-page class="#{@item.valid? ? 'fully_valid_item' : ''} #{ @posting_type == :quick_post ? ' quick-post' : 'rent-post'}"
+  .container
+    h2.bz-title
+      |Edit an item
+    - if @posting_type == :quick_post
+      h4.bz-subtitle
+        |Post an item in one step
+      = render 'items/qpost_form', item: @item, location: @location, posting_type: @posting_type
+    - elsif @posting_type == :rent_post
+      = render 'items/rentpost_form', item: @item, location: @location, posting_type: @posting_type
+    - else
+      h4.bz-subtitle
+        |Select the group you’re part of
+      .steps
+        .step.active#step1
+          | 1
+        .step#step2
+          | 2
+        .step#step3
+          | 3
+        .step#step4 
+          | 4
+      = semantic_form_for @item, remote: true, :html => {:id => 'SUBMISSION_FORM', :class => 'validate-form new_item_form', role: :form, 'data-model' => 'item', :'data-type' => 'json'} do |f|
+        = render 'new_step_one', f: f, item: @item
+        = render 'new_step_two', f: f, item: @item, sign: @currency.sign
+        = render 'new_step_three', f: f, item: @item
+        = render 'new_step_four', f: f, item: @item
+        .step-btns.active
+          = link_to 'Previous Step', '#' ,class: "bz-oval-btn mc disabled", id: "prev-step"
+          = link_to 'Next Step', '#' ,class: "bz-oval-btn mc active", id: "next-step"
+          = f.submit 'Preview', class: "bz-oval-btn mc", id: "finish"
+
+
+    / = render "groups/group_form", locals: { group: Group.new, type: 'send for approval' }

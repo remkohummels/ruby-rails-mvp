@@ -1,0 +1,63 @@
+@import "bourbon"
+
+=centrify($switcher: "both")
+  @if $switcher == "both"
+    top: 50%
+    left: 50%
+    +transform(translateX(-50%) translateY(-50%))
+  @else if $switcher == "height"
+    top: 50%
+    +transform(translateY(-50%))
+  @else if $switcher == "width"
+    left: 50%
+    +transform(translateX(-50%))
+
+
+=filter($function: none)
+  -webkit-filter: $function
+  -moz-filter:    $function
+  -ms-filter:     $function
+  -o-filter:      $function
+  filter:         $function
+
+=flex-centred()
+  display: flex
+  justify-content: center
+  align-items: center
+
+=fullsize-canvas()
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+  width: 100%
+  height: 100%
+
+=MQ($canvas)
+  @if $canvas == S
+    @media only screen and (min-width: $S)
+      @content
+  @else if $canvas == M
+    @media only screen and (min-width: $M)
+      @content
+  @else if $canvas == XM
+    @media only screen and (min-width: $XM)
+      @content
+  @else if $canvas == L
+    @media only screen and (min-width: $L)
+      @content
+  @else if $canvas == LG
+    @media only screen and (min-width: $LG)
+      @content
+  @else if $canvas == XL
+    @media only screen and (min-width: $XL)
+      @content
+
+
+@function calculateRem($size)
+  $remSize: $size / 16px
+  @return #{$remSize}rem
+
+=fontSize($size)
+  font-size: $size
+  font-size: calculateRem($size)

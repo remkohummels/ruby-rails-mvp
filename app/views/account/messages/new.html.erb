@@ -1,0 +1,45 @@
+<div class="page-wrapper " id="listing_styles">
+  <div id="core_padding">
+    <div id="core_padding_inner">
+      <div class=" container widecontainer core_section_top_container">
+        <div class="row core_section_top_row wlt_main_2colsleft">
+          <div id="core_inner_wrap" class="clearfix">
+            <%= render 'items/search_sidebar', :locals => {q: @q} %>
+            <article class="col-md-820 col-sm-820" id="core_middle_column">
+              <div class="core_middle_wrap">
+                <div id="core_ajax_callback"></div>
+                <div class="panel panel-default" id="MyMsgBlock">
+                  <div class="panel-heading">My Messages</div>
+                  <div class="panel-body">
+                    <%= semantic_form_for @message, remote: true, :html => {:class => 'validate-form', role: :form, 'data-model' => 'message', :'data-type' => 'json'} do |f| %>
+                        <h3>Send Message</h3>
+
+                        <p>Fill out the fields below to send a private message to one of our members.</p>
+                        <hr>
+                        <div class="input-group field_wrapper select">
+                          <span class="input-group-addon" id="ajaxMsgUser">@</span>
+                          <%= f.input :recipient_id, input_html: {class: "form-control"}, label: false, :as => :select, :collection => @messageble_ussers, selected: @recipient_id, include_blank: false, include_hidden: false%>
+                        </div>
+                        <hr>
+                        <div class="field_wrapper form-group">
+                          <label>Subject</label>
+                          <%= f.input :title, :label => false, input_html: {class: " form-control", placeholder: "Subject", value: @title} %>
+                        </div>
+                        <div class="field_wrapper form-group">
+                          <label>Message</label>
+                          <%= f.input :body, :label => false, input_html: {class: " form-control", value: @body} %>
+                        </div>
+                        <button class="btn btn-warning" type="submit">Send Message</button>
+                        <%= link_to 'Back', :back, class: 'btn btn-default pull-right' %>
+                    <% end %>
+                  </div>
+                </div>
+                <%= render 'users/items/items' %>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

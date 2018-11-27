@@ -1,0 +1,19 @@
+.row.widget-group-admins
+  - groups.each do |group|
+    .col-lg-3.col-md-6.col-sm-12
+      .panel.b.text-center
+        .panel-body
+          = link_to group_path(group)
+            = image_tag group.banner, class: "img-circle thumb64"
+            p class="h4 text-bold mb0"
+              = group.title
+        .panel-body.bt
+          .row
+            .col-xs-6.br
+              em.fa.fa-users
+              strong
+                = pluralize(group.group_memberships.joineds.count, 'member')
+            .col-xs-6
+              em.fa.fa-shopping-cart
+              strong
+                = pluralize(group.items.active.count, 'item')

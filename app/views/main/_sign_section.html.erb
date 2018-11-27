@@ -1,0 +1,19 @@
+<% if !current_user %>
+  <section class="bz-welcome-section bz-sign-section " id="sign_section">
+    <div class="container">
+      <div class="bz-sign-content">
+        <div class="col-md-6 hidden-sm hidden-xs lines">
+          <div class="textarea">
+            <h3 class="bold">Join Us!</h3>
+            <h3 class="extra">Sign In With Facebook or email</h3>
+          </div>
+        </div>
+        <div class="col-xs-12 col-md-6">
+          <div class="sign-area">
+            <%= render 'users/landing_login_form' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+<% end %>

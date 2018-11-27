@@ -1,0 +1,14 @@
+<% @item = locals[:item] %>
+<div class="desc-item item_controls">
+  <div class="col-xs-12 col-sm-6 no-pad">
+    <%= link_to 'Edit', edit_item_path(@item), class: 'bz-oval-btn item-control'%>
+  </div>
+  <div class="col-xs-12 col-sm-6 no-pad">
+    <%= link_to 'Discard', item_path(@item), method: :delete, class: 'bz-oval-btn discard item-control', data:{:confirm => 'Are you sure you want to discard ' + @item.title + '?'} %>
+  </div>
+  <div class="col-xs-12 no-pad">
+    <%= link_to 'Post the item details', publish_item_path(@item), method: :post, class: 'bz-oval-btn post item-control'%>
+  </div>
+
+</div>
+

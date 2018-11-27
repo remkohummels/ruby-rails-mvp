@@ -1,0 +1,50 @@
+<div class="bz-tabs-section hidden-xs">
+  <div class="nav bz-navbar" role="tablist">
+    <div class="btn-group col-xs-3">
+      <a href="#t1" aria-controls="t1" role="tab" data-toggle="tab" aria-expanded="false" class="bz-button bz-tab active">ADMINS</a>
+    </div>
+    <div class="btn-group col-xs-3">
+      <a href="#t2" aria-controls="t2" role="tab" data-toggle="tab" data-select-like-a-boss="1" aria-expanded="true" class="bz-button bz-tab">BUYERS</a>
+    </div>
+    <div class="btn-group col-xs-3">
+      <a href="#t3" aria-controls="t3" role="tab" data-toggle="tab" data-select-like-a-boss="1" aria-expanded="true" class="bz-button bz-tab">SELLERS</a>
+    </div>
+  </div>
+
+  <div class="tab-content" style="margin-top:20px;">
+    <div role="tabpanel" class="tab-pane active" id="t1">
+      <div class="row wlt_search_results grid_style">
+        <!--RENDER SLIDER-->
+        <% Item.ending_soon.each do |item| %>
+            <% if item.user_in_group(current_user)  %>
+              <%= render 'partials/new_bid', :locals => {item: item} %>
+            <% end %>
+        <% end %>
+        <!--RENDER SLIDER-->
+      </div>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="t2">
+      <div class="row wlt_search_results grid_style">
+        <!--RENDER SLIDER-->
+        <% Item.latest_items.each do |item| %>
+            <% if item.user_in_group(current_user)  %>
+              <%= render 'partials/new_bid', :locals => {item: item} %>
+            <% end %>
+        <% end %>
+        <!--RENDER SLIDER-->
+      </div>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="t3">
+      <div class="row wlt_search_results grid_style">
+        <!--RENDER SLIDER-->
+        <% Item.free.each do |item| %>
+            <% if item.user_in_group(current_user)  %>
+              <%= render 'partials/new_bid', :locals => {item: item} %>
+            <% end %>
+        <% end %>
+        <!--RENDER SLIDER-->
+      </div>
+    </div>
+  </div>
+
+</div>

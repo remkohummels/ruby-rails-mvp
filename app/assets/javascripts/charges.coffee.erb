@@ -1,0 +1,20 @@
+$ ->
+  handler = StripeCheckout.configure(
+    stripeEmail:false
+    key: "<%= Rails.configuration.stripe[:publishable_key] %>"
+    token: (token, args) ->
+      $('#stripeToken').val token.id
+      $('#stripeEmail').val token.email
+      $('.stripe-form').submit()
+      return
+  )
+  $('#stripe-button').on 'click', (e) ->
+    email = $(this).data('email')
+    handler.open
+      email: email
+    e.preventDefault()
+    return
+  $(window).on 'popstate', ->
+    handler.close()
+    return
+  return

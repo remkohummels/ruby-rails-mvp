@@ -1,0 +1,7 @@
+.step-fields#s4
+  h2
+    | Enter your location
+  .form-group
+    =label_tag :location, 'location', class: "location"
+    = f.text_field :location, value: @location, :label => false, required: true, class: "form-control"
+    p.item_error

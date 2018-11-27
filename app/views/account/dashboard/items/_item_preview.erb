@@ -1,0 +1,55 @@
+<% item = locals[:item] %>
+
+<div class="bz-product-item col-xs-12 col-sm-4" data-id='<%= item.id %>' data-left='999999'>
+  <div class="bz-product-item-image">
+    <div class="bz-overlay">
+      <div class="lbox">
+        <%= link_to images_path, class: "modal-trigger", data: {:'target-id' => 'message-form', item_id: item.id} do %>
+            <span class="fa fa-camera"></span>
+        <% end %>
+        <%= link_to item, class: "link-overlay" do %>
+        <% end %>
+      </div>
+    </div>
+    <img src="<%= item.get_avatar %>" alt="fallback-no-image-100" class="">
+  </div>
+  <div class="bz-product-item-content">
+    <div class="col-xs-6">
+      <div class="title">
+        <%= link_to item do %>
+          <span><%= item.title %></span>
+        <% end %> 
+      </div>
+      <% if !item.location.blank? %>
+        <div class="location">
+          <%= link_to item do %>
+            <span><%= item.location%></span>
+          <% end %> 
+        </div>
+      <% end %>
+    </div>
+    <div class="col-xs-6">
+      <%= link_to item do %>
+        <div class="bid">
+          <h4>
+            Current Price&nbsp;
+            <b class="bold">
+              <% if item.is_free? || !item.start_price %>
+                Item is Free!
+              <% else %>
+                <%= to_currency(item.start_price) %>
+              <% end %>
+            </b>
+          </h4>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-xs-12">
+      <div class="group-list">
+        <%= link_to item do %>
+          <span><%= item.groups.pluck(:title).to_sentence%></span>
+        <% end %> 
+      </div>
+    </div>
+  </div>
+</div>

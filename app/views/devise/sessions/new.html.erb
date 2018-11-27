@@ -1,0 +1,62 @@
+<div id="core_padding">
+  <div id="core_padding_inner">
+    <div class=" container widecontainer core_section_top_container">
+      <div class="row core_section_top_row wlt_main_2colsright">
+        <div id="core_inner_wrap" class="clearfix">
+          <article class="col-md-12" id="core_middle_column">
+            <div class="core_middle_wrap">
+              <div id="core_ajax_callback"></div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="panel panel-default" id="login_box">
+                    <div class="panel-heading">Login</div>
+                    <div class="panel-body">
+                      <%= semantic_form_for resource, as: resource_name, url: session_path(resource_name), url: new_user_session_path, :html => {:id => 'loginform', :class => 'loginform', role: :form, 'data-model' => 'user'} do |f| %>
+
+                          <% flash.each do |name, msg| %>
+                              <div class="bs-callout bs-callout-danger">
+                                <%= content_tag :div, msg, id: "flash_#{name}" %>
+                              </div>
+                          <% end %>
+
+                          <div class="form-group clearfix">
+                            <label for="inputEmail">Email</label>
+
+                            <div class="input-group">
+                              <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                              <%= f.input :email, input_html: {class: "form-control", placeholder: "Email"}, label: false %>
+                            </div>
+                          </div>
+                          <div class="form-group clearfix">
+                            <label for="inputEmail">Password</label>
+
+                            <div class="input-group">
+                              <span class="input-group-addon"><i class="glyphicon  glyphicon-lock "></i></span>
+                              <%= f.input :password, input_html: {class: "form-control", placeholder: "Password"}, label: false %>
+                            </div>
+                          </div>
+                          <input type="submit" name="wp-submit" class="btn btn-primary" value="Login">
+                          <%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook), class: "btn btn-info " %>
+                          <%= link_to "Reset Password", new_password_reset_path, class: "btn btn-default" %>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="panel panel-default" id="login_registerbox">
+                    <div class="panel-body text-center">
+                      <h3>New to our website?</h3>
+
+                      <p>Get started now. It's fast and easy.</p>
+                      <%= link_to 'SignUp', new_user_registration_path, class: "btn btn-large btn-primary" %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

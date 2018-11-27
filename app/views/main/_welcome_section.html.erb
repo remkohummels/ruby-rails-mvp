@@ -1,0 +1,19 @@
+<section class="bz-welcome-section">
+  <div class="bz-welcome-content">
+    <h1 class="light">Online Shopping</h1>
+    <h1 class="bold" style='display: inline-block;'>
+      Made Fun!
+      <%= link_to "How it Works", how_it_works_path, class: 'bz-oval-btn' %>
+    </h1>
+    <h4>Find a Group in Your Community or
+      <%= link_to 'Create One', new_group_path %>
+    </h4>
+    <%= search_form_for @gq, url: groups_path, html: {class: 'bz-search'} do |f| %>
+      <%= f.search_field :city_or_state_cont, class: '', placeholder: 'Find Your City' %>
+      <div class="wlt_button_search">
+        <button class="glyphicon glyphicon-search"></button>
+      </div>
+    <% end %>
+    <%= link_to "FAQs", faqs_path, class: 'bz-oval-btn mc' %>
+  </div>
+</section>

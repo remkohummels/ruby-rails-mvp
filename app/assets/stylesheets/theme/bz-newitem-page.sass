@@ -1,0 +1,252 @@
+$step-c: $montecarlo
+$step-size: 50px
+$step-fz: 20px
+$step-ff: $bz-font-main
+
+$label-fz: 20px
+$label-ff: $bz-font-light
+
+$title-c: #ccc
+$title-fz: 30px
+
+$cb-size: 25px
+.bz-newitem-page
+  &.quick-post, &.rent-post
+    .checkbox
+      margin-bottom: 30px
+      margin-left: 0
+    form
+      margin-top: 40px !important
+    .form-group
+      width: 100%
+      max-width: 500px
+    .form-groups
+      min-width: 0
+      max-width: 500px
+      width: 100%
+      justify-content: space-between
+      .form-group
+        max-width: 45%
+  &.rent-post
+    .bz-oval-btn.post
+      max-width: 300px !important
+      padding: 0px 100px
+  .parsley-error
+    border-color: $errors
+  .bz-title
+    text-align: center
+  form
+    margin-top: 0px !important
+    h2
+      color: $title-c
+      font-size: $title-fz !important
+      margin: 60px auto
+      text-align: center
+      width: 90%
+      +MQ(M)
+        width: 500px
+    .description
+      // margin-bottom: 15px
+  input
+    color: $main-gray
+  .form-group
+    +flex-centred
+    flex-direction: column
+  .form-groups
+    +MQ(M)
+      min-width: 725px
+    .form-group
+      max-width: 250px
+      margin: 0 auto
+  .prices
+    width: 100%
+    +flex-centred
+    flex-direction: column
+    +MQ(M)
+      flex-direction: row
+    .form-group
+      padding: 0
+      +MQ(M)
+        max-width: 30%
+  
+  .auc
+    &.disabled
+      pointer-events: none !important
+      background-color: #ccc !important
+      color: transparent !important
+      border-color: #ccc !important
+
+  .step-fields
+    display: none
+    &.active
+      min-width: 90%
+      display: block
+
+  .step-btns
+    display: flex
+    justify-content: space-between
+    align-items: center
+    width: 90%
+    margin-top: 20px
+    +MQ(M)
+      width: 500px
+    a, #finish
+      max-width: 48%
+    .disabled
+      pointer-events: none !important
+      background-color: #ccc !important
+      color: #fff !important
+      border-color: #ccc !important
+  #next-step, #finish
+    display: none
+    margin-right: 0
+    &.active
+      display: flex
+
+  .steps
+    +flex-centred
+    .step
+      +flex-centred
+      margin: 30px 15px
+      border: 1px solid $step-c
+      border-radius: 50px !important
+      color: $montecarlo
+      width: $step-size
+      height: $step-size
+      font-size: $step-fz
+      font-family: $step-ff
+      &:hover
+        cursor: not-allowed
+      &.past
+        background-color: #b7dbd9
+        border-color: #b7dbd9
+        color: #fff
+        &:hover
+          cursor: pointer
+      &.active
+        color: #fff
+        background-color: $montecarlo
+        &:hover
+          cursor: wait
+
+  li
+    display: flex
+    justify-content: flex-start
+    align-items: center
+  //input
+  //  margin: 15px 0
+  label
+    display: flex
+    background-position: 0
+    padding-left: 25px
+    background-size: 15px
+    background-repeat: no-repeat
+    font-size: $label-fz
+    font-family: $label-ff
+    margin: 15px 0
+    margin-top: 0
+    &.cloud
+      background-image: image-url('cloud.png')
+    &.label
+      background-image: image-url('label.png')
+    &.desc
+      background-image: image-url('desc-icon.png')
+    &.squares
+      background-image: image-url('squares.png')
+    &.arrow-uu
+      background-image: image-url('arrow-uu.png')
+    &.coins
+      background-image: image-url('coins.png')
+    &.condition
+      background-image: image-url('condition.png')
+    &.location
+      background-image: image-url('location.png')
+    &.camera
+      background-image: image-url('camera.png')
+  .checkbox
+    display: flex
+    justify-content: flex-start
+    align-items: center
+    flex-direction: row
+    margin-right: auto
+    margin-left: auto
+    max-width: 500px
+    .accept-term
+      color: #434343 !important
+      font-weight: bold
+      font-size: 14px
+      a
+        padding: 0 5px
+        color: #76bebc !important
+    label
+      display: flex
+      justify-content: flex-start
+      align-items: center
+      font-weight: bold
+    .check
+      width: $cb-size
+      height: $cb-size
+      position: relative
+      cursor: pointer
+      border: 1px solid #ccc
+      li
+        height: 100%
+        width: 100%
+      &.checked::after
+        content: '✔'
+        color: #ccc
+        font-size: 20px
+        font-weight: bold
+        +flex-centred
+        position: absolute
+        +centrify($switcher: 'both')
+      label
+        padding: 0
+        width: 100%
+        height: 100%
+    input[type='checkbox']
+      width: $cb-size !important
+      height: $cb-size !important
+      position: absolute
+      +centrify($switcher: 'both')
+      opacity: 0
+      -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"
+      background: none transparent
+      border: 0 none
+
+  select
+    width: 100%
+    padding: 5px 0
+    height: 40px
+    background: none transparent
+    border: 0 none
+    z-index: 1
+    appearance: none
+    padding-left: 15px
+    &::-ms-expand
+      display: none
+  .form-control
+    margin-bottom: 0
+  .form-control.select
+    position: relative
+    height: 40px
+    cursor: pointer
+    width: 100%
+    select
+      position: absolute
+      width: 100%
+      +centrify($switcher: 'both')
+    &::after
+      content: ""
+      height: 40px
+      width: 40px
+      background-color: $step-c
+      color: #fff
+      position: absolute
+      background-image: image-url('arrow-dt.png')
+      background-position: center
+      background-size: 14px
+      background-repeat: no-repeat
+      +centrify($switcher: 'height')
+      right: 0
+

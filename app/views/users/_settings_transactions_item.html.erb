@@ -1,0 +1,27 @@
+<div class="row table-row">
+  <div class="col-xs-6 col-sm-3">
+    <div class="col-item">
+      <%= Item.find(bid.item_id).title %>
+    </div>
+  </div>
+  <div class="col-xs-6 col-sm-2">
+    <div class="col-item">
+      <%= to_currency(bid.price) %>
+    </div>
+  </div>
+  <div class="col-xs-2 hidden-xs">
+    <div class="col-item">
+      -
+    </div>
+  </div>
+  <div class="col-xs-2 hidden-xs">
+    <div class="col-item">
+      <%= bid.updated_at.strftime("%F") %>
+    </div>
+  </div>
+  <div class="col-xs-3 hidden-xs">
+    <div class="col-item">
+      <%= User.find(bid.user_id).email %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+h3 My Posts/Items
+.panel.panel-default
+  = search_form_for @q, url: search_path, html: {class: 'container row'} do |f|
+    .col-xs-12.col-md-6.line
+      / .choose
+      /   .title category
+      /   .select
+      /     = f.select(:category_id_eq, (Category.all.collect{ |c| [c.name, c.id] }), {include_blank: 'All Categories'}, { class: 'select send_on_change'} )
+    / - if current_user
+    /   .col-xs-12.col-md-6.line
+        / .choose
+        /   .title group
+        /   .select
+        /     = f.select(:groups_id_eq, (current_user.active_groups.collect{ |g| [g.title, g.id] }), {}, { class: 'select send_on_change'} )
+  / .col-xs-12.col-md-3.line
+  /   = search_form_for @q, url: search_path, html: {class: 'bz-search'} do |f|
+  /     = f.search_field :title_cont, class: '', placeholder: 'Search'
+  /     .wlt_button_search
+  /       i.glyphicon.glyphicon-search
+.bz-items-container
+  - @items.latest_items.each do |item|
+    = render 'partials/new_bid', :locals => {item: item}

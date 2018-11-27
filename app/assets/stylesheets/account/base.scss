@@ -1,0 +1,148 @@
+/*
+ * --- Angle Main Stylesheet
+ *
+ *= require ../angle/app.scss
+ *
+ * --- Assets paths redefinition
+ *
+ *= require fonts
+ *= require vendor.assets
+ *= require weather-icons
+ *= require ./widgets.scss
+ *= require_self
+ */
+.topnavbar .navbar-header .brand-logo > img {
+  height: 30px;
+}
+
+.content-wrapper {
+  padding: 10px;
+
+  h3 {
+    color: #76bebc;
+    font-size: 30px;
+    font-family: "SansPro-Light";
+  }
+}
+
+.sidebar {
+  .nav {
+    li {
+      a {
+        color: #76bebc;
+      }
+    }
+  }
+}
+
+.topnavbar {
+  .navbar-header {
+    @media (min-width: 768px) {
+      width: 100px;
+    }
+    @media (min-width: 1024px) {
+      width: 220px;
+    }
+  }
+
+  .navbar-nav { 
+    & > li {
+      & > a {
+        padding: 5px;
+        color: #adadaf;
+        &.active {
+          color: #76bebc;
+          @media (min-width: 768px) {
+            color: #fff;
+          }
+        }
+        @media (min-width: 768px) {
+          line-height: 45px;
+          color: #fff;
+        }
+        @media (min-width: 1024px) {
+          padding-left: 10px;
+          padding-right: 10px;
+        }
+
+        img {
+          height: 45px;
+          width: 45px;
+          border-radius: 50%;
+          margin-right: 5px;
+          display: none;
+          @media (min-width: 768px) {
+            display: inline-block;
+          }
+        }
+
+        em {
+          margin-right: 5px;
+        }
+      }
+    }
+    @media only screen and (max-width: 767px) {
+      margin: 0;
+    }
+  }
+  
+  &.second {
+    @media only screen and (max-width: 767px) {
+      .sidebar-toggle {
+        top: 12px;
+        left: 160px;
+        right: unset;
+      }
+      .nav-wrapper {
+        .navbar-nav {
+          padding: 0;
+          float: none;
+          li {
+            float: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+.tab-content {
+  padding: 10px 0;
+}
+.dropdown-list {
+  & > .dropdown-menu.currency-wrapper {
+    width: 60px;
+    min-width: 0;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .wrapper {
+    & > section {
+      margin-bottom: 0 !important;
+    }
+
+    & > footer {      
+      position: relative;
+      height: auto;
+    }
+
+    & > .bz-footer {
+      .footer-content {
+        height: auto;
+        .footer-logo {
+          display: block;
+          img {
+            width: 100%;
+            height: auto;
+          }
+        }
+      }
+    }
+  }
+}
+
+.notification a {
+  color: #5d9cec;
+  font-weight: 600;
+}

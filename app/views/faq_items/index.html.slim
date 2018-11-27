@@ -1,0 +1,14 @@
+.container
+  .row
+    .faq.col-xs-12
+      h4.title
+        |HELP
+      - if @faqitems.any?
+        .faq-items
+          - @faqitems.each do |fi|
+            .faq-item.col-xs-12
+              .question
+                = fi.question
+              .answer
+                = fi.answer
+              hr.faq-ruller

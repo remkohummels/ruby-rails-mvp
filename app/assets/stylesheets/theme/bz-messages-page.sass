@@ -1,0 +1,71 @@
+.bz-messages-page
+  min-height: calc(100vh - 293px)
+  .bz-title
+    text-align: center
+    width: 100%
+  //   position: relative
+  //   &::after
+  //     content: ""
+  //     border-bottom: 2px solid $border-c
+  //     padding-left: 30%
+  //     position: absolute
+  //     bottom: -5px
+  //     left: 3px
+  //     +MQ(L)
+  //       padding-left: 15%
+  //       border-bottom: 3px solid $border-c
+  //       bottom: -10px
+  .bz-navbar
+    // justify-content: flex-start !important
+    margin-bottom: 20px
+    .bz-tab
+      font-size: 15px !important
+      +MQ(XL)
+        font-size: 26px !important
+  .tab-content
+    max-width: 95%
+  .table-header
+    border-bottom: 1px solid $light-gray
+    padding-bottom: 20px
+    div
+      padding: 0px
+      &:last-child
+        div
+          text-align: right
+  .table-row
+    margin-top: 25px
+    div
+      padding: 0
+      &:last-child
+        div
+          text-align: center
+  .col-title, .col-item
+    font-size: 15px
+    color: $darker-gray
+    font-family: $bz-font-main
+    text-align: center
+    +MQ(M)
+      text-align: left
+  .col-title
+    padding-left: 25px !important
+    background-position: 30%
+    background-size: 15px
+    background-repeat: no-repeat
+    +MQ(M)
+      background-position: 1%
+  .msg-subject
+    background-image: image-url("subject.png")
+  .msg-from
+    background-image: image-url("msg-from.png")
+  .msg-email
+    background-image: image-url("msg-mail.png")
+  .msg-location
+    background-image: image-url("msg-location.png")
+  .msg-time
+    background-position: 40%
+    background-image: image-url("time.png")
+    padding-right: 22px !important
+    +MQ(XM)
+      background-position: 55%
+    +MQ(XL)
+      background-position: 65%

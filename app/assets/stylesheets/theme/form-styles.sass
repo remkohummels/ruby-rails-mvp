@@ -1,0 +1,162 @@
+$signup-bgc: $light-gray
+$signin-bgc: $montecarlo
+$fb-bgc: $fb-blue
+$sign-svg-size: 15px
+$svg-size: 20px
+
+$dropzone-text-fz: 20px
+$dropzone-text-c: #ccc
+input, .bz-input
+  border: 1px solid $main-gray
+  border-radius: 5px !important
+  width: 100%
+  min-height: 45px
+  padding-left: 20px
+  outline: none
+  font-size: 15px
+a.bz-input
+  padding: 15px 25px
+  +flex-centred
+
+textarea
+  width: 100%
+  border-color: #ccc
+.checkbox
+  display: flex !important
+  input[type='checkbox']
+    width: 25px !important
+    height: 25px !important
+    background-color: transparent !important
+    cursor: pointer
+    border-radius: 0 !important
+    margin: 0 !important
+
+
+.bz-email, .bz-password
+  padding-left: 40px
+  font-family: $bz-font-light
+  text-transform: lowercase
+  background-color: transparent
+  color: $main-gray !important
+
+.bz-signin, .bz-signup, .bz-facebook
+  border: none
+  font-size: 15px
+  color: #FFF !important
+  text-transform: none !important
+  height: 45px
+.bz-signin
+  background-color: $signin-bgc
+  font-family: $bz-font-bold !important
+  border-bottom: 5px solid $darker-mc
+  &:hover
+    border-bottom: 5px solid $darker-mc !important
+    background-color: $darker-mc !important
+    color: #fff !important
+.bz-signup
+  background-color: $signup-bgc
+  background-color: $light-gray 
+  color: $main-gray !important
+  border-bottom: 5px solid #cbcbca
+  &:hover
+    border-bottom: 5px solid #cbcbca !important
+    background-color: #cbcbca !important
+    color: #fff !important
+
+.bz-facebook
+  background-color: $fb-bgc
+  font-family: $bz-font-bold !important
+  border-bottom: 5px solid $darker-blue
+  font-size: 12px
+  padding-left: 40px !important
+  +MQ(M)
+    font-size: 15px
+  &:hover
+    border-bottom: 5px solid $darker-blue !important
+    background-color: $darker-blue !important
+    color: #fff !important
+
+
+input[type='submit']
+  display: block
+  align-items: center
+  padding: 0
+  margin: 0 auto
+.bz-form-group
+  display: flex
+  margin-bottom: 15px
+  position: relative
+  height: 40px
+  background-position: 10px
+  background-size: 20px
+  background-repeat: no-repeat
+  li
+    width: 100%
+  svg
+    position: absolute
+    left: 10px
+    width: $svg-size
+    height: $svg-size
+    +centrify($switcher: "height")
+    +MQ(M)
+      left: 25px
+  &.text
+    svg
+      left: 10px
+      height: $sign-svg-size
+      width: $sign-svg-size
+  &.email
+    background-image: image-url("mail.png")
+  &.pass
+    background-image: image-url("lock.png")
+form
+  position: relative
+  .wlt_button_search
+    position: absolute
+    +centrify($switcher: 'height')
+    right: 15px
+    display: flex
+    justify-content: center
+    align-items: center
+    button, i
+      background: transparent
+      border: 0
+      outline: 0
+      font-size: 22px
+.uploadiconbox
+  height: 275px
+  width: 100%
+  .dropzone
+    height: 100%
+    width: 100%
+    +flex-centred
+    border-color: $dropzone-text-c
+    .dz-message
+      span
+        position: relative
+        @extend .light
+        font-size: $dropzone-text-fz
+        color: $dropzone-text-c
+        &::before
+          content: "+"
+          position: absolute
+          +centrify($switcher: 'height')
+          right: 105%
+          @extend .bz-title
+          @extend .bold
+    .dz-remove
+      background: transparent
+      color: $montecarlo
+      border: 1px solid
+      height: 20px
+      margin: 10px auto
+.notifications-form
+  .checkbox
+    width: 330px
+    label
+      justify-content: flex-start
+
+//======== AUTOCOMPLETE =======
+input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus, input:-webkit-autofill:active
+  transition: color 9999s ease-out, background-color 9999s ease-out
+  transition-delay: 9999s

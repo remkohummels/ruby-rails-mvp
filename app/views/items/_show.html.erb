@@ -1,0 +1,290 @@
+<%= content_for(:extra_body_classes, 'single') %>
+<div id="core_padding">
+  <div id="core_padding_inner">
+    <div class=" container widecontainer core_section_top_container">
+      <div class="row core_section_top_row wlt_main_2colsleft">
+        <div id="core_inner_wrap" class="clearfix">
+          <%= render 'search_sidebar', :locals => {q: @q} %>
+          <article class="col-md-820 col-sm-820" id="core_middle_column">
+            <div class="core_middle_wrap">
+              <div id="core_ajax_callback"></div>
+              <a name="toplisting"></a>
+              <% if flash[:stripe] %>
+                  <div class="alert bs-callout bs-callout-success" id="editlistingbox">
+                    <%= flash[:stripe] %>
+                  </div>
+              <% end %>
+              <% if (can? :update, @item) && !@item.winner %>
+                  <div class="alert bs-callout bs-callout-alert" id="editlistingbox">
+                    <button type="button" class="close" data-dismiss="alert">&nbsp; x</button>
+                    <div class="pull-right" style="margin-top:-10px;">
+                      <% if can? :destroy, @item %>
+                          <%= link_to 'Delete', @item, method: :delete, data: {confirm: 'Are you sure you want to do this?'}, class: 'btn btn-warning' %>
+                      <% end %>
+                      <%= link_to 'Edit This Listing', edit_item_path(@item), class: 'btn btn-warning' %>
+                      <% if !@item.is_premium && @item.active? %>
+                          <%= semantic_form_for @item, url: premium_payment_path(@item), method: :post, :html => {:class => 'stripe-form', role: :form, 'data-model' => 'item'} do |f| %>
+                              <button id="stripe-button" class="btn btn-success" data-email="<%= current_user.email %>">Upgrade
+                                to Premiun <%= Item::PREMIUM_AMOUNT.to_s(:currency) %>&nbsp;</button>
+                              <%= f.input :stripeEmail, :as => :hidden, input_html: {id: 'stripeEmail'} %>
+                              <%= f.input :stripeToken, :as => :hidden, input_html: {id: 'stripeToken'} %>
+                          <% end %>
+                      <% end %>
+
+                      <% if @item.pending? %>
+                          <%= semantic_form_for @item, url: activate_payment_path(@item), method: :post, :html => {:class => 'stripe-form', role: :form, 'data-model' => 'item'} do |f| %>
+                              <button id="stripe-button" class="btn btn-danger" data-email="<%= current_user.email %>">Activate <%= @item.activate_amount.to_s(:currency) %>&nbsp;</button>
+                              <%= f.input :stripeEmail, :as => :hidden, input_html: {id: 'stripeEmail'} %>
+                              <%= f.input :stripeToken, :as => :hidden, input_html: {id: 'stripeToken'} %>
+                          <% end %>
+                      <% end %>
+                    </div>
+                    <% if @item.pending? %>
+                        <h4>This listing is awaiting payment and is NOT live.</h4>
+                    <% else %>
+                        <h4>Listing Author </h4>
+                    <% end %>
+
+                    <p></p></div>
+              <% end %>
+              <a name="toplisting"></a>
+
+              <div class="row" style="margin-top:10px;">
+                <div class="col-md-8">
+                  <h1 class="item-title">
+                    <%= link_to item_path(@item) do %>
+                        <span><%= @item.title %></span>
+                    <% end %>
+                    <!-- Add to Following -->
+                    <% if user_signed_in? %>
+                        <span id="follow_form">
+                        <% if current_user.following?(@item) %>
+                          <%= render "items/unfollow", item: @item %>
+                        <% else %>
+                          <%= render "items/follow", item: @item %>
+                        <% end %>
+                        </span>
+                    <% end %>
+                    <!-- Add to Following -->
+                  </h1>
+                  <span class="wlt_shortcode_category"></span>
+                  /
+                  <%= rating_for @item, "rate", :half_show => true, :disable_after_rate => false %>
+                  <!-- Add to faavorites -->
+                  <% if user_signed_in? %>
+                      / <span class="wlt_shortcode_favs">
+                      <% if current_user.voted_for? @item %>
+                        <%= render "items/remove_from_favorite", item: @item %>
+                      <% else %>
+                        <%= render "items/add_to_favorite", item: @item %>
+                      <% end %>
+                  <% end %>
+                  <!-- Add to faavorites -->
+
+                  </span> / <i class="fa fa-signal"></i>
+                    <span class="wlt_shortcode_hits"><%= @item.views_counter %>
+                  </span>
+                </div>
+                <div class="col-md-4">
+                  <%= item_time_left @item %>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="singleimg text-center">
+                    <div class="owl-carousel owl-carousel-show wlt_search_results grid_style owl-theme">
+                      <% @item.images.each_with_index do |image, index| %>
+                          <div class="itemdata icons" data-hash="image-<%= image.id %>" data-test="<%= index %>">
+                            <%= link_to images_path, class: "modal-trigger", data: {image_hash: index, :'target-id' => 'message-form', item_id: @item.id} do %>
+                                <%= image_tag image.file.url %>
+                            <% end %>
+                          </div>
+                      <% end %>
+                    </div>
+                    <% if @item.images.count > 1 %>
+                        <div class="image_link">
+                          <% @item.images.each do |image| %>
+                              <%= link_to "#image-#{image.id}", class: "button secondary url" do %>
+                                  <%= image_tag image.file.small.url %>
+                              <% end %>
+                          <% end %>
+                        </div>
+                    <% end %>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div id="auctionbidform">
+                    <ul class="list-group">
+                      <li class="list-group-item item1">
+                        <span class="pull-right">
+                          <a href="https://api.addthis.com/oexchange/0.8/forward/facebook/offer?url=http://bidzone.ca/index.php/listing/example-item-1/&amp;pubid=ra-53d6f43f4725e784&amp;ct=1&amp;title=Example Item 1&amp;pco=tbxnj-1.0" target="_blank">
+                            <img src="http://bidzone.ca/wp-content/themes/AT/framework/img/social/facebook16.png" alt="Facebook"></a>
+                          <a href="https://api.addthis.com/oexchange/0.8/forward/twitter/offer?url=http://bidzone.ca/index.php/listing/example-item-1/&amp;pubid=ra-53d6f43f4725e784&amp;ct=1&amp;title=Example Item 1&amp;pco=tbxnj-1.0" target="_blank">
+                            <img src="http://bidzone.ca/wp-content/themes/AT/framework/img/social/twitter16.png" alt="Twitter"></a>
+                          <a href="https://api.addthis.com/oexchange/0.8/forward/linkedin/offer?url=http://bidzone.ca/index.php/listing/example-item-1/&amp;pubid=ra-53d6f43f4725e784&amp;ct=1&amp;title=Example Item 1&amp;pco=tbxnj-1.0" target="_blank">
+                            <img src="http://bidzone.ca/wp-content/themes/AT/framework/img/social/linkedin16.png" alt="LinkedIn"></a>
+                          <a href="https://api.addthis.com/oexchange/0.8/forward/google_plusone_share/offer?url=http://bidzone.ca/index.php/listing/example-item-1/&amp;pubid=ra-53d6f43f4725e784&amp;ct=1&amp;title=Example Item 1&amp;pco=tbxnj-1.0" target="_blank"><img src="http://bidzone.ca/wp-content/themes/AT/framework/img/social/googleplus16.png" alt="Google+"></a>
+                          </span> ID: #<%= @item.id %>
+                      </li>
+                      <li class="list-group-item item1">
+                        Bids: <strong><%= @item.bids_count %>
+                      </strong>
+                        <% if @item.bids.present? && !@item.winner %>
+                        <span class="pull-right">
+                          <small>Highest</small>: <i class="fa fa-user"></i>
+                          <%= link_to @item.get_max_bid_user.first_name, @item.get_max_bid_user %>
+                        </span>
+                        <% end %>
+                      </li>
+
+                      <li class="list-group-item item3">
+                        Orders Count: <strong><%= @item.orders_count || 0 %></strong>
+                      </li>
+
+                      <li class="list-group-item item3">
+                        <span class="pull-right"> <i class="fa fa-line-chart"></i>  Views: <strong><%= @item.views_counter %></strong> </span>
+                        Condition: <strong><%= @item.condition %></strong>
+                      </li>
+
+                      <li class="list-group-item item4">
+                        <div class="row">
+                          <div class="col-md-7">
+                            Seller: <i class="fa fa-user"></i>
+                            <% if @item.user %>
+                              <strong>
+                                <%= link_to @item.user.first_name, user_path(@item.user) %>
+                              </strong>
+                            <% end %>
+                          </div>
+                          <!-- <div class="col-md-5">
+                            <div class="progress" style="margin:0px;">
+                              <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                                <span>0 Feedback  <strong>100%</strong> </span>
+                              </div>
+                            </div>
+                          </div> -->
+                        </div>
+                      </li>
+                      <li class="list-group-item item4">
+                        Posted: <strong><%= @item.created_at.strftime("%B %d, %Y, %I:%M%p") %></strong>
+                      </li>
+
+                      <% if @item.winner %>
+                          <%= render 'auction_ended', locals: {item: @item} %>
+                      <% else %>
+                        <% if @item.is_free? %>
+                          <%= render 'auction_free', locals: {item: @item} %>
+                        <% else %>
+                          <%= render 'auction_bids', locals: {item: @item} %>
+                        <% end %>
+                      <% end %>
+
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <hr>
+              <div class="panel panel-default">
+                <div class="panel-heading">Description</div>
+                <div class="panel-body">
+                  <div class="core_post_content">
+                    <p><%= markdown @item.description %></p>
+
+                    <table class="table table-bordered" id="TableCustomFieldsBig">
+                      <tbody>
+                      <% if !@item.group.blank? %>
+                        <tr class="odd">
+                          <th>Group</th>
+                          <td>
+                        <span class="wlt_shortcode_tags">
+                          <%= link_to @item.group.title, group_path(@item.group) %>
+                        </span>
+                          </td>
+                        </tr>
+                      <% end %>
+                      <% unless @item.keywords.empty? %>
+                          <tr class="odd">
+                            <th>Keywords</th>
+                            <td>
+                          <span class="wlt_shortcode_tags">
+                            <%= @item.keywords %>
+                          </span>
+                            </td>
+                          </tr>
+                      <% end %>
+                      <% if @item.website %>
+                          <tr class="odd">
+                            <th>Website</th>
+                            <td>
+                        <span class="wlt_shortcode_tags">
+                          <%= link_to @item.website, @item.website %>
+                        </span>
+                            </td>
+                          </tr>
+                      <% end %>
+                      <% if @item.category %>
+                          <tr class="odd">
+                            <th>Category</th>
+                            <td>
+                        <span class="wlt_shortcode_tags">
+                          <%= @item.category.name %>
+                        </span>
+                            </td>
+                          </tr>
+                      <% end %>
+
+                      <% if @item.local? %>
+                          <tr class="odd">
+                            <th>Pickup</th>
+                            <td>
+                              <span class="wlt_shortcode_tags">
+                                This item you can pick up only by self
+                              </span>
+                            </td>
+                          </tr>
+                      <% end %>
+                      </tbody>
+                    </table>
+                  </div>
+                  <table class="table table-bordered" id="TableCustomFieldsBig">
+                    <tbody></tbody>
+                  </table>
+                </div>
+              </div>
+              <% if @item.user %>
+                <h3 class="clearfix">
+                  <span class="pull-left">Other items by <%= @item.user.first_name %>:</span>
+                  <span><%= link_to 'View all items', search_path(q: {user_id_eq: @item.user.id}), class: 'btn btn-primary pull-right' if @item.user  %></span>
+                </h3>
+                <div id="wlt_shortcode_related" class="owl-carousel item-owl-carousel wlt_search_results grid_style owl-theme">
+                  <!--RENDER SLIDER-->
+                  <% Item.by_user(@item.user).each do |item| %>
+                    <% if item.user_in_group(current_user)  %>
+                      <%= render 'partials/bid_slider', :locals => {item: item} %>
+                    <% end %>
+                  <% end %>
+                  <!--RENDER SLIDER-->
+
+                </div>
+              <% end %>
+              <hr>
+              <div id="wlt_shortcode_related" class="owl-carousel item-owl-carousel wlt_search_results grid_style owl-theme">
+
+                <!--RENDER SLIDER-->
+                <% Item.active.each do |item| %>
+                  <% if item.user_in_group(current_user)  %>
+                    <%= render 'partials/bid_slider', :locals => {item: item} %>
+                  <% end %>
+                <% end %>
+                <!--RENDER SLIDER-->
+
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<%= render 'partials/stripe' %>

@@ -1,0 +1,22 @@
+doctype html
+html
+  head
+    meta charset="utf-8"
+    meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"
+    meta name="viewport" content="width=device-width, initial-scale=1"
+    title Bidzone
+    = favicon_link_tag 'favicon.png'
+    = stylesheet_link_tag 'application', media: 'all'
+    = javascript_include_tag "https://js.stripe.com/v1/", "https://checkout.stripe.com/checkout.js", "application"
+    = csrf_meta_tags
+    = tag :meta, :name => "stripe-key", :content => Rails.configuration.stripe[:publishable_key]
+
+  body class="#{controller.controller_name} #{body_class}"
+    == render 'layouts/header'
+
+    .remodal-bg
+      = yield
+
+    .modal-container
+
+    == render 'layouts/footer'

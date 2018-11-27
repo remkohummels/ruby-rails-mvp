@@ -1,0 +1,65 @@
+= content_for(:extra_body_classes, 'archive')
+.core_middle_wrap
+  #core_ajax_callback
+
+  #AuthorSingle
+    .head
+    .well.profile
+      .mbox style="margin-top:-120px"
+
+        .col-xs-12.col-sm-8
+          h1
+            = @user.full_name
+          hr
+          
+          .progress style="margin:0px;"
+            .progress-bar.progress-bar-success.progress-bar-striped role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 100%"
+              span
+                = @user.feedbacks.count
+                | Feedback
+                strong 100%
+          
+          p
+            strong Joined&nbsp;
+            = time_ago_in_words @user.last_sign_in_at
+            |&nbsp;ago
+          p
+            strong Last online&nbsp;
+            = time_ago_in_words @user.last_sign_in_at
+            |&nbsp;ago
+          p
+            strong City:&nbsp;
+            = @user.city
+          p
+            strong Community:&nbsp;
+            = @user.community
+
+          .readonly-star
+            = rating_for @user, "seller", :half_show => true, :disable_after_rate => true, readonly: true
+
+        .col-xs-12.col-sm-4.text-center
+          .text-center
+            - if @user.avatar_url.present?
+              = image_tag @user.avatar_url, class: "avatar img-responsive img-circle avatar-200 photo", width: "200", height: "200"
+            - else
+              img src="http://0.gravatar.com/avatar/9aa222a702c383a5cdd5941094b7b69e?s=200&amp;d=mm&amp;r=g" srcset="http://0.gravatar.com/avatar/9aa222a702c383a5cdd5941094b7b69e?s=400&amp;d=mm&amp;r=g 2x" class="avatar img-responsive img-circle avatar-200 photo" height="200" width="200"
+
+
+          - if @group.present?
+            = render 'group_user_btn', {user: @user, group: @group}
+        .clearfix
+        hr
+
+        .linkbar
+          ul.list-inline
+            li.ee
+              i.fa.fa-envelope
+              = link_to 'Send Message', new_account_message_path(recipient_id: @user.id)
+
+        .clearfix
+
+      hr
+
+      h4 User Feedback
+      hr
+      = render 'feedbacks', user: @user

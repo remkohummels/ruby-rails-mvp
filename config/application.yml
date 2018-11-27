@@ -1,0 +1,24 @@
+STRIPE_PUBLISHABLE_KEY: xxx
+STRIPE_SECRET_KEY: xxx
+WEATHER_API_KEY: xxx
+# secret_key: xxx
+
+facebook_id: "xxx"
+facebook_secret: "xxx"
+
+# facebook_id: xxx
+# facebook_secret: xxx
+
+
+
+twitter_id: xxx
+twitter_secret: xxx 
+
+development:
+  facebook_id: "xxx"
+  facebook_secret: "xxx"
+staging:
+  facebook_id: "xxx"
+  facebook_secret: "xxx"
+SENDGRID_USERNAME: xxx
+SENDGRID_PASSWORD: xxx

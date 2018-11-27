@@ -1,0 +1,6 @@
+$('.remove_from_group').on('ajax:send', function () {
+}).on('ajax:complete', function () {
+  $(this).parents('tr').remove();
+}).on('ajax:error', function () {
+}).on('ajax:success', function (data) {
+});

@@ -1,0 +1,69 @@
+<div class="bz-tabs-section .hidden-xs"> 
+  <div class="bz-navbar" role="tablist">
+    <div class="btn-group">
+      <a href="#t1" aria-controls="t1" role="tab" data-toggle="tab" aria-expanded="false" class="bz-button bz-tab active">Make an Offer</a>
+    </div>
+    <div class="btn-group">
+      <a href="#t2" aria-controls="t2" role="tab" data-toggle="tab" data-select-like-a-boss="1" aria-expanded="true" class="bz-button bz-tab">Categories</a>
+    </div>
+    <div class="btn-group">
+      <a href="#t3" aria-controls="t3" role="tab" data-toggle="tab" data-select-like-a-boss="1" aria-expanded="true" class="bz-button bz-tab">Popular Groups</a>
+    </div>
+    <div class="btn-group">
+      <a href="#t4" aria-controls="t4" role="tab" data-toggle="tab" data-select-like-a-boss="1" aria-expanded="true" class="bz-button bz-tab">Free</a>
+    </div>
+    <div class="btn-group post">
+      <%= link_to 'Post', choose_posting_type_path, class: 'bz-oval-btn' %>
+    </div>
+<!--     <div class="col-xs-12 flex -end">
+      <%#= search_form_for @q, url: browse_path, html: {class: 'bz-search'} do |f| %>
+        <%#= f.search_field :title_cont, class: '', placeholder: 'I’m looking for…' %>
+        <%#= f.select(:category_id_eq, (Category.all.collect{ |c| [c.name, c.id] }), {include_blank: 'All Categories'}, { class: 'select'} ) %>
+        <button class="wlt_button_search">
+          <i class="glyphicon glyphicon-search"></i>
+        </button>
+      <%# end %>
+    </div> -->
+  </div>
+  <div class="tab-content" style="margin-top:20px;">
+    <div role="tabpanel" class="tab-pane active" id="t1">
+      <div class="bz-items-container">
+        <!--RENDER SLIDER-->
+        <% @items.latest_items.each do |item| %>
+          <%= render 'partials/new_bid', :locals => {item: item} %>
+        <% end %>
+        <!--RENDER SLIDER-->
+      </div>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="t2">
+      <!--RENDER SLIDER-->
+      <div class="bz-categories">
+        <% @categories.each do |category| %>
+          <%= render 'category_item', item: category %>
+        <% end %>
+      </div>
+      <!--RENDER SLIDER-->
+    </div>
+    <div role="tabpanel" class="tab-pane" id="t3">
+      <div class="row wlt_search_results grid_style">
+        <!--RENDER SLIDER-->
+        <% @groups.each do |item| %>
+          <div class="col-xs-12 col-md-6">
+            <%= render 'groups/group', group: item %>
+          </div>
+        <% end %>
+        <!--RENDER SLIDER-->
+      </div>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="t4">
+      <div class="bz-items-container">
+        <!--RENDER SLIDER-->
+        <% @items.free.each do |item| %>
+          <%= render 'partials/new_bid', :locals => {item: item} %>
+        <% end %>
+        <!--RENDER SLIDER-->
+      </div>
+    </div>
+  </div>
+
+</div>

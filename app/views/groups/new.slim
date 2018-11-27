@@ -1,0 +1,7 @@
+.bz-newgroup-page
+  .container.newgroup-content
+    h2.bz-title
+      |Create a Group
+    h4.bz-subtitle
+      |Create Your Own Group and Invite Your Friends to Join
+    = render "group_form", locals: { group: Group.new, type: 'Send for Approval' }

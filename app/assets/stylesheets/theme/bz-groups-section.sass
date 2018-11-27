@@ -1,0 +1,29 @@
+.bz-groups-section
+  min-height: calc(100vh - 293px)
+  .bz-title, .bz-subtitle
+    text-align: center
+    width: 100%
+    span
+      font-family: $bz-font-bold
+  .container
+    +flex-centred
+    flex-direction: column
+  .groups-action
+    +flex-centred
+    flex-direction: column
+    margin-bottom: 50px
+    h4.light
+      max-width: 60%
+      text-align: center
+      color: $main-gray
+      +MQ(M)
+        max-width: 300px
+    a
+      cursor: pointer
+      h2
+        &:hover
+          color: $main-gray
+      h4
+        color: $montecarlo !important
+        &:hover
+          text-decoration: underline !important

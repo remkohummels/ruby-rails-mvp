@@ -1,0 +1,42 @@
+$btn-ff: $bz-font-main
+$btn-fz: 12px
+.bz-dashboard-btn
+  font-family: $btn-ff
+  font-size: $btn-fz
+  height: 100%
+  padding: 0 !important
+  display: flex !important
+  color: #fff
+  margin-left: 45px
+  cursor: pointer
+  margin: 0
+  +flex-centred
+  +MQ(L)
+    font-size: 15px
+  &:hover, &:focus
+    background-color: transparent !important
+    color: #fff !important
+  &.name
+    padding-right: 10px !important
+    background-image: image-url("arrow-d.png") !important
+    background-position: 100% !important
+    background-size: 7px !important
+    background-repeat: no-repeat !important
+    .avatar
+      width: 20px
+      height: 20px
+      margin-right: 5px
+      margin-left: 25px
+      border: 3px solid #fff
+      border-radius: 7px !important
+      background: $light-gray
+      position: relative
+      overflow: hidden
+      &.active
+        width: 30px
+        height: 30px
+        img
+          position: absolute
+          +centrify($switcher: 'both')
+          width: 100%
+          height: 100%

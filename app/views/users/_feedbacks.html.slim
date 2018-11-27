@@ -1,0 +1,27 @@
+#MyFeedback.panel.panel-default
+  #AuthorSingleFeedback.panel-body
+    ul.nav.nav-tabs.feedbacktabs[role="tablist"]
+      li.active
+        a[href="#fb0" role="tab" data-toggle="tab"]
+          | Customer Reviews (#{user.get_users_feedbacks.count})
+      li
+        a[href="#fb1" role="tab" data-toggle="tab"]
+          | My Reviews (#{user.get_my_feedbacks.count})
+    .tab-content
+      hr
+      #fb0.tab-pane.active[role="tabpanel"]
+        - if user.get_users_feedbacks
+          - user.get_users_feedbacks.each do |feed|
+            = render 'users/feed/feedback', locals: {feed: feed}
+        - else
+          h4.text-center
+            | No Feedback Received
+      #fb1.tab-pane[role="tabpanel"]
+        - if user.get_my_feedbacks
+          - user.get_my_feedbacks.each do |feed|
+            = render 'users/feed/feedback', locals: {feed: feed}
+        - else
+          h4.text-center
+            | No Feedback Received
+    hr
+    = link_to 'Back', :back, class: 'btn  btn-default pull-right'

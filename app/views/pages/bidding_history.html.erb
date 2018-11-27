@@ -1,0 +1,74 @@
+<div class="page-wrapper " id="listing_styles">
+  <div id="core_padding">
+    <div id="core_padding_inner">
+      <div class=" container widecontainer core_section_top_container">
+        <div class="row core_section_top_row wlt_main_2colsleft">
+          <div id="core_inner_wrap" class="clearfix">
+            <aside class="core_sidebar col-md-3 col-sm-3 hidden-xs" id="core_left_column">
+              <h2>sidebar partial</h2>
+            </aside>
+            <article class="col-md-820 col-sm-820" id="core_middle_column">
+              <div class="core_middle_wrap">
+                <div id="core_ajax_callback"></div>
+
+                <!-- bidding history content start -->
+                <div class="panel panel-default" id="MyAuctions" >
+                  <div class="panel-heading">Bidding History</div>
+                  <div class="panel-body">
+                    <table class="table table-bordered">
+                      <thead>
+                        <tr>
+                          <th>Item</th>
+                          <th style="width:100px; text-align:center;">Max Bid</th>
+                          <th style="text-align:center;">Actions</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>
+                            <b><a href="http://bidzone.ca/index.php/listing/test/">test</a></b>
+                            <br>
+                            <span style="font-size:11px;">April 20, 2016 2:26 pm | Auction Status: active</span>
+                            <div id="countdown_id113" class="hasCountdown"><b>43 Seconds, 44 Minutes, 4 Hours, and 28 Days</b> left!</div>
+                            <script>
+                            jQuery(document).ready(function () {
+                            var dateStr = '2016-05-20 14:25:29';
+                            var a = dateStr.split(' ');
+                            var d = a[0].split('-');
+                            var t = a[1].split(':');
+                            var date1 = new Date(d[0], (d[1] - 1), d[2], t[0], t[1], t[2]);
+                            jQuery('#countdown_id113').countdown({
+                            until: date1,
+                            timezone: 0,
+                            layout: '<b>{sn} {sl}, {mn} {ml}, {hn} {hl}, and {dn} {dl}</b> left!'
+                            });
+                            });
+                            </script>
+                          </td>
+                          <td style="text-align:center;">$3
+                            <br><small>now $3</small>
+                          </td>
+                          <td style="text-align:center;">
+                            <a href="http://bidzone.ca/index.php/listing/test/" class="btn btn-primary">View Auction</a>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <hr>
+                    <button class="btn btn-default pull-right" type="button" onclick="jQuery('#MyAccountBlock').show();jQuery('#MyAuctions').hide();">Back</button>
+                  </div>
+                </div>
+                <!-- bidding history content end -->
+                <!-- memberships form -->
+                <form method="post" name="MEMBERSHIPFORM" action="http://bidzone.ca/index.php/my-account-3/" id="MEMBERSHIPFORM" style="margin:0px;padding:0px;">
+                  <input type="hidden" name="membershipID" id="membershipID" value="-1">
+                  <input type="hidden" name="showpaymentform" value="1">
+                </form>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+.bz-newgroup-page.bz-newitem-page
+  .container
+    h2.bz-title
+      |Choose items type for search
+    h4.bz-subtitle
+      |View QPost Items or Group Items
+    .bz-choose-type-wrapper
+      = link_to browse_path(posting_type: 'quick_post'), class: 'choose-type'
+        i class="fa fa-shopping-bag choose-type-logo" aria-hidden="true"
+        .choose-type-title
+          |QPost Items
+      = link_to browse_path(posting_type: 'group_post'), class: 'choose-type'
+        i class="fa fa-users choose-type-logo" aria-hidden="true" 
+        .choose-type-title
+          |Group Items

@@ -1,0 +1,10 @@
+<tr>
+  <td><%= item.id %></td>
+  <td>
+    <%= link_to item.title, item_path(item), class: '' %>
+  </td>
+  <td><%= item.created_date %></td>
+  <td><%= item.status %></td>
+  <td><%= to_currency(item.start_price) %></td>
+  <td></td>
+</tr>

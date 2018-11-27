@@ -1,0 +1,119 @@
+<div id="core_padding">
+
+
+  <div id="core_padding_inner">
+
+    <div class=" container widecontainer core_section_top_container">
+
+
+      <div class="row core_section_top_row wlt_main_2colsright">
+
+
+        <div id="core_inner_wrap" class="clearfix">
+
+
+          <article class="col-md-12" id="core_middle_column">
+            <div class="core_middle_wrap">
+              <div id="core_ajax_callback"></div>
+
+
+              <div class="row">
+                <div class="col-md-8">
+                  <div class="panel panel-default" id="register_box">
+
+                    <div class="panel-heading">Register New Account</div>
+
+                    <div class="panel-body">
+                      <%= semantic_form_for resource, as: resource_name, url: registration_path(resource_name), :html => {:id => 'loginform', :class => 'loginform', role: :form, 'data-model' => 'user'} do |f| %>
+                          <% if f.object.errors.keys.any? %>
+                              <div class="bs-callout bs-callout-danger">
+                                <%= f.semantic_errors *f.object.errors.keys %>
+                              </div>
+                          <% end %>
+
+                          <div class="form-group clearfix">
+                            <label for="inputEmail">Email address</label>
+
+                            <div class="input-group">
+                              <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                              <%= f.input :email, input_html: {class: "form-control", placeholder: "Email"}, label: false %>
+                            </div>
+                          </div>
+
+                          <div class="form-group clearfix">
+                            <label for="inputEmail">First name</label>
+
+                            <div class="input-group">
+                              <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                              <%= f.input :first_name, input_html: {class: "form-control", placeholder: "First name"}, label: false %>
+                            </div>
+                          </div>
+
+                          <div class="form-group clearfix">
+                            <label for="inputEmail">Last name</label>
+
+                            <div class="input-group">
+                              <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                              <%= f.input :last_name, input_html: {class: "form-control", placeholder: "Last name"}, label: false %>
+                            </div>
+                          </div>
+                          <%=f.input :referral, :as => :hidden, :input_html => { :value => session[:referral] } %>
+
+                          <% if f.object.password_required? %>
+                              <div class="form-group clearfix">
+                                <label for="inputEmail">Password</label>
+
+                                <div class="input-group">
+                                  <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                  <%= f.input :password, input_html: {class: "form-control", placeholder: "Password"}, label: false %>
+                                </div>
+                              </div>
+
+                              <div class="form-group clearfix">
+                                <label for="inputEmail">Password confirmation</label>
+
+                                <div class="input-group">
+                                  <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                  <%= f.input :password_confirmation, input_html: {class: "form-control", placeholder: "Password confirmation"}, label: false %>
+                                </div>
+                              </div>
+                          <% end %>
+                          <input type="submit" name="wp-submit" class="btn btn-primary" value="SignUp">
+                      <% end %>
+                    </div>
+
+                  </div>
+
+
+                </div>
+                <div class="col-md-4">
+
+                  <div class="panel panel-default" id="register_loginbox">
+
+                    <div class="panel-body text-center">
+
+
+                      <h3>Already a Member?</h3>
+
+                      <p>Get started now. Login to your account.</p>
+                      <%= link_to 'Member Login', root_path(anchor: "sign_section"), class: "btn btn-large btn-primary" %>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+
+            </div>
+          </article>
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

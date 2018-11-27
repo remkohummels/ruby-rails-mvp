@@ -1,0 +1,94 @@
+.bz-product-item {
+  .bz-product-item-content {
+    .title, .location, .group-list {
+      white-space: normal !important;
+    }
+  }
+}
+.inline-item-value {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 1.6em;
+  white-space: normal;
+}
+
+@media only screen and (max-width: 767px) {
+  .customtable span {
+    padding-left: 50px;
+  }
+  .product-title {
+    margin-top: 20px;
+  }
+  .customSelect {
+    margin-left: 50px;
+  }
+  .shareMenu li {
+    margin-right: 10px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .product-title {
+    font-size: 20px;
+  }
+  .customtable > tbody > tr > td {
+    padding: 6px 0;
+  }
+  .product-desc {
+    font-size: 14px;
+  }
+  .shareMenu {
+    padding: 12px 0;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .block {
+    display: inline-block;
+  }
+}
+
+/************ Extras ***********/
+.btnStyle {
+  transform: translateZ(0) !important;
+  backface-visibility: hidden !important;
+  transition: 300ms ease-out !important;
+}
+
+.btnStyle:hover {
+  transform: scale(0.9) !important;
+}
+
+.btnStyle2 {
+  transform: translateZ(0) !important;
+  backface-visibility: hidden !important;
+  transition: 300ms ease-out !important;
+}
+
+.btnStyle2:hover {
+  transform: scale(1.1) !important;
+}
+
+.white {
+  color: #fff !important;
+}
+
+.whiteMontbold {
+  color: #fff;
+  font-weight: bold;
+}
+.text-uppercase {
+  text-transform: uppercase;
+}
+
+.d-flex {
+  display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+  display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+  display: -ms-flexbox;      /* TWEENER - IE 10 */
+  display: -webkit-flex;     /* NEW - Chrome */
+  display: flex;
+}
+
+.justify-center {
+  justify-content: center;
+}

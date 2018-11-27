@@ -1,0 +1,23 @@
+.bz-group-page
+  .container
+    .panel.panel-default.group-form
+      .panel-body
+        .row
+          .col-xs-12
+            .group-banner
+              =image_tag @group.banner
+        .row
+          .col-xs-12
+            div role="tabpanel"
+              ul.nav.nav-tabs.nav-justified
+                li.active role="presentation"
+                  a.bb01 href="#profile" aria-controls="profile" role="tab" data-toggle="tab" aria-expanded="true"
+                    | Profile
+                li role="presentation"
+                  a.bb01 href="#items" aria-controls="items" role="tab" data-toggle="tab" aria-expanded="true"
+                    | Items
+              .tab-content.b0.bg-white
+                #profile.tab-pane.active
+                  = render 'group_profile'
+                #items.tab-pane
+                  = render 'group_items'

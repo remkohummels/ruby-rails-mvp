@@ -1,0 +1,22 @@
+h3
+  | MailBox
+.table-grid.table-grid-desktop
+  = render 'panel_header'
+  .col
+    .clearfix.mb
+      .btn-group.pull-left
+        button.btn.btn-default.btn-sm.btn-mail-reply[type="button"]
+          em.fa.fa-mail-reply.text-gray-dark
+        button.btn.btn-default.btn-sm[type="button"]
+          em.fa.fa-mail-reply-all.text-gray-dark
+        button.btn.btn-default.btn-sm[type="button"]
+          em.fa.fa-mail-forward.text-gray-dark
+      .btn-group.pull-right
+        button.btn.btn-default.btn-sm.btn-mail-delete[type="button"]
+          em.fa.fa-times.text-gray-dark
+    .panel.panel-default.main-panel
+      .panel-body#mail-body
+        - if @compose.nil?
+          = render 'list'
+        - else
+          = render 'new'

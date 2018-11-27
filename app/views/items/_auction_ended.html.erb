@@ -1,0 +1,40 @@
+<% @item = locals[:item] %>
+<li class="list-group-item paybits">
+  <% if @item.posting_type == :group_post %>
+    <h4 class="text-center">This auction is finished.</h4>
+  <% end %>
+  <% if @item.winner.present? && @item.user_id == current_user.id %>
+    <%= link_to user_path(@item.winner) do %>
+      You have accepted the offer from <%= @item.winner.full_name %>
+    <% end %>
+  <% end %>
+  <% if @item.winner.present? && current_user && @item.winner.id == current_user.id %>
+      <p>Your offer has been accepted by <%= @item.user.full_name %> </p>
+      <div class="text-center">
+        <% unless @item.paid?%>
+          <% unless @item.is_free? %>
+            <%= semantic_form_for @item, url: buy_item_path(@item), method: :post, :html => {:class => 'stripe-form', role: :form, 'data-model' => 'item'} do |f| %>
+                <% if @item.group_post? %>
+                  <button id="stripe-button-disabled" class="btn btn-info btn-lg disabled" data-email="<%= current_user.email %>">Pay <%= to_currency(@item.start_price) %>&nbsp;</button>
+                <% else %>
+                  <button id="stripe-button-disabled" class="btn btn-info btn-lg disabled" data-email="<%= current_user.email %>">Pay <%= to_currency(@item.buy_now_price) %>&nbsp;</button>
+                <% end %>
+                <%= f.input :stripeEmail, :as => :hidden, input_html: {id: 'stripeEmail'} %>
+                <%= f.input :stripeToken, :as => :hidden, input_html: {id: 'stripeToken'} %>
+            <% end %>
+          <% end %>
+        <% end %>
+
+        <hr>
+
+        <%= link_to 'Contact Seller', new_account_message_path(recipient_id: @item.user.id, title: @item.title), class: 'btn btn-info btn-lg' %>
+        <% unless current_user.has_item_feedback @item %>
+            <%= link_to 'Leave Feedback', new_feedback_path(feedback: {item_id: @item.id}), class: 'btn btn-success btn-lg' %>
+        <% end %>
+        <% if @item.disputs.blank? && !@item.is_free? %>
+          <%= link_to 'Open dispute', '#' , class: "open-disput btn btn-danger btn-lg disabled", data: {:'target-id' => 'open-disput', :'item-id' => @item.id } %>
+        <% end %>
+      </div>
+  <% end %>
+</li>
+<%= render 'partials/stripe' %>

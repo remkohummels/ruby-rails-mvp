@@ -1,0 +1,22 @@
+<div class="panel panel-default" id="MyOrders">
+  <div class="panel-heading">Winning Bids/Offers</div>
+  <div class="panel-body">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Order ID</th>
+          <th>Date</th>
+          <th>Status</th>
+          <th>Amount</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% current_user.winned_items.each do |item| %>
+          <%= render 'account/dashboard/items/item', item: item %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

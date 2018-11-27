@@ -1,0 +1,29 @@
+.widget-ratings {
+  .btn {
+    min-width: 90px;
+  }
+}
+
+.widget-items-closing-soon {
+  .picture {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+    img {
+      width: 100%;
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+    }
+  }
+  .btn {
+    width: 100%;
+  }
+}
+
+.widget-group-admins {
+  em.fa {
+    margin-right: 10px;
+  }
+}

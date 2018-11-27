@@ -1,0 +1,18 @@
+=render 'shared/header'
+.ex-background.account-pages
+.auth-wrapper
+  = render 'devise/form_header'
+  .ex-card-box.strong-shadow
+    .text-center
+      h4.text-uppercase.form-header Change your password
+    =semantic_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
+      = devise_error_messages!
+      = f.input :reset_password_token, as: "hidden"
+      =f.input :password, input_html: {class: "form-control", placeholder: "Password"}, label: false
+      =f.input :password_confirmation, input_html: {class: "form-control", placeholder: "Password Confirmation"}, label: false
+      .text-center
+        button.btn.btn-primary type="submit" Change my password
+  .text-center
+    h5.text-muted
+      | Don't have an account?
+      =link_to " Sign Up", new_user_registration_path

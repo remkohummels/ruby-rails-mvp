@@ -1,0 +1,66 @@
+$welcome-section-bgc: $light-gray
+$welcome-section-c: $montecarlo
+.bz-welcome-section
+  background-color: $welcome-section-bgc
+  color: $welcome-section-c
+  padding: 95px 0
+  background-image: image-url("welcome.jpg")
+  background-size: cover
+  background-position: center
+  h4
+    a
+      color: $welcome-section-c
+      border-bottom: 1px solid
+      &:hover
+        color: $darkest-mc !important
+        border: none
+.bz-welcome-content
+  width: 90%
+  display: flex
+  justify-content: center
+  align-items: flex-start
+  flex-direction: column
+  padding: 0 5px
+  margin: 0 auto
+  +MQ(M)
+    padding: 0
+    width: 40%
+    margin-left: 40%
+  h1,h2,h3,h4
+    margin: 0 auto
+    width: 100%
+    line-height: 1 !important
+    +MQ(M)
+      margin: 0
+      line-height: 1 !important
+  .light
+    margin-bottom: 7px
+    +MQ(L)
+      margin-bottom: 15px
+  .bold
+    margin-bottom: 15px
+    +MQ(L)
+      margin-bottom: 30px
+  h4
+    margin-bottom: 10px
+    +MQ(L)
+      margin-bottom: 25px
+  .bz-search
+    width: 100%
+    margin: 0 auto
+    +MQ(M)
+      width: 95%
+      margin: 0
+    input
+      height: 45px
+      &::-webkit-input-placeholder
+        color: $welcome-section-c
+  .bz-oval-btn
+    width: 120px
+    display: inline-block
+    vertical-align: middle
+    min-height: 20px
+    height: auto
+    line-height: 24px
+    +MQ(L)
+      line-height: 32px

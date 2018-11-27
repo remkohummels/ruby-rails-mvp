@@ -1,0 +1,12 @@
+<section class="bz-browsing-section">
+  <div class="container">
+    <%= link_to browse_categories_path do%>
+      <h2 class="light"> Start <span>Browsing</span></h2>
+    <% end %>
+    <div class="bz-categories">
+      <% @categories.each do |category| %>
+        <%= render 'category_item', item: category %>
+      <% end %>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,99 @@
+// SASS variable overrides must be declared before loading up Active Admin's styles.
+//
+// To view the variables that Active Admin provides, take a look at
+// `app/assets/stylesheets/active_admin/mixins/_variables.css.scss` in the
+// Active Admin source.
+//
+// For example, to change the sidebar width:
+// $sidebar-width: 242px;
+// Active Admin's got SASS!
+@import 'bootstrap/glyphicons';
+@import "active_admin/mixins";
+@import "active_admin/base";
+@import "wigu/active_admin_theme";
+// Overriding any non-variable SASS must be done after the fact.
+// For example, to change the default status-tag color:
+//
+//   .status_tag { background: #6090DB; }
+
+#footer {
+  display: none;
+}
+
+.breadcrumb {
+  background-color: #343c46 !important
+}
+
+#wrapper .sidebar_section.panel > h3 {
+  margin-top: 0px !important;
+}
+
+#header {
+  li#admin_users {
+    display: none !important;
+  }
+  li#comments {
+    display: none !important;
+  }
+  li#assets {
+    display: none;
+  }
+  li#dashboard {
+    display: none !important;
+  }
+}
+
+#dashboard_default_message {
+  display: none !important;
+}
+
+.label {
+  display: block !important;
+  color: black !important;
+  font-size: 15px !important;
+  text-align: left !important;
+}
+
+.wysihtml5-sandbox {
+  width: 98% !important
+}
+
+body.active_admin form .activeadmin-wysihtml5 {
+  width: 80% !important;
+}
+
+.col-status {
+  min-width: 70px;
+}
+
+.col.col-user > a {
+  white-space: nowrap;
+}
+
+.col-image {
+  width: 150px;
+  img {
+    margin: 1px;
+  }
+}
+
+.row-image img {
+  max-width: 750px;
+  max-height: 750px;
+}
+
+label.default_label {
+  display: block;
+  width: 20%;
+  float: left;
+  font-size: 1.0em;
+  font-weight: bold;
+  color: #5E6469;
+  padding: 10px;
+  padding-right: 0px;
+}
+
+input[type="file"] {
+  padding: 10px;
+  padding-left: 0px;
+}

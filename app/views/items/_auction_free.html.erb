@@ -1,0 +1,14 @@
+<% @item = locals[:item] %>
+<% recent_bid = @item.bids.where(user_id: current_user.id).last %>
+<% recent_bid = to_currency(recent_bid.price) if recent_bid%>
+<div class="desc-item">
+  <h4 class="light">Make an offer</h4>
+  <h2 class="bz-title bid-form">
+      <div class="flex -centred column">
+        <div class="field_wrapper bid flex -centred">
+          <div class="bid-text">Item is Free!</div>
+          <%= link_to 'Schedule Pickup', new_account_message_path(recipient_id: @item.user.id, title: @item.title), class: 'bz-oval-btn mc' %>
+        </div>
+      </div>
+  </h2>
+</div>

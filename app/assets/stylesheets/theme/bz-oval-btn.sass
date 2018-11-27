@@ -1,0 +1,78 @@
+$btn-bg-c: $pink
+$btn-c: #fff
+$btn-ff: $bz-font-bold
+$btn-fz: 13px
+$btn-border-r: 30px
+$mc-width: 200px
+$mc-color: $montecarlo
+$mc-fz: 13px
+$disabled-color: #868e96
+
+.bz-oval-btn
+  font-size: 13px
+  font-weight: bold
+  background: $btn-bg-c
+  border: none
+  cursor: pointer
+  color: $btn-c !important
+  width: 90%
+  min-height: 24px
+  height: 40px
+  margin-bottom: 10px
+  border-radius: 0px !important
+  border: 1px solid $btn-bg-c
+  padding: 0
+  text-decoration: none !important
+  text-transform: uppercase
+  outline: none !important
+  +flex-centred
+  text-align: center
+  +MQ(L)
+    font-size: $btn-fz
+    width: 100%
+  &:hover
+    color: $btn-bg-c !important
+    background: transparent !important
+  &.fitted
+    width: $mc-width
+    margin-top: 20px
+    font-size: $mc-fz
+  &.discard
+    background: $darker-gray
+    border-color: $darker-gray
+    &:hover
+      background-color: transparent !important
+      color: $darker-gray !important
+  &.post
+    background: $mc-color
+    border-color: $mc-color
+    &:hover
+      background-color: transparent !important
+      color: $mc-color !important
+  &.mc
+    width: $mc-width
+    border-color: $mc-color !important
+    background-color: $mc-color !important
+    font-size: $mc-fz
+    margin-top: 20px
+    &:hover
+      background-color: transparent !important
+      color: $mc-color !important
+      a.bz-text-btn
+        color: $montecarlo !important
+    a.bz-text-btn
+      width: 100%
+      height: 100%
+      display: flex
+      justify-content: center
+      align-items: center
+      color: #fff !important
+      &:hover
+        color: $montecarlo !important
+  &.disabled
+    width: $mc-width
+    border-color: $disabled-color !important
+    background-color: $disabled-color !important
+    
+    a.bz-text-btn
+      color: #fff !important

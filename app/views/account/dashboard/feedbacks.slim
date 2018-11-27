@@ -1,0 +1,7 @@
+h3 My Reviews
+#core_ajax_callback
+= render '/users/feedbacks', user: @user
+= render 'account/dashboard/items/items'
+form method="post" name="MEMBERSHIPFORM" action="http://bidzone.ca/index.php/my-account-3/" id="MEMBERSHIPFORM" style="margin:0px;padding:0px;"
+  input type="hidden" name="membershipID" id="membershipID" value="-1"
+  input type="hidden" name="showpaymentform" value="1"

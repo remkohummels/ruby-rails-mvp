@@ -1,0 +1,29 @@
+.col.col-md
+  .pr
+    .clearfix.mb
+      button.btn.btn-sm.btn-default.mb-toggle-button.pull-right.dropdown-toggle[type="button" data-toggle="collapse" data-target=".mb-boxes"]
+        em.fa.fa-bars.fa-fw.fa-lg
+      = link_to new_account_message_path(format: :js), remote: true, class: "btn btn-purple btn-sm mb-compose-button" do
+        em.fa.fa-pencil
+        |  Compose
+    .mb-boxes.collapse
+      .panel.panel-default
+        .panel-body
+          ul.nav.nav-pills.nav-stacked.mail-folders
+            li.p
+              small.text-muted
+                | MAILBOXES
+            li.mail-inbox class="#{'active' if @type == 'inbox' }"
+              = link_to account_messages_path(:type => 'inbox') do
+                span.label.label-green.pull-right.inbox-count
+                  = @inbox_msg_count
+                em.fa.fa-fw.fa-lg.fa-inbox
+                span
+                  | Inbox
+            li.mail-sent class="#{'active' if @type == 'sent' }"
+              = link_to account_messages_path(:type => 'sent') do
+                span.label.label-green.pull-right.sent-count
+                  = @sent_msg_count
+                em.fa.fa-fw.fa-lg.fa-paper-plane-o
+                span
+                  | Sent

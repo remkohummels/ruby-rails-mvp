@@ -1,0 +1,55 @@
+<div class="itemdata icons col-xs-12">
+  <div class="thumbnail clearfix">
+    <div class="galleryframe frame">
+      <div class="overlay-gallery">
+        <div class="lbox">
+          <%= link_to images_path, class: "modal-trigger", data: {:'target-id' => 'message-form', item_id: locals[:item].id} do %>
+              <span class="fa fa-camera"></span>
+          <% end %>
+          <%= link_to locals[:item], class: "link-overlay" do %>
+          <% end %>
+        </div>
+      </div>
+      <img src="<%= locals[:item].get_avatar %>" alt="fallback-no-image-100" class="wlt_thumbnail img-responsive">
+    </div>
+    <div class="content">
+      <h3>
+        <%= link_to item_path locals[:item] do %>
+            <span><%= locals[:item].title %></span>
+        <% end %>
+        <span id="wlt_star_64248407453286" class="wlt_starrating pull-right" style="cursor: pointer;">
+                <span class="fa fa-star-o size16 readonlyfalse" data-score="1" title="bad"></span>
+                <span class="fa fa-star-o size16 readonlyfalse" data-score="2" title="poor"></span>
+                <span class="fa fa-star-o size16 readonlyfalse" data-score="3" title="regular"></span>
+                <span class="fa fa-star-o size16 readonlyfalse" data-score="4" title="good"></span>
+                <span class="fa fa-star-o size16 readonlyfalse" data-score="5" title="very good"></span>
+                <input type="hidden" name="score"></span>
+        <script type="text/javascript">
+          jQuery(document).ready(function () {
+            jQuery('#wlt_star_64248407453286').raty({
+              path: 'http://bidzone.ca/wp-content/themes/AT/framework/img/rating/',
+              score: 0, size: 16, click: function (score, evt) {
+                WLTSaveRating('bidzone.ca', '86', score, 'wlt_star_64248407453286');
+              }
+            });
+          });
+        </script>
+      </h3>
+      <div class="row">
+        <div class="col-md-6 col-sm-6 col-xs-6"><b>
+          <% if locals[:item].is_free?  %>
+            Item is Free!
+          <% else %>
+            $<%= locals[:item].start_price %>
+          <% end %>
+        </b></div>
+        <div class="col-md-6 col-sm-6 col-xs-6 text-right"><span class="wlt_shortcode_category"></span>
+          <span class="bids"><%= locals[:item].bids_count %> bids</span></div>
+      </div>
+      <div class="line1"></div>
+      <span class="wlt_shortcode_excerpt">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tempus eleifend risus ut congue. Pellentesque nec lacus elit. Pellentesque convallis nisi ac augue pharetra eu tristique neque consequ</span>
+
+      <%= item_time_left locals[:item] %>
+    </div>
+  </div>
+</div>

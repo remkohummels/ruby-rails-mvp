@@ -1,0 +1,48 @@
+<aside class="core_sidebar col-md-3 col-sm-3 hidden-xs" id="core_left_column">
+
+  <%= render 'items/category_widget' %>
+  <div id="mailinglist2" class="wlt_widget_mailinglist" style="display: none">
+
+    <h2>Example Newsletter Widget</h2>
+
+    <div class="msg">Your own text here to entice users to signup.</div>
+    <form class="form-search" id="mailinglist-form" name="mailinglist-form" method="post" onsubmit="return IsEmailMailinglist();">
+
+
+      <div class="input-group">
+        <input type="text" class="form-control" name="wlt_mailme" id="wlt_mailme" placeholder="example@hotmail.com">
+
+        <span class="input-group-addon"> <button type="submit">GO</button>  </span>
+      </div>
+
+      <div class="clearfix"></div>
+
+    </form>
+  </div>
+
+
+  <script type="application/javascript">
+    function IsEmailMailinglist() {
+      var pattern = new RegExp(/^(("[\w-+\s]+")|([\w-+]+(?:\.[\w-+]+)*)|("[\w-+\s]+")([\w-+]+(?:\.[\w-+]+)*))(@((?:[\w-+]+\.)*\w[\w-+]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][\d]\.|1[\d]{2}\.|[\d]{1,2}\.))((25[0-5]|2[0-4][\d]|1[\d]{2}|[\d]{1,2})\.){2}(25[0-5]|2[0-4][\d]|1[\d]{2}|[\d]{1,2})\]?$)/i);
+      var de4 = document.getElementById("wlt_mailme");
+
+      if (de4.value == '') {
+        alert('Please complete all fields.');
+        de4.style.border = 'thin solid red';
+        de4.focus();
+        return false;
+      }
+      if (!pattern.test(de4.value)) {
+        alert('Please complete all fields.');
+        de4.style.border = 'thin solid blue';
+        de4.focus();
+        return false;
+      }
+
+      WLTMailingList('bidzone.ca', de4.value, 'mailinglist-form');
+      return false;
+    }
+  </script>
+
+
+</aside>

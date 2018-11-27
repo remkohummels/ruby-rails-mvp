@@ -1,0 +1,4 @@
+$(".mail-folders li").removeClass('active');
+$(".mail-folders li.mail-<%= @type %>").addClass('active');
+$(".inbox-count").html("<%= current_user.received_messages.unread.count %>");
+$(".sent-count").html("<%= current_user.sent_messages.count %>");

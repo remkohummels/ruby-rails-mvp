@@ -1,0 +1,30 @@
+<% @item = locals[:item] %>
+
+<% recent_bid = @item.bids.where(user_id: current_user.id).last %>
+
+<div class="desc-item">
+  <h4 class="light">Make an offer</h4>
+  <h2 class="bz-title bid-form">
+    <%= semantic_form_for Bid.new, remote: true, :html => {:id => 'SUBMISSION_FORM', :class => 'row clearfix validate-form', role: :form, 'data-model' => 'bid', :'data-type' => 'json'} do |f| %>
+      <%= f.input :item_id, as: "hidden", :input_html => {:value => @item.id} %>
+      <div class="flex -centred column">
+        <div class="field_wrapper bid flex -centred">
+          <span><%= @currency.sign %></span>
+          <%= f.number_field :price, :required => true, min: 0, :label => false, id: 'bid_amount', class: 'form-control input-lg' %>
+          &nbsp;
+          <button class="bz-oval-btn mc" type="submit">Confirm Bid</button>
+        </div>
+        <div class="col-xs-12">
+          <h5 class="item_errors"></h5>
+          <div class="flex -between">
+            <% if recent_bid %>
+              <h5>Your most recent bid: <%= to_currency(recent_bid.price) %></h5>
+            <% end %>
+            <h5> <%#= link_to 'Contact seller', new_account_message_path(recipient_id: @item.user.id, title: @item.title) %> </h5>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </h2>
+</div>
+

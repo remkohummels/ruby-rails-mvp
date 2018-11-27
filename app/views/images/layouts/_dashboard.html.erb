@@ -1,0 +1,53 @@
+<div id="core_header_navigation" class="hidden-xs">
+  <div class="container">
+
+    <div class="row">
+      <ul class="nav nav-pills pull-left accountdetails">
+        <li class="">
+          <%= link_to 'Help', help_path, class: "ua7" %>
+        </li>
+        <% if current_user %>
+          <li class="">
+            <%= link_to 'Invite', invite_path, class: "ua8" %>
+          </li>
+        <% end %>
+      </ul>
+      <ul class="nav nav-pills pull-right accountdetails">
+        <% if current_user %>
+            <li class="">
+              <a>Balance: <%= current_user.get_balance %></a>
+            </li>
+            <li class="">
+              <%= link_to 'Dashboard', dashboard_path, class: "ua1" %>
+            </li>
+            <li class="hidden-sm hidden-xs">
+              <%= link_to "My Favorites (#{current_user.get_voted(Item).count})", browse_path(favorites: true), class: "ua3 ex-main-link" %>
+            </li>
+            <li class="hidden-sm hidden-xs">
+              <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "ua4 ex-main-link" %>
+            </li>
+        <% else %>
+            <li class="hidden-sm hidden-xs">
+              <%= link_to 'Login', new_user_session_path, class: "ua5 ex-main-link" %>
+            </li>
+            <li class="hidden-sm hidden-xs">
+              <%= link_to 'SignUp', new_user_registration_path, class: "ua6" %>
+            </li>
+        <% end %>
+      </ul>
+
+      <!-- <div class="navbar-inner">
+        <ul class="nav nav-pills">
+          <li class="MyLocationLi">
+            <a href="javascript:void(0);" onclick="GMApMyLocation();" data-toggle="modal" data-target="#MyLocationModal">
+              <div class="flag flag-af wlt_locationflag"></div>
+              Change Location
+            </a>
+          </li>
+        </ul>
+      </div> -->
+
+    </div>
+
+  </div>
+</div>

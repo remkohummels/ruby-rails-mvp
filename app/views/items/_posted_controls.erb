@@ -1,0 +1,12 @@
+<% @item = locals[:item] %>
+<div class="desc-item">
+  <h2 class="bz-title bid-form row">
+    <div class="col-xs-12 col-sm-6 no-pad">
+			<%= link_to 'Edit', edit_item_path(@item), class: 'bz-oval-btn item-control '%>
+		</div>
+		<div class="col-xs-12 col-sm-6">
+			<%= link_to 'Post More', choose_posting_type_path, class: 'bz-oval-btn post item-control'%>
+		</div>
+  </h2>
+</div>
+

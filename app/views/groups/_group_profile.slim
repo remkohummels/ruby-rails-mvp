@@ -1,0 +1,121 @@
+- if !@group.state.blank?
+  - country_or_state = ' | ' + @group.state.upcase + ' '
+-elsif !@group.country.blank?
+  - country_or_state = ' | ' + @group.country.upcase + ' '
+-else
+  - country_or_state = ' | '
+
+.col-xs-12.col-sm-7
+  h3.bz-title
+    = @group.title
+  h3.bz-subtitle
+    | Location
+  p = @group.city + country_or_state  if @group.city
+  h4.bz-subtitle
+    | Description
+  p.flex.-start aria-controls="desc" aria-expanded="true" data-target="#desc" data-toggle="collapse" type="button" 
+    span
+      - if @group.description.length > 565
+        - desc_prev = @group.description[0,565] + "<span id='desc' class='bz-text-btn collapse in' aria-controls='expand_description' aria-expanded='false' data-target='#expand_description' data-toggle='collapse' type='button' > &nbsp;+more </span>"
+        = desc_prev.html_safe
+        span.collapse#expand_description
+          - exp_desc = "&nbsp;" + @group.description[565,9999] + "<span class='bz-text-btn' aria-controls='expand_description' aria-expanded='false' data-target='#expand_description' data-toggle='collapse' type='button' > &nbsp;-less </span>"
+          = exp_desc.html_safe
+      - else
+        = @group.description.html_safe
+  h3.bz-subtitle
+    | Code of Conduct 
+  p = @group.terms
+
+.col-xs-12.col-sm-5
+  - if @group.file
+    .flex.-end
+      p.group_image.text-center
+        =image_tag @group.file.thumb.url
+  - if @group.user
+    .flex.-end.column
+      h4.bz-subtitle
+        | Group Admin
+      p = @group.user.first_name
+      = link_to 'Send Message', new_account_message_path(recipient_id: @group.user.id)
+  -if current_user
+    .flex.-end
+      - if can? :leave_group, @group
+        -if current_user.group_status(@group) == "pending"
+          .bz-oval-btn.disabled.bz-group-controls
+            a class="bz-text-btn leave_group"
+              span.regular Pending...
+        -if current_user.group_status(@group) == "joined"
+          .bz-oval-btn.disabled.bz-group-controls
+            a class="bz-text-btn leave_group"
+              |✓
+              span.regular
+                |Joined
+        -if current_user.group_status(@group) == ""
+          .bz-oval-btn.mc.bz-group-controls
+            =render "groups/invite_buttons/join_group_btn", locals: {group: @group}
+  -if can? :edit, @group
+    .flex.-end
+      = link_to 'Edit', edit_group_path(@group), class: 'bz-oval-btn fitted'
+
+.col-xs-12
+  hr
+  .row
+    - if current_user.group_status(@group) == 'joined' || @group.user == current_user
+      .col-xs-12
+        h3.bz-subtitle
+          | Group Information
+        .panel.panel-transparent role="tabpanel"
+          ul.nav.nav-tabs.nav-justified
+            li.active role="presentation"
+              a.bb01 href="#members" aria-controls="members" role="tab" data-toggle="tab" aria-expanded="true"
+                | Members
+            li role="presentation"
+              a.bb01 href="#pendings" aria-controls="pendings" role="tab" data-toggle="tab" aria-expanded="false"
+                | Pending
+          .tab-content.p0.bg-white
+            #members.tab-pane.active
+              table class="table table-bordered table-striped"
+                thead
+                  tr
+                    th class="group_title" ID
+                    th Name
+                    tbody
+                      - @group.group_memberships.not_pending.each do |gm|
+                        tr
+                          td =gm.user.id
+                          td
+                            .user-info
+                              = link_to gm.user.first_name, group_user_path(@group, gm.user), class: "#{current_user == gm.user ? 'color-mc' : ''}"
+                              p.controls
+                                - if @group.user != gm.user
+                                  - if @group.user == current_user && gm.status.to_s == 'joined'
+                                    - if gm.role.to_s == 'user'
+                                      = link_to appoint_group_admin_path({user_id: gm.user.id, group_id:  @group.id}), {method: :post, class: '', data:{:confirm => 'Are you sure you want to appoint '+ gm.user.full_name + ' as an additional Group Admin?'}} do
+                                            button.bz-button 
+                                              |Appoint as admin&nbsp;|&nbsp;
+                                    - elsif gm.role.to_s == 'user'
+                                      = link_to demote_group_admin_path({user_id: gm.user.id, group_id:  @group.id}), {method: :post, class: '', data:{:confirm => 'Are you sure you want to remove '+ gm.user.full_name + ' from additional Group Admin?'}} do
+                                            button.bz-button 
+                                              |Remove as Admin&nbsp;|&nbsp;
+
+                                  -if @group.user == current_user || (@group.user_is_admin?(current_user) && gm.role.to_s != 'admin')
+                                    - if gm.role.to_s != 'admin' || @group.group_admins.length > 1
+                                      =render "groups/invite_buttons/remove_from_group_btn", locals: {group: @group, user: gm.user}
+            #pendings.tab-pane
+              table class="table table-bordered table-striped"
+                thead
+                  tr
+                    th class="group_title" ID
+                    th Name
+                    tbody
+                      - @group.group_memberships.pendings.each do |gm|
+                        tr
+                          td = gm.user.id
+                          td
+                            .user-info
+                              = link_to gm.user.first_name, group_user_path(@group, gm.user), class: "#{current_user == gm.user ? 'color-mc' : ''}"
+                              p.controls
+                                -if (@group.user_is_admin?(current_user) || current_user == @group.user) && (gm.user != @group.user)
+                                  =render "groups/invite_buttons/add_to_group_btn", locals: {group: @group, user: gm.user}
+

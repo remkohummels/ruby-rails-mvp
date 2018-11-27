@@ -1,0 +1,9 @@
+<p>Dear <%= @recipient.full_name %></p>
+<p>Your following item price was updated <%= link_to @item.title, item_url(@item) %></p>
+<p>New price: <%= to_currency(@price) %></p>
+<hr>
+<p>
+  Thank you,
+  <br>
+  Your GroupnShop Team 
+</p>

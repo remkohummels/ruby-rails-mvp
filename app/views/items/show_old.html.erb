@@ -1,0 +1,254 @@
+<% location = @item.location.split(' | ') %>
+<% city = location[0] %>
+<% state = location[1] %>
+
+<div class="container">
+  <div class="bz-item">
+    <h2 class="bz-title item-name">
+      <%= @item.title if @item.title%>
+    </h2>
+    <div class="item-content">
+      <div class="row">
+        <div class="col-xs-12 col-md-6">
+          <div class="singleimg text-center">
+            <div class="fotorama" data-arrows="true" data-click="true" data-nav="thumbs" data-loop="true" data-width="900" data-maxwidth="100%" data-ratio="16/9">
+              <% @item.images.each do |image| %>
+                <%= image_tag image.file.url %>
+              <% end %>
+            </div> 
+          </div>
+          <br>
+          <div class="flex -centred column">
+            <!-- Add to Following -->
+            <div class="col-xs-12 item-actions">
+              <% if user_signed_in? %>
+                <span id="follow_form">
+                  <% if current_user.following?(@item) %>
+                    <%= render "items/unfollow", item: @item %>
+                  <% else %>
+                    <%= render "items/follow", item: @item %>
+                  <% end %>
+                </span>
+              <% end %>
+              <%= link_to 'Get Answers', new_account_message_path(recipient_id: @item.user.id, title: @item.title), target: :_blank, class: 'bz-square-btn mc' %> 
+              <button class="bz-square-btn mc" type="button" data-toggle="collapse" data-target="#share_block" aria-expanded="false" aria-controls="share_block">
+                Share
+              </button>
+            </div>
+            <div class="col-xs-12 flex -between collapse" id="share_block">
+              <%= render 'items/share' %>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-12 col-md-6">
+          <div class="item-bid-section">
+            <% if @item.group_post? %>
+              <div class="desc-item">
+                <h4 class="light color-mc">Group Post item</h4>
+                <h4 class="light">Posting expires in</h4>
+                  <% if @item.pending? %>
+                    <h2 class="bz-subtitle">48 HOURS AFTER PUBLICATION</h2>
+                  <% else %>
+                    <%= item_time_left @item %> 
+                  <% end %>
+              </div>
+              <div class="desc-item">
+                <h4 class="light">Current Price</h4>
+                <% if @item.is_free? %>
+                  <h2 class="bz-title">Item is free</h2>
+                <% elsif @item.start_price %>
+                  <h2 class="bz-title"><%= to_currency(@item.start_price) %></h2>
+                <% end %>
+              </div>
+              <% if user_signed_in? %>
+                <% if @item.finished? %>
+                  <%= render 'auction_ended', locals: {item: @item} %>
+                <% elsif @item.user == current_user%>
+                  <% if @item.pending? %>
+                   <%= render 'preview_controls', locals: {item: @item} %>
+                  <% else %>
+                    <%= render 'posted_controls', locals: {item: @item} %>
+                  <% end %>
+                <% else %>
+                  <% if !current_user.is_joined_groups?(@item.groups) %>
+                    <%= link_to '+ Join Group to Bid', group_path(@item.groups.first), class: "bz-oval-btn" %>
+                  <% elsif @item.is_free? %>
+                    <%= render 'auction_free', locals: {item: @item} %>
+                  <% else %>
+                    <%= render 'auction_bids', locals: {item: @item} %>
+                  <% end %>
+                <% end %>
+              <% else %>
+                <%= link_to '+Join to Buy or Sell', root_path(anchor: 'sign_section'), class: "bz-oval-btn" %>
+              <% end %>
+            <% elsif @item.quick_post? %>
+              <div class="desc-item">
+                <h4 class="light color-mc">Quick Post item</h4>
+                <h4 class="light">Location</h4> 
+                <h2 class="bz-title"%> 
+                  <span class="normal"> <%= city %> </span>
+                  <span> <%= ' | ' + state  if state.present?%></span>
+                </h2>
+              </div>
+              <% if @item.finished? %>
+                <%= render 'auction_ended', locals: {item: @item} %>
+              <% else %>
+                <div class="desc-item">
+                  <h4 class="light">Price</h4>
+                  <% if @item.is_free? %>
+                    <h2 class="bz-title">Item is free</h2>
+                  <% else %>
+                    <% if @item.buy_now_price %>
+                      <% current_price = to_currency(@item.buy_now_price) %>
+                    <% else %>
+                      <% current_price = 'Not specified' %>
+                    <% end %>
+                    <div class="price-group">
+                      <div class="row">
+                        <div class="col-xs-12">
+                          <h2 class="bz-title"><%= current_price %></h2>
+                        </div>
+                        <div class="col-xs-12">
+                          <% if @item.user == current_user%>
+                            <% if @item.bids.present? %>
+                              <div class="item-offers">
+                                <div class="item-offers-wrapper">
+                                  <% @item.bids.each do |bid| %>
+                                    <% bid_price = to_currency(bid.price) %>
+                                    <div class="item-offer">
+                                      <div class="user">
+                                        <%= link_to bid.user.first_name + ' | ' + bid_price, new_account_message_path(recipient_id: bid.user.id), class: ''%>  
+                                      </div>
+                                      <div class="action">
+                                        <%= link_to 'Accept Offer', set_winner_path(id: @item.id, bid_id: bid.id), method: :post, class: 'bz-button' %>
+                                      </div>
+                                    </div>
+                                  <% end %>
+                                </div>
+                              </div>
+                            <% end %>
+                          <% end %> 
+                        </div>
+                      </div>
+                    </div>
+                  <% end %>
+                </div>
+                <% if user_signed_in? %>
+                  <% if @item.user != current_user %>
+                    <% offers = @item.bids.where(user: current_user)%>
+                    <% if offers.present? %>
+                      <div class="desc-item">
+                        <h4 class="light">Make an offer</h4>
+                        <h3 class="color-mc">
+                          You’ve made an offer for <%= to_currency(offers.first.price) %>
+                        </h3>
+                      </div>
+                    <% else %>
+                      <% if @item.is_free? %>
+                        <%= render 'auction_free', locals: {item: @item} %>
+                      <% else %>
+                        <% link_to 'Make an offer', make_an_offer_path(id: @item.id), method: :post, class: 'bz-oval-btn mc' %>
+                        <div class="desc-item">
+                          <h4 class="light">Make an offer</h4>
+                          <h2 class="bz-title bid-form">
+                            <%= semantic_form_for Bid.new, :url => make_an_offer_path, :html => {:id => 'SUBMISSION_FORM', :class => 'row clearfix validate-form', role: :form, 'data-model' => 'bid', :'data-type' => 'json'} do |f| %>
+                              <%= f.input :item_id, as: "hidden", :input_html => {:value => @item.id} %>
+                              <div class="flex -centred column">
+                                <div class="field_wrapper bid flex -centred">
+                                  <span><%= @currency.sign %></span>
+                                  <%= f.number_field :price, :required => true, min: 0, :label => false, id: 'bid_amount', class: 'form-control input-lg' %>
+                                  <button class="bz-oval-btn mc" type="submit">Make an offer</button>
+                                </div>
+                              </div>
+                            <% end %>
+                          </h2>
+                        </div>
+                      <% end %>
+                    <% end %>
+                  <% end %>
+                <% else %>
+                  <%= link_to '+Sign in to Buy or Sell', root_path(anchor: 'sign_section'), class: "bz-oval-btn" %>
+                <% end %>
+              <% end %>
+              <% if user_signed_in? %>
+                <% if @item.user == current_user%>
+                  <% if @item.pending? %>
+                   <%= render 'preview_controls', locals: {item: @item} %>
+                  <% elsif !@item.finished? %>
+                    <%= render 'posted_controls', locals: {item: @item} %>
+                  <% end %>
+                  <% if @item.finished? && @item.winner.present? %>
+                    <div class="desc-item">
+                      <%= link_to 'Contact buyer', new_account_message_path(recipient_id: @item.winner.id, title: @item.title), class: 'bz-oval-btn mc'%> 
+                    </div>
+                  <% end %>
+                <% elsif !@item.finished? && !@item.is_free? %>
+                  <div class="desc-item">
+                    <%= link_to 'Contact seller', new_account_message_path(recipient_id: @item.user.id, title: @item.title), class: 'bz-oval-btn mc'%> 
+                  </div>
+                <% end %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+        <div class="col-xs-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">Description</div>
+            <div class="panel-body">
+              <div class="core_post_content">
+                <%= @item.description.html_safe if @item.description%>
+                <br>
+                <br>
+                <table class="table table-bordered" id="TableCustomFieldsBig">
+                  <tbody>
+                    <% if @item.group_post? %>
+                      <tr class="odd">
+                        <th>Location</th>
+                        <td>
+                          <span class="wlt_shortcode_tags">
+                            <%= @item.location %>
+                          </span>
+                        </td>
+                      </tr>
+                      <tr class="odd">
+                        <th>Groups</th>
+                        <td>
+                          <span class="wlt_shortcode_tags">
+                            <%= @item.groups.pluck(:title).to_sentence %>
+                          </span>
+                        </td>
+                      </tr>
+                    <% end %>
+                    <tr class="odd">
+                      <th>Category</th>
+                      <td>
+                        <span class="wlt_shortcode_tags">
+                          <%= @item.category.name if @item.category%>
+                        </span>
+                      </td>
+                    </tr>
+                    <tr class="odd">
+                      <th>Conditon</th>
+                      <td>
+                        <span class="wlt_shortcode_tags">
+                          <%= @item.condition %>
+                        </span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% content_for :head_area do %>
+  <% if @item.images.first.present? %>
+    <meta property="og:image" content="<%= site_url @item.images.first.file.url %>" />
+    <meta property="og:description" content="Online shopping made fun! Find a group in your community or create your own.  <%= @item.is_free? ? "Item is free" : "Item price is #{to_currency(@item.start_price || @item.buy_now_price)}" %>." />
+  <% end %>
+<% end %>

@@ -1,0 +1,506 @@
+<%= semantic_form_for locals[:item], remote: true, :html => {:id => 'SUBMISSION_FORM', :class => 'validate-form', role: :form, 'data-model' => 'item', :'data-type' => 'json'} do |f| %>
+    <input type="hidden" name="action" value="save">
+    <input type="hidden" name="packageID" value="0">
+
+    <div id="wlt_stepswizard" class="panel-group ">
+      <!-- STEP 2 --->
+      <div class="panel panel-default" id="panel_section2">
+        <div class="panel-heading">
+          <span class="step-number">1</span>
+
+          <div class="pull-right">
+            <span class="label label-default" style="text-shadow:none">Example Package 1</span>
+          </div>
+          <a href="#step1" class="astep1 " data-parent="#wlt_stepswizard" data-toggle="collapse">Listing
+            Description</a>
+        </div>
+        <div id="step1" class="stepblock2 panel-collapse collapse in">
+          <div class="panel-body">
+            <%= I18n.t(locals[:form_text]).html_safe %>
+            <hr>
+            <div class="form-group clearfix" id="form-row-rapper-post_title">
+              <label class="control-label col-md-12">Group</label>
+              <div class="field_wrapper col-md-12">
+                <%= f.input :group_id, :label => false, as: :select, collection: @groups, input_html: {id: 'form_post_title', class: " form-control", placeholder: "Title"} %>
+                <p class="item_error"></p>
+              </div>
+            </div>
+            <div class="form-group clearfix" id="form-row-rapper-post_title">
+              <label class="control-label col-md-12">Title <span class="required">*</span>
+              </label>
+
+              <div class="field_wrapper col-md-12">
+                <%= f.input :title, :label => false, input_html: {id: 'form_post_title', class: " form-control", placeholder: "Title"} %>
+                <p class="item_error"></p>
+              </div>
+            </div>
+            <div class="form-group clearfix col-md-12" id="form-row-rapper-post_content">
+              <label class="control-label">Description <span class="required">*</span>
+              </label>
+
+              <div class="field_wrapper">
+                <%= f.input :description, :label => false, :as => :text, input_html: {data: {provide: 'markdown'}, id: 'form_post_content', class: "form-control", :rows => 10, :cols => 15} %>
+                <p class="item_error"></p>
+                <script>
+                  jQuery(document).ready(function () {
+                    textarealimit();
+                  });
+
+                  function textarealimit() {
+                    text_max = 200;
+                    var text_length = jQuery('#form_post_content').val().length;
+                    var text_remaining = text_max - text_length;
+                    if (text_remaining < 0) {
+                      jQuery('#textarea_feedback').hide();
+                    }
+                    jQuery('#textarea_feedback span').html('<b>' + text_remaining + '</b> characters remaining.');
+                    jQuery('#form_post_content').keyup(function () {
+                      var text_length = jQuery('#form_post_content').val().length;
+                      var text_remaining = text_max - text_length;
+                      jQuery('#textarea_feedback span').html('<b>' + text_remaining + '</b> characters remaining.');
+                      if (text_remaining < 0) {
+                        jQuery('#textarea_feedback').hide();
+                      } else {
+                        jQuery('#textarea_feedback').show();
+                      }
+                    });
+                  }
+                  ;
+                </script>
+                <div id="textarea_feedback" style="font-size: 12px;  color: #999;  padding-top: 5px;">
+                  <i class="glyphicon glyphicon-tasks"></i> Minimum of 200 characters.
+                  <span><b>200</b> characters remaining.</span></div>
+              </div>
+            </div>
+            <div class="form-group clearfix" id="form-row-rapper-post_tags">
+              <label class="control-label col-md-12">Keywords</label>
+
+              <div class="field_wrapper col-md-12">
+                <%= f.input :keywords, :label => false, input_html: {id: 'form_post_title', class: " form-control", placeholder: "Keywords"} %>
+              </div>
+            </div>
+            <div class="form-group clearfix" id="form-row-rapper-post_tags">
+              <label class="control-label col-md-12">Website</label>
+
+              <div class="field_wrapper col-md-12">
+                <%= f.input :website, :label => false, input_html: {id: 'form_post_title', class: " form-control", placeholder: "Website"} %>
+              </div>
+            </div>
+
+            <div class="form-group clearfix" id="form-row-rapper-post_tags">
+              <label class="control-label col-md-12">Make item free</label>
+
+              <div class="field_wrapper col-md-12">
+                <%= f.input :free_item, as: :boolean, :label => '', class: "form-control" %>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+      <!-- STEP 2 --->
+      <!-- STEP 5 --->
+      <div class="panel panel-default" id="panel_section5">
+        <div class="panel-heading">
+          <span class="step-number">2</span>
+          <a href="#step2" class="astep2 " data-parent="#wlt_stepswizard" data-toggle="collapse">Listing
+            Details</a>
+        </div>
+        <div id="step2" class="stepblock5 panel-collapse collapse ">
+          <div class="panel-body">
+            <input type="hidden" name="custom[auction_type]" id="form_auction_type" value="1">
+
+            <div class="form-group clearfix price" id="form-row-rapper-price_current">
+              <label class="control-label col-md-4">Starting Price <span class="required">*</span>
+              </label>
+
+              <div class="field_wrapper col-md-8">
+                <div class="input-group col-md-4">
+                  <%= f.input :start_price, :label => false, input_html: {id: 'form_price_current', class: "form-control"} %>
+                  <span class="input-group-addon">$</span>
+                </div>
+                <p class="description">This is the price the bidding will start at.</p>
+              </div>
+            </div>
+
+            <div class="form-group clearfix price" id="form-row-rapper-price_reserve">
+              <label class="control-label col-md-4">Reserve Price <span class="required">*</span>
+              </label>
+
+              <div class="field_wrapper col-md-8">
+                <div class="input-group col-md-4">
+                  <%= f.input :reverse_price, :label => false, input_html: {id: 'form_price_reserve', class: "form-control"} %>
+                  <span class="input-group-addon">$</span>
+                </div>
+                <p class="description">Here you can set the lowest price your willing to sell this
+                  item for.</p>
+              </div>
+            </div>
+
+            <div class="form-group clearfix price" id="form-row-rapper-price_reserve">
+              <label class="control-label col-md-4">Buy now Price</label>
+
+              <div class="field_wrapper col-md-8">
+                <div class="input-group col-md-4">
+                  <%= f.input :buy_now_price, :label => false, input_html: {class: "form-control"} %>
+                  <span class="input-group-addon">$</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group clearfix" id="form-row-rapper-condition">
+              <label class="control-label col-md-4">Condition</label>
+
+              <div class="field_wrapper col-md-8">
+                <%= f.select :condition, options_for_select(enum_option_pairs(Item, Item.conditions)) %>
+              </div>
+            </div>
+
+            <div class="form-group clearfix" id="form-row-rapper-condition">
+              <label class="control-label col-md-4">Pickup Options</label>
+
+              <div class="field_wrapper col-md-8">
+                <%= f.select :pickup, options_for_select(enum_option_pairs(Item, Item.pickups)) , {:include_blank => 'Please select pickup option'} %>
+              </div>
+            </div>
+            <script type="text/javascript">
+              function ValidateCoreRegFields() {
+                var cus14 = document.getElementById("form_price_current");
+                if (cus14.value == '-------') {
+                  alert('Please complete all fields.');
+                  cus14.style.border = 'thin solid green';
+                  cus14.focus();
+                  colAll();
+                  jQuery('.stepblock5').collapse('show');
+                  return false;
+                }
+                if (cus14.value == '') {
+                  alert('Please complete all fields.');
+                  cus14.style.border = 'thin solid green';
+                  cus14.focus();
+                  colAll();
+                  jQuery('.stepblock5').collapse('show');
+                  return false;
+                }
+                var cus15 = document.getElementById("form_price_reserve");
+                if (cus15.value == '-------') {
+                  alert('Please complete all fields.');
+                  cus15.style.border = 'thin solid green';
+                  cus15.focus();
+                  colAll();
+                  jQuery('.stepblock5').collapse('show');
+                  return false;
+                }
+                if (cus15.value == '') {
+                  alert('Please complete all fields.');
+                  cus15.style.border = 'thin solid green';
+                  cus15.focus();
+                  colAll();
+                  jQuery('.stepblock5').collapse('show');
+                  return false;
+                }
+              }
+            </script>
+          </div>
+        </div>
+      </div>
+      <!-- STEP 5 --->
+      <!-- STEP 3 --->
+      <div class="panel panel-default" id="panel_section3">
+        <div class="panel-heading">
+          <span class="step-number">3</span>
+          <a href="#step3" class="astep3 " data-parent="#wlt_stepswizard" data-toggle="collapse">Listing
+            Category</a>
+        </div>
+        <div id="step3" class="stepblock3 panel-collapse collapse ">
+          <div class="panel-body">
+            <div class="field_wrapper col-xs-12">
+              <%= f.input :category, input_html: {class: "form-control"}, label: false, :as => :select, :collection => nested_set_options(Category, @category) { |i| "#{'-' * i.level} #{i.name}" } %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- STEP 3 --->
+      <!-- STEP 4 --->
+      <div class="panel panel-default" id="panel_section4">
+        <div class="panel-heading">
+          <span class="step-number">4</span>
+          <a href="#step4" class="astep4 " data-parent="#wlt_stepswizard" data-toggle="collapse">Listing
+            Attachments</a>
+        </div>
+        <div id="step4" class="stepblock4 panel-collapse collapse ">
+          <div class="panel-body">
+            <div class="form-group clearfix" id="form-row-rapper-image">
+              <label class="control-label col-md-12"></label>
+
+              <div class="field_wrapper col-md-12">
+                <div class="row uploadiconbox">
+                  <div class="col-md-3">
+                    <a href="javascript:void(0);" onclick="enableUploadForm('.jpg/.gif/.png');" class="c1">
+                      <span><i class="fa fa-file-image-o"></i></span> add images</a>
+                  </div>
+                </div>
+                <hr>
+                <script>
+                  function enableUploadForm(vv) {
+                    jQuery('.allowed').html(vv);
+                    jQuery('.uploadiconboxform').show();
+                  }
+                </script>
+                <div class="uploadiconboxform well">
+                  <div class="dropzone upload-dropzone modal-input full-width" data-action="<%= images_create_path(temp_key: @temp_key) %>" data-count="<%= locals[:item].allowed_images_count %>"></div>
+                  <%= f.input :temp_key, as: "hidden", :input_html => {:value => @temp_key} %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- STEP 4 -->
+      <!-- STEP 6 -->
+      <div class="panel panel-default" id="panel_section6">
+        <div class="panel-heading">
+          <span class="step-number">5</span>
+          <a href="#step5" class="astep5 mapboxlink" data-parent="#wlt_stepswizard" data-toggle="collapse">Listing
+            Location</a>
+        </div>
+        <div id="step5" class="stepblock6 panel-collapse collapse ">
+          <div class="panel-body">
+            <div id="showmapbox">
+              <input name="custom[map_location]" id="form_map_location" class="controls" type="text" placeholder="Enter your physical location here." value="">
+
+              <div id="wlt_map_location" style="height:300px;width:100%;"></div>
+              <div class="well well-sm">
+                <b>You current map location is;</b> Country:
+                <span id="wlt_dcountry" class="label label-primary"><i class="glyphicon glyphicon-remove"></i></span>
+                State/Province:
+                <span id="wlt_dstate" class="label label-primary"><i class="glyphicon glyphicon-remove"></i></span>
+                City:
+                <span id="wlt_dcity" class="label label-primary"><i class="glyphicon glyphicon-remove"></i></span>
+              </div>
+            </div>
+            <input type="hidden" id="map-long" name="custom[map-log]">
+            <input type="hidden" id="map-lat" name="custom[map-lat]">
+            <input type="hidden" id="map-country" name="custom[map-country]">
+            <input type="hidden" id="map-address1" name="custom[map-address1]">
+            <input type="hidden" id="map-address2" name="custom[map-address2]">
+            <input type="hidden" id="map-address3" name="custom[map-address3]">
+            <input type="hidden" id="map-zip" name="custom[map-zip]">
+            <input type="hidden" id="map-state" name="custom[map-state]">
+            <input type="hidden" id="map-city" name="custom[map-city]">
+            <script type="text/javascript">
+              var geocoder;
+              var map;
+              var marker = '';
+              var markers = [];
+
+              function initialize() {
+                if (typeof(map) != "undefined") {
+                  return;
+                }
+                // GET DEFAULT LOCATION
+                // CREATE MAP CANVUS
+                var myOptions = {
+                  mapTypeId: google.maps.MapTypeId.ROADMAP,
+                  zoomControl: true,
+                  scaleControl: true
+                }
+                map = new google.maps.Map(document.getElementById("wlt_map_location"), myOptions);
+                // LOAD MAP LOCATIONS
+                var defaultBounds = new google.maps.LatLngBounds(
+                    new google.maps.LatLng(0, 0));
+                map.fitBounds(defaultBounds);
+                // ADD ON MARKER
+                // ADD SEARCH BOX
+                map.controls[google.maps.ControlPosition.TOP_LEFT].push(document.getElementById('form_map_location'));
+                var searchBox = new google.maps.places.SearchBox(document.getElementById('form_map_location'));
+                // EVENT
+                google.maps.event.addListener(searchBox, 'places_changed', function () {
+                  var places = searchBox.getPlaces();
+                  if (places.length == 0) {
+                    return;
+                  }
+                  for (var i = 0, marker; marker = markers[i]; i++) {
+                    marker.setMap(null);
+                  }
+                  // For each place, get the icon, place name, and location.
+                  var bounds = new google.maps.LatLngBounds();
+                  for (var i = 0, place; place = places[i]; i++) {
+                    var image = {
+                      url: place.icon,
+                      size: new google.maps.Size(71, 71),
+                      origin: new google.maps.Point(0, 0),
+                      anchor: new google.maps.Point(17, 34),
+                      scaledSize: new google.maps.Size(25, 25)
+                    };
+                    addMarker(place.geometry.location);
+                    document.getElementById("map-long").value = place.geometry.location.lng();
+                    document.getElementById("map-lat").value = place.geometry.location.lat();
+                    getMyAddress(place.geometry.location, true)
+                    bounds.extend(place.geometry.location);
+                  }
+                  map.fitBounds(bounds);
+                  map.setZoom(12);
+                });
+                // EVENT
+                google.maps.event.addListener(map, 'bounds_changed', function () {
+                  var bounds = map.getBounds();
+                  searchBox.setBounds(bounds);
+                });
+                // EVENT
+                google.maps.event.addListener(map, 'click', function (event) {
+                  document.getElementById("map-long").value = event.latLng.lng();
+                  document.getElementById("map-lat").value = event.latLng.lat();
+                  getMyAddress(event.latLng, "yes");
+                  addMarker(event.latLng);
+                });
+                // DEFAULT ZOOM LEVEL
+                var listener = google.maps.event.addListener(map, "idle", function () {
+                  if (map.getZoom() != 5) {
+                    map.setZoom(5);
+                  }
+                  google.maps.event.removeListener(listener);
+                });
+              } // END INIT
+              jQuery("#form_map_location").focusout(function () {
+                setTimeout(function () {
+                  getMapLocation(jQuery("#form_map_location").val());
+                }, 500);
+              });
+
+              function getMapLocation(location) {
+                document.getElementById("map-state").value = "";
+                var geocoder = new google.maps.Geocoder();
+                if (geocoder) {
+                  geocoder.geocode({
+                    "address": location
+                  }, function (results, status) {
+                    if (status == google.maps.GeocoderStatus.OK) {
+                      map.setCenter(results[0].geometry.location);
+                      addMarker(results[0].geometry.location);
+                      getMyAddress(results[0].geometry.location, "no");
+                      document.getElementById("map-long").value = results[0].geometry.location.lng();
+                      document.getElementById("map-lat").value = results[0].geometry.location.lat();
+                      map.setZoom(9);
+                    }
+                  });
+                }
+              }
+
+              function getMyAddress(location, setaddress) {
+                jQuery('#showmapbox').show();
+                google.maps.event.trigger(map, 'resize');
+                var geocoder = new google.maps.Geocoder();
+                var country = "";
+                if (geocoder) {
+                  geocoder.geocode({
+                    "latLng": location
+                  }, function (results, status) {
+                    if (status == google.maps.GeocoderStatus.OK) {
+                      for (var i = 0; i < results[0].address_components.length; i++) {
+                        var addr = results[0].address_components[i];
+                        //alert(addr.types[0]);
+                        switch (addr.types[0]) {
+                          case "street_number":
+                          {
+                            document.getElementById("map-address1").value = addr.long_name;
+                          }
+                            break;
+                          case "route":
+                          {
+                            document.getElementById("map-address2").value = addr.long_name;
+                          }
+                            break;
+                          case "locality":
+                            //case "postal_town":
+                          {
+                            document.getElementById("map-address3").value = addr.long_name;
+                            document.getElementById("map-city").value = addr.long_name;
+                          }
+                            break;
+                          case "postal_code":
+                          {
+                            document.getElementById("map-zip").value = addr.short_name;
+                          }
+                            break;
+                          case "administrative_area_level_1":
+                          {
+                            document.getElementById("map-state").value = addr.long_name;
+                          }
+                            break;
+                          case "administrative_area_level_2":
+                          {
+                            document.getElementById("map-state").value = addr.long_name;
+                          }
+                            break;
+                          case "administrative_area_level_3":
+                          {
+                            document.getElementById("map-state").value = document.getElementById("map-state").value + addr.long_name;
+                          }
+                            break;
+                          case "country":
+                          {
+                            document.getElementById("map-country").value = addr.short_name;
+                          }
+                            break;
+                        } // end switch
+                      } // end for
+                      // NOW SET THE DISPLAY VALUES
+                      jQuery('#wlt_dcity').html(document.getElementById("map-city").value);
+                      jQuery('#wlt_dstate').html(document.getElementById("map-state").value);
+                      jQuery('#wlt_dcountry').html(document.getElementById("map-country").value);
+                      if (setaddress == "yes") {
+                        document.getElementById("form_map_location").value = results[0].formatted_address;
+                      }
+                      map.setCenter(results[0].geometry.location);
+                      map.setZoom(15);
+                    }
+                  });
+                }
+              }
+
+              function addMarker(location) {
+                if (marker == '') {
+                  marker = new google.maps.Marker({
+                    position: location,
+                    map: map,
+                    draggable: true,
+                    animation: google.maps.Animation.DROP,
+                  });
+                  google.maps.event.addListener(marker, 'dragend', function (event) {
+                    document.getElementById("map-long").value = event.latLng.lng();
+                    document.getElementById("map-lat").value = event.latLng.lat();
+                    getMyAddress(event.latLng, "yes");
+                    addMarker(event.latLng);
+                  });
+                }
+                marker.setPosition(location);
+                map.setCenter(location);
+              }
+              // LOAD MAP BOX
+              jQuery(document).ready(function () {
+                jQuery(".mapboxlink").click(function () {
+                  setTimeout(function () {
+                    initialize();
+                  }, 1000);
+                });
+              });
+            </script>
+          </div>
+        </div>
+      </div>
+      <!-- STEP 6 --->
+      <div class="savebuttonarea">
+        <hr>
+        <div id="enhancementscopy" style="display:none;">
+          <div></div>
+        </div>
+        <a class="btn btn-default pull-right hidden-xs" href="http://bidzone.ca/index.php/add-listing-3/">Cancel</a>
+        <button class="btn btn-primary submit-button" type="submit" id="MainSaveBtn">Save listing</button>
+        <div class="clearfix"></div>
+        <hr>
+      </div>
+      <!-- END STEPS FORM DATA -->
+    </div>
+<% end %>

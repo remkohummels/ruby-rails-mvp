@@ -1,0 +1,21 @@
+= semantic_form_for @message, url: account_messages_path(format:'js'), remote: true, :html => {:class => 'validate-form', role: :form, 'data-model' => 'message'} do |f|
+  h3
+    | Send Message
+  hr
+  .input-group.field_wrapper.select
+    span#ajaxMsgUser.input-group-addon
+      | @
+    = f.input :recipient_id, input_html: {class: "form-control"}, label: false, :as => :select, :collection => @messageble_ussers, selected: @recipient_id, include_blank: false, include_hidden: false
+    = f.hidden_field :recipient_type, value: 'User'
+  hr
+  .field_wrapper.form-group
+    label
+      | Subject
+    = f.input :title, :label => false, input_html: {class: " form-control", placeholder: "Subject", value: @title}
+  .field_wrapper.form-group
+    label
+      | Message
+    = f.input :body, :label => false, input_html: {class: " form-control", value: @body}
+  button.btn.btn-warning[type="submit"]
+    | Send Message
+  = link_to 'Back', :back, class: 'btn btn-default pull-right'

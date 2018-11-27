@@ -1,0 +1,32 @@
+- if !group.state.blank?
+  - country_or_state = ' | ' +  group.state.upcase + ' '
+-elsif !group.country.blank?
+  - country_or_state = ' | ' + group.country.upcase + ' '
+-else
+  - country_or_state = ' | '
+-if current_user
+  - member_status = current_user.group_status(group)
+-else
+  - member_status = ""
+.bz-group
+  .col-xs-8
+    = link_to group_path(group)
+      h4
+        = 'View ' + group.title
+    h4.bz-subtitle
+      - if !group.city.blank? && !country_or_state.blank?
+        = group.city.capitalize + country_or_state
+      -if group.memberships.count == 1
+        | #{group.memberships.count} member
+      - else
+        | #{group.memberships.count} members 
+      / | 4km away
+  .col-xs-4
+    .bz-group-controls
+      -if current_user
+        -if current_user.group_active(group) == true
+          =render "groups/switch_buttons/switch_group", locals: {group: group}
+        -else
+          =render "groups/switch_buttons/choose_group", locals: {group: group}
+      -else
+        = link_to '+join', root_path(anchor: 'sign_section'), class: " bz-text-btn join_group"

@@ -1,0 +1,10 @@
+<section class="bz-browsing-section">
+  <div class="container">
+    <h2 class="light upcase"> START <span>BROWSING</span></h2>
+    <div class="bz-categories">
+      <% @categories.each do |category| %>
+        <%= render 'main/category_item', item: category %>
+      <% end %>
+    </div>
+  </div>
+</section>

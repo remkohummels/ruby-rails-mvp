@@ -1,0 +1,8 @@
+$('.invite_to_group').on('ajax:send', function () {
+}).on('ajax:complete', function () {
+  console.log("<%= @msg %>", "DAAAAAAAAAAATA");
+  $(".parsley-errors").html("<%= @msg %>")
+  $('.submit-button').removeAttr('disabled')
+}).on('ajax:error', function () {
+}).on('ajax:success', function (data) {
+});

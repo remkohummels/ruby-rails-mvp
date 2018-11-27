@@ -1,0 +1,64 @@
+$typo-main-ff: $bz-font-main
+$typo-light-ff: $bz-font-light
+$typo-bold-ff: $bz-font-bold
+$typo-extra-ff: $bz-font-extral
+$typo-semi-ff: $bz-font-semib
+$typo-pro-ff: "Source Sans Pro", sans-serif
+$typo-main-c: $main-gray
+h1
+  font-size: 30px !important
+  +MQ(M)
+    font-size: 36px !important
+  +MQ(L)
+    font-size: 60px !important
+h2
+  font-size: 50px !important
+h3
+  font-size: 40px
+h4
+  font-size: 10px !important
+  +MQ(M)
+    font-size: 12px !important
+  +MQ(L)
+    font-size: 21px !important
+
+h1, h2, h3, h4
+  font-family: $typo-main-ff
+  line-height: 1 !important
+  font-weight: 100 !important
+  text-transform: none
+.bz-title
+  color: $montecarlo
+  font-family: $typo-light-ff !important
+  font-size: 30px !important
+  +MQ(M)
+    font-size: 30px !important
+.bz-subtitle
+  font-size: 16px !important
+  color: $montecarlo
+  font-family: $typo-main-ff !important
+  &.bigger
+    font-size: 25px !important
+  +MQ(S)
+    font-size: 20px !important
+.light
+  font-family: $typo-pro-ff !important
+.extra
+  font-family: $typo-pro-ff !important
+.regular
+  font-family: $typo-pro-ff !important
+.bold
+  font-family: $typo-pro-ff !important
+.semi
+  font-family: $typo-pro-ff !important
+.normal
+  text-transform: none
+.upcase
+  text-transform: uppercase
+.capitalize
+  text-transform: capitalize
+.color-mc
+  color: $montecarlo !important
+a
+  font-family: $typo-main-ff
+  text-decoration: none !important

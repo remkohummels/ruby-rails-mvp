@@ -1,0 +1,11 @@
+- if current_user
+  li.dropdown.dropdown-list
+    a[href="#" data-toggle="dropdown"]
+      span.flag-icon class="flag-icon-#{current_user.currency.short_country_name}"
+
+    ul.dropdown-menu.animated.flipInX.currency-wrapper
+      - Currency.all.each do |currency|
+        li
+          /a href="#" class="currency-#{currency.short_country_name}" data-id="#{currency.id}"
+          = link_to set_currency_path(title: currency.id, format: :js), remote: true, method: :post
+            span.flag-icon class="flag-icon-#{currency.short_country_name}"

@@ -1,0 +1,19 @@
+h3
+  | Notifications
+.panel.panel-default
+  .panel-heading
+    .pull-right.label.label-success
+      = current_user.notifications.news.count
+    .panel-title
+      | Notifications
+  .panel-body.clearfix
+    .list-group
+      - @notifications.each do |notification|
+        .list-group-item for="#{notification.id}" class="notification"
+          span.pull-right
+            = link_to account_notification_path(notification, format: :js), method: :delete, remote: true
+              em.icon-close
+          span.text-default
+            - if notification.is_new
+              span.circle.circle-success.circle-lg.text-left
+            = notification.content.html_safe

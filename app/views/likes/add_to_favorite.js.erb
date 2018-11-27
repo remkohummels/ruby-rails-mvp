@@ -1,0 +1,6 @@
+$('.item_vote').on('ajax:send', function () {
+}).on('ajax:complete', function () {
+  $(this).html("<%= j render @votable.class.to_s.tableize + '/remove_from_favorite', item: @votable%>");
+}).on('ajax:error', function () {
+}).on('ajax:success', function (data) {
+});

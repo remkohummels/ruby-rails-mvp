@@ -1,0 +1,26 @@
+.bz-groups-section
+  .container
+    h2.bz-title
+      | Local Groups in
+      span
+        | &nbsp; #{@location}
+    h4.bz-subtitle.bigger
+      |Choose a Group or Groups to Join
+    .bz-groups
+      - @groups.each do |group|
+        .col-xs-12.col-md-6
+          = render 'group', group: group
+      .col-xs-12.col-md-6
+        = link_to new_group_path do
+          .bz-group.new
+            .bz-text-btn
+              | + Create a Group
+    .groups-action
+      =link_to switch_groups_path
+        h2.bz-title
+          | Next Step
+      =link_to root_path
+        h4
+          |Skip This Step ⤍
+      h4.light
+        |Just Post Your Items in Communities of Your Choice and Start Taking Bids

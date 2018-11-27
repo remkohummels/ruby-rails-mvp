@@ -1,0 +1,98 @@
+$item-title-fz: $bz-font-main
+$item-title-c: $darker-gray
+$bid-color: $montecarlo
+$item-location-ff: $bz-font-main
+$item-mobile-fz: 10px
+$item-mediumn-fz: 12px
+$item-fz: 14px
+.bz-product-item
+  .bz-product-item-image
+    width: 100%
+    // height: 210px !important
+    height: auto
+    position: relative
+    background-color: #f2f2f3
+    +flex-centred
+    height: 90px
+    overflow: hidden
+    background-color: lightgrey
+    +MQ(M)
+      height: 235px !important
+    img
+      max-width: 100%
+      text-align: center
+      position: absolute
+      +centrify($switcher: 'both')
+      object-fit: cover
+  .bz-product-item-content
+    font-size: $item-mobile-fz
+    font-family: $item-title-fz
+    font-weight: bold
+    line-height: 1.6em
+    // padding: 0 10px
+    margin-top: 5px
+    +MQ(M)
+      font-size: $item-mediumn-fz
+    +MQ(L)
+      font-size: $item-fz
+    div 
+      padding: 0
+    a
+      color: $item-title-c !important
+    .title
+      overflow: hidden
+      text-overflow: ellipsis
+      height: 1.6em
+      a
+        font-family: $item-title-fz
+        font-weight: bold
+    .location
+      overflow: hidden
+      text-overflow: ellipsis
+      height: 1.6em
+      font-size: $item-mobile-fz
+      font-family: $item-location-ff
+      +MQ(M)
+        font-size: $item-mediumn-fz
+      +MQ(L)
+        font-size: $item-fz
+      &::before
+        font: normal normal normal 7px/1 FontAwesome
+        content: '\f041'
+        margin-right: 2px
+        +MQ(M)
+          font: normal normal normal 9px/1 FontAwesome
+        +MQ(L)
+          margin-right: 5px
+          font: normal normal normal 12px/1 FontAwesome
+    .group-list
+      font-size: 14px
+      font-family: $item-location-ff
+      overflow: hidden
+      text-overflow: ellipsis
+      height: 1.6em
+      max-width: 100%
+      +MQ(M)
+        font-size: 14px
+      &::before
+        font: normal normal normal 5px/1 FontAwesome
+        content: '\f0c0'
+        margin-right: 3px
+        +MQ(M)
+          font: normal normal normal 8px/1 FontAwesome
+    .bid
+      display: flex
+      justify-content: flex-start
+      align-items: flex-end
+      flex-direction: column
+      color: $bid-color
+      // border-bottom: 2px solid
+      position: relative
+      &:after
+        content: ''
+        border: 1px solid
+        width: 30%
+      h4
+        border-bottom: 2px solid
+        padding-bottom: 5px
+        margin: 0

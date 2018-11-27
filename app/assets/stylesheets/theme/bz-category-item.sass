@@ -1,0 +1,46 @@
+$cat-item-mobile-size: 130px
+$cat-item-medium-size: 180px
+$cat-item-size: 200px
+$cat-image-mobile-size: 50px
+$cat-image-size: 95px
+.bz-category-item
+  width: $cat-item-mobile-size
+  height: $cat-item-mobile-size
+  max-width: 100%
+  border: 1px solid $light-gray
+  margin: 0 auto
+  padding: 20px
+  cursor: pointer
+  +flex-centred
+  flex-direction: column
+  margin-bottom: 20px
+  &:hover
+    background-color: $light-gray
+  +MQ(M)
+    padding: 30px
+    width: $cat-item-medium-size
+    height: $cat-item-medium-size
+    margin-bottom: 30px
+  +MQ(LG)
+    padding: 40px 50px 25px 50px
+    width: $cat-item-size
+    height: $cat-item-size
+    margin-bottom: 45px
+  .category-img
+    width: $cat-image-mobile-size
+    height: $cat-image-mobile-size
+    margin: 0 auto
+    +flex-centred
+    +MQ(M)
+      width: $cat-image-size
+      height: $cat-image-size
+    img
+      width: auto
+      height: 100%
+  .category-title
+    margin-top: 15px
+    font-size: 16px
+    text-transform: lowercase
+    text-align: center
+    +MQ(M)
+      font-size: 20px

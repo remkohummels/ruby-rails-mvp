@@ -1,0 +1,81 @@
+<% item = locals[:item] if !item%>
+
+<% time_left = item.end_date.minus_with_coercion(Time.now) if item.group_post? %>
+<div class="bz-product-item-wrapper" data-id='<%= item.id %>' <%= "data-left=#{time_left.to_i}" if time_left %> >
+  <%= link_to item do %>
+    <div class="bz-product-item">
+      <div class="bz-product-item-image">
+        <!-- <div class="bz-overlay">
+          <div class="lbox">
+            <%= link_to images_path, class: "modal-trigger", data: {:'target-id' => 'message-form', item_id: item.id} do %>
+            <% end %>
+            <%= link_to item, class: "link-overlay" do %>
+            <% end %>
+          </div>
+        </div> -->
+
+        <img src="<%= item.get_avatar %>" alt="fallback-no-image-100" class="">
+
+      </div>
+      <div class="bz-product-item-content">
+        <div class="col-xs-7">
+          <div class="title">
+            <span title="<%=item.title%>"><%= item.title %></span>
+          </div>
+          <div class="location">
+            <span title="<%=item.location%>"><%= item.location%></span>
+          </div>
+          <% if current_user && item.user_id == current_user.id %>
+            <div>
+              <%= link_to item,method: :delete, data: { confirm: 'Are you sure?' } do %>
+                <i class="fa fa-trash-o" aria-hidden="true"></i><span> Delete</span>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+        <div class="col-xs-5">
+          <div class="bid">
+
+            <% if item.quick_post? %>
+              <b class="bold inline-item-value text-right" title="Current Offer">
+                Current Offer
+              </b>
+            <% else %>
+              <b class="bold inline-item-value text-right" title="Current Bid">
+                Current Bid
+              </b>
+            <% end %>
+
+            <b class="bold inline-item-value text-right">
+              <% if item.is_free?  %>
+                Item is Free!
+              <% elsif item.group_post? && item.start_price%>
+                <%= to_currency(item.start_price) %>
+              <% elsif item.quick_post? && item.buy_now_price %>
+                <%= to_currency(item.buy_now_price) %>
+              <% end %>
+            </b>
+            <% if item.quick_post? %>
+              <b class="bold inline-item-value text-right">
+                QPost
+              </b>
+            <% elsif item.rent_post? %>
+                <b class="bold inline-item-value text-right">RPost</b>
+            <% else %>
+                <% groups = item.groups %>
+                <% group_list = groups.pluck(:title).join(', ') %>
+                <% if groups.count > 2 %>
+                    <% display_list = groups.pluck(:title).first(2).join(', ') + ' +' + (groups.count - 2).to_s %>
+                <% else %>
+                    <% display_list = groups.pluck(:title).join(', ') %>
+                <% end %>
+
+                <b title="<%= group_list %>" class="group-list inline-item-value text-right"><%= display_list %></b>
+            <% end %>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,84 @@
+h3 My Account
+#core_ajax_callback
+#MyDetailsBlock.panel.panel-default
+  .panel-heading
+  .panel-body
+    = semantic_form_for @user, :url=>account_profile_path , :html => {:class => 'validate-form', role: :form, 'data-model' => 'user'} do |f|
+      .col-md-6
+        .form-group
+          label.control-label
+            i.icon-envelope
+            |  Email
+          .controls
+            input type="text" name="email" class="form-control" value="#{@user.email}" disabled="disabled"
+        .form-group
+          label.control-label
+            |  First name
+          .controls.field_wrapper
+            = f.input :first_name, input_html: {class: "form-control", placeholder: "First name"}, label: false
+        .form-group
+          label.control-label
+            | Last name
+          .controls.field_wrapper
+            = f.input :last_name, input_html: {class: "form-control", placeholder: "Last name"}, label: false
+        .form-group
+          label.control-label
+            | Website
+          .controls.field_wrapper
+            = f.input :website, input_html: {class: "form-control", placeholder: "Website"}, label: false
+        .form-group
+          label.control-label
+            | Phone
+          .controls.field_wrapper
+            = f.input :phone, input_html: {class: "form-control", placeholder: "Phone"}, label: false
+        .form-group
+          label.control-label
+            | Country
+          .controls.field_wrapper
+            = f.input :country, input_html: {class: "form-control", placeholder: "Country", disabled: true}, label: false
+        .form-group
+          label.control-label
+            | City
+          .controls.field_wrapper
+            = f.input :city, input_html: {class: "form-control", placeholder: "City", disabled: true}, label: false
+        .form-group
+          label.control-label
+            | Community
+          .controls.field_wrapper
+            = f.input :community, input_html: {class: "form-control", placeholder: "Community"}, label: false
+      .col-md-6
+        .bs-callout.bs-callout-warning
+          .form-group
+            label.control-label
+              | Profile picture
+            .controls.field_wrapper
+              = f.input :avatar_url, as: :file, input_html: {class: "form-control", placeholder: "Password"}, label: false
+          .form-group
+            label.control-label
+              | Password
+            .controls.field_wrapper
+              = f.input :password, input_html: {class: "form-control", placeholder: "Password"}, label: false
+          .form-group
+            label.control-label
+              | Password Confirmation
+            .controls.field_wrapper
+              = f.input :password_confirmation, input_html: {class: "form-control", placeholder: "Password Confirmation"}, label: false
+              input[type="hidden" name="user[account]" value="true"]
+      .col-md-12
+        .form-group
+          label.control-label
+            | About Me/Extra Details
+          .controls.field_wrapper
+            = f.input :about, as: :text, input_html: {class: "form-control", placeholder: "About Me/Extra Details"}, label: false
+      .clearfix
+      .clearfix
+      hr
+      .clearfix
+      .clearfix
+      button.btn.btn-primary[type="submit"]
+        | Save Changes
+      = link_to 'Back', dashboard_path, class: 'btn btn-default pull-right'
+form#MEMBERSHIPFORM[method="post" name="MEMBERSHIPFORM" action="http://bidzone.ca/index.php/my-account-3/" style="margin:0px;padding:0px;"]
+  input#membershipID[type="hidden" name="membershipID" value="-1"]
+  input[type="hidden" name="showpaymentform" value="1"]
+                

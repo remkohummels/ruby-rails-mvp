@@ -1,0 +1,56 @@
+doctype html
+html
+  head
+    meta charset="utf-8"
+    meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"
+    meta name="viewport" content="width=device-width, initial-scale=1"
+    = yield :head_area
+    title GroupnShop
+    = favicon_link_tag 'favicon.png'
+    = stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Fjalla+One'
+    = yield :css
+    = stylesheet_link_tag 'base', media: 'all'
+    = stylesheet_link_tag 'application', media: 'all'
+    = stylesheet_link_tag 'account/base', media: 'all', id: "maincss"
+    = render partial: "layouts/partials/gtag_script"
+    = yield :stripe
+    = csrf_meta_tags
+
+  body class="layout-h #{controller.controller_name} #{body_class}"
+    = render partial: "layouts/partials/gtag_iframe"
+    .wrapper
+      /-- top navbar--
+      header.topnavbar-wrapper
+        = render partial: "layouts/partials/topnavbar_h"
+      section
+        .content-wrapper
+          / == render 'layouts/header'
+          - if current_user
+            .banner-wrapper
+              - if current_user.active_groups
+                - group = current_user.active_groups.first
+                -if group || (@posting_type == 'quick_post' && controller.controller_name == 'browse')
+                  .active-group-banner
+                    -if @posting_type == 'quick_post' && controller.controller_name == 'browse'
+                      |You’re browsing Quick Post items.
+                    -elsif group
+                      |You are in group&nbsp;
+                      = link_to group.title, group_path(group)
+              - if flash && flash[:signin]
+                .currency-banner
+                  = flash[:signin]
+
+          .remodal-bg 
+            -if flash
+              .alerts-container
+                - flash.each do |key, value|
+                  - if key != 'signin'
+                    div class="alert alert-#{key}"
+                      = value.html_safe
+          = yield
+      = render 'layouts/footer'
+    = yield :body_area
+    = render 'layouts/partials/google_analytics'
+    = javascript_include_tag 'base'
+    = javascript_include_tag params[:controller] if ::Rails.application.assets.find_asset("#{params[:controller]}.js")
+    = yield :js

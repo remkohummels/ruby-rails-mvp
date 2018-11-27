@@ -1,0 +1,22 @@
+<div class="remodal modal" data-remodal-id="open-disput" data-remodal-options="hashTracking: false">
+  <div class="row">
+    <div class=" col-xs-12">
+      <%= semantic_form_for @disput, remote: true, :html => {:class => 'validate-form', role: :form, 'data-model' => 'disput', :'data-type' => 'json'} do |f| %>
+          <h3>Open Dispute</h3>
+          <p>Please specify the reason for opening the debate and problem description.</p>
+          <div class="field_wrapper form-group text-left">
+            <label>Reason</label>
+            <%= f.input :reason, :label => false, as: :select, collection: ['reaso1', 'reason2'], input_html: {class: " form-control"} %>
+          </div>
+          <div class="field_wrapper form-group text-left">
+            <label>Descriptions</label>
+            <%= f.input :description, :as => :text, :label => false, input_html: {class: " form-control"} %>
+            <%= f.input :item_id, :as => :hidden, value: @item%>
+            <input type="hidden" value="<%= current_user.id %>" name='disput[user_id]'>
+          </div>
+          <button class="btn btn-success btn-lg" type="submit">Open Dispute</button>
+      <% end %>
+    </div>
+  </div>
+  <button class="remodal-close" data-remodal-action="close"></button>
+</div>

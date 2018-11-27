@@ -1,0 +1,68 @@
+.bz-choose-type-wrapper
+  display: flex
+  justify-content: space-around
+  align-items: center
+  margin-top: 45px
+  .choose-type
+    .type-header
+      padding-top: 10px
+      text-align: center
+      display: block
+      width: 74px
+      height: 74px
+      border-radius: 37px
+      border: 3px solid $montecarlo
+      justify-content: center
+      +MQ(M)
+        padding-top: 20px
+        width: 124px
+        height: 124px
+        border-radius: 62px
+      +MQ(L)
+        width: 224px
+        height: 224px
+        border-radius: 112px
+    width: 150px
+    display: flex
+    justify-content: center
+    align-items: center
+    flex-direction: column
+    cursor: pointer
+    padding: 10px
+    .choose-type-logo
+      font-size: 45px
+      color: $montecarlo
+      margin-bottom: 10px
+      display: none
+      +MQ(M)
+        display: block
+    .choose-type-title
+      color: $montecarlo
+      font-size: 20px
+      +MQ(L)
+        font-size: 36px
+    .choose-type-desc
+      color: $montecarlo
+      font-size: 14px
+      margin-top: 20px
+      text-align: center
+      height: 56px
+      +MQ(L)
+        font-size: 20px
+    &:hover
+      border-color: $darker-mc
+      .choose-type-logo, .choose-type-title, .choose-type-desc
+        color: $darker-mc 
+
+    +MQ(M)
+      width: 200px
+    +MQ(L)
+      width: 300px
+      .choose-type-logo
+        font-size: 75px
+        line-height: 100px
+      .fa-plus
+        font-size: 60px
+        +MQ(L)
+          font-size: 100px
+          line-height: 100px

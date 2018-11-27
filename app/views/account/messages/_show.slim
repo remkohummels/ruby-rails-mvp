@@ -1,0 +1,13 @@
+.panel-heading
+  -unless @sent
+    = link_to 'Reply', new_account_message_path(reply_message: @msg), method: :get, class: 'pull-right btn btn-default btn-sm'
+  h4.mv
+    span = @msg.title
+.panel-body.bb.bt
+  span From:
+  span.text-primary = @msg.sender.full_name
+  br
+  span To:
+  span.text-primary = @msg.recipient.full_name
+.panel-body
+  p = simple_format(@msg.body).html_safe

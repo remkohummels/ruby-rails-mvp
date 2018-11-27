@@ -1,0 +1,20 @@
+- if current_user.group_status(@group) == 'joined' || @group.user == current_user
+  .row
+    .col-xs-12
+      h3.bz-subtitle
+        | Invite your friends to join group!
+      .invite-content
+        = form_tag invite_to_group_path(group_id: @group.id)
+          h4.light.label
+            |Enter your friends’ email
+          .form-group
+            = text_field_tag 'email', nil, class: 'email', placeholder: '', required: true
+            = submit_tag 'Send Invite', class: 'bz-oval-btn mc m-0'
+          h4.subtitle.light
+            |Enter multiple emails separated with commas.
+      hr
+.row
+  .col-xs-12
+    .bz-items-container
+      - @group.items.active.each do |item|
+        = render 'partials/new_bid', :locals => {item: item}

@@ -1,0 +1,16 @@
+<tr class="<%= " disput_#{disput.id}" %>">
+  <td>
+  </td>
+  <td style="text-align:center">
+    <%= link_to disput.item.title.truncate(10), item_path(disput.item) %>
+  </td>
+  <td>
+    <%= link_to disput.reason, disput_path(disput) %>
+  </td>
+  <td>
+    <%= disput.status.to_s.humanize %>
+  </td>
+  <td style="text-align:center">
+    <small><%= disput.created_date %></small>
+  </td>
+</tr>

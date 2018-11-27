@@ -1,0 +1,13 @@
+<div class="core_widgets_categories_list normallayout">
+  <div class="panel panel-default">
+    <div class="panel-heading">Categories</div>
+    <ul class="list-group clearfix">
+      <% controller.categories.each do |category| %>
+        <li class="list-group-item">
+          <%= link_to category.name, items_category_path(category: category.slug)%>
+        </li>
+      <%end%>
+    </ul>
+    <div class="clearfix"></div>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+<div class="bz-newgroup-page">
+  <div class="container newgroup-content">
+    <h2 class="bz-title">
+      Account Security
+    </h2>
+    <h4 class="bz-subtitle">
+      Change your password
+    </h4>
+    <%= semantic_form_for @user, :html => {:class => 'validate-form', role: :form, 'data-model' => 'user', :'data-type' => 'json', remote: true} do |f| %>
+      <div class="form-group field_wrapper">
+        <%= label_tag 'old_password', 'Old Password', class: "light"%>
+        <%= f.input 'old_password', label: false, class: 'form-control', placeholder: '', input_html: {class: "form-control"} %>
+      </div>
+      <div class="form-group field_wrapper">
+        <%= label_tag 'password', 'New Password', class: "light"%>
+        <%= f.input 'password', label: false, class: 'form-control', placeholder: '', input_html: {class: "form-control"} %>
+      </div>
+      <div class="form-group field_wrapper">
+        <%= label_tag 'password_confirmation', 'New Password Confirmation', class: "light" %>
+        <%= f.input 'password_confirmation', label: false, class: 'form-control', placeholder: '', input_html: {class: "form-control"} %>
+      </div>
+      <div class="btn-area"></div>
+        <button class="bz-oval-btn mc">
+          Change Password
+        </button>
+      </div>
+    <% end %>
+</div>

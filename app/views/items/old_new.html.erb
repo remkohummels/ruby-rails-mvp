@@ -1,0 +1,107 @@
+<div class="home">
+  <div id="core_padding">
+    <div id="core_padding_inner">
+      <div class=" container widecontainer core_section_top_container">
+        <div class="row core_section_top_row wlt_main_2colsright">
+          <div id="core_inner_wrap" class="clearfix">
+            <article class="col-md-12" id="core_middle_column">
+              <div class="core_middle_wrap">
+                <div id="core_ajax_callback"></div>
+                <div class="row">
+                  <div class="col-md-8 col-sm-8 col-xs-12 adminedit2 item-form">
+
+                    <%= render 'item_form' , :locals => {item: Item.new, form_text: 'items.new_form_text'}%>
+
+                    <script type="application/javascript">
+                      function colAll() {
+                        jQuery('#step1').removeClass("in");
+                        jQuery('#step2').removeClass("in");
+                        jQuery('#step3').removeClass("in");
+                        jQuery('#step4').removeClass("in");
+                        jQuery('#step5').removeClass("in");
+                        jQuery('#step6').removeClass("in");
+                      }
+
+                      function VALIDATE_FORM_DATA() {
+                        // USER REGISTRATION VALIDATION
+                        // IMAGE UPLOADS
+                        // LISTING DESCRIPTION VALIDATION
+                        var de1 = document.getElementById("form_post_title");
+                        if (de1.value == '') {
+                          $(de1).parents('.field_wrapper ').find('.item_error').html('Please, enter Title.');
+                          de1.style.border = 'thin solid red';
+                          de1.focus();
+                          colAll();
+                          jQuery('.stepblock2').collapse('show');
+                          return false;
+                        } else {
+                          $(de1).parents('.field_wrapper ').find('.item_error').html('');
+                          de1.style.border = 'thin solid black';
+                        }
+                        // MIN CHARACTERS FOR LISTING LENGHT
+                        var de3 = document.getElementById("form_post_content");
+                        if (jQuery("#form_post_content").val().length < 200) {
+                          $(de3).parents('.field_wrapper ').find('.item_error').html('Please add more content to your listing description.');
+                          de3.style.border = 'thin solid red';
+                          de3.focus();
+                          colAll();
+                          jQuery('.stepblock2').collapse('show');
+                          return false;
+                        } else {
+                          $(de3).parents('.field_wrapper ').find('.item_error').html('');
+                          de1.style.border = 'thin solid black';
+                        }
+                        if (de3.value == '') {
+                          $(de3).parents('.field_wrapper ').find('.item_error').html('Please, enter Description.');
+                          de3.style.border = 'thin solid red';
+                          de3.focus();
+                          colAll();
+                          jQuery('.stepblock2').collapse('show');
+                          return false;
+                        } else {
+                          $(de3).parents('.field_wrapper ').find('.item_error').html('');
+                          de1.style.border = 'thin solid black';
+                        }
+                        // GET THE ENHANCEMENT FORM DATA
+                        var newform2 = jQuery('#enhancementsblock .checkbox').clone(); //Clone form 1
+                        jQuery('#enhancementscopy div').replaceWith(newform2);
+                        jQuery('html,body').scrollTop(0);
+                        // VALIDATE CUSTOM FIELDS
+                        var formresult = ValidateCoreRegFields();
+                        if (formresult == false) {
+                          return false;
+                        }
+                        // LOAD IN DISPLAY UNIT
+                        jQuery('#wlt_stepswizard').hide();
+                        jQuery('#mediauploadblock').hide();
+                        jQuery('#core_saving_wrapper').show();
+                      }
+
+                      $('#SUBMISSION_FORM').submit(function () {
+                        // VALIDATE_FORM_DATA();
+                      });
+
+                    </script>
+                    <script type="text/javascript" src="http://bidzone.ca/wp-content/themes/AT/framework/js/up/nicEdit.js"></script>
+                    <!-- SAVING SPINNER -->
+                    <div id="core_saving_wrapper" style="display:none;">
+                      <div class="alert alert-warning">
+                        <img src="http://bidzone.ca/wp-content/themes/AT/framework/img/loading.gif" style="float:left; padding-right:30px;width:80px;">
+
+                        <h1 style="padding-top:0px;margin-top:0px;">Saving Your Changes</h1>
+
+                        <p>This may take a few minutes so please wait...</p>
+
+                        <div class="clearfix"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

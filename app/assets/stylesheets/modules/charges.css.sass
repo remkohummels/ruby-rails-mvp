@@ -1,0 +1,75 @@
+//.stripe-form
+//  display: inline
+
+.bz-newgroup-page.item-checkout
+  .bz-title
+    font-family: "SansPro" !important
+    font-weight: 600 !important
+    text-align: center
+  p.dl-address
+    padding-left: 15px
+    padding-right: 15px
+    margin-top: 40px
+    text-transform: uppercase
+    font-size: 18px
+    font-weight: 600
+  form
+    margin-top: 20px
+    label
+      color: $darker-gray !important
+      font-size: 15px
+      margin: 0 0 5px
+      max-width: none
+    .form-control
+      color: #3a3f51 !important
+      max-width: none
+      &.select
+        position: relative
+        height: 45px
+        cursor: pointer
+        select
+          position: absolute
+          background: none transparent
+          height: 45px
+          padding: 5px 0 5px 15px
+          border: 0 none
+          z-index: 1
+          appearance: none
+          cursor: pointer
+          +centrify($switcher: 'both')
+        &::after
+          content: ""
+          height: 45px
+          width: 45px
+          background-color: $step-c
+          color: #fff
+          position: absolute
+          background-image: image-url('arrow-dt.png')
+          background-position: center
+          background-size: 14px
+          background-repeat: no-repeat
+          +centrify($switcher: 'height')
+          right: 0
+    .bz-oval-btn.mc
+      font-size: 15px
+      max-width: 300px
+      width: 300px
+      margin-top: 30px
+      &.prev
+        border-color: #8b8b8b !important
+        background-color: #8b8b8b !important
+        &:hover
+          background-color: transparent !important
+    .form-group.required .control-label:after
+      content: "*"
+      color: #ff0000
+      margin-left: 3px
+    table.custom-datatable
+      margin: auto
+      background-color: #ffffff
+      td.border-none
+        border: none
+      .pc-data
+        color: #656565
+        font-weight: 700 !important
+        font-size: 15px !important

@@ -1,0 +1,29 @@
+table.table.table-hover.mb-mails
+  tbody
+    - @messages.each do |message|
+      tr.message-item class="#{'new' if message.new?}"
+        td
+          .checkbox.c-checkbox
+            label
+              input.mail-checkbox type="checkbox" data-id="#{message.id}"
+              span.fa.fa-check
+        td.text-center
+          em.fa.fa-lg.fa-star-o.text-muted
+        td.message-subject data-id="#{message.id}"
+          = image_tag current_user.avatar_url, class: 'mb-mail-avatar pull-left' unless current_user.avatar_url.blank?
+          .mb-mail-date.pull-right
+            = message.created_date
+          .mb-mail-meta
+            .pull-left
+              .mb-mail-subject
+                = link_to account_message_path(message) do
+                  = message.title
+              .mb-mail-from
+                - if current_user.id == message.sender.id and message.sender_type == 'User'
+                  = message.recipient.full_name if message.recipient.present?
+                - else 
+                  = message.sender.full_name if message.sender.present?
+                label.label-info.label.ml-sm
+                  = message.recipient_type == 'AdminUser' ? 'Site Administrator' : 'User'
+            .mb-mail-preview
+              = message.body.html_safe
