@@ -9,11 +9,17 @@ This is a sample Rails app.
 
 	```
 	$ gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
+
 	$ cd /tmp
+
 	$ curl -sSL https://get.rvm.io -o rvm.sh
+
 	$ less /tmp/rvm.sh
+
 	$ cat /tmp/rvm.sh | bash -s stable --rails
+
 	$ source /home/{username}/.rvm/scripts/rvm
+
 	$ rvm install 2.3.1
 	```
 
@@ -21,6 +27,7 @@ This is a sample Rails app.
 
 	```
 	$ curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+
 	$ sudo apt-get install -y nodejs
 	```
 
@@ -28,9 +35,13 @@ This is a sample Rails app.
 
 	```
 	$ sudo apt-get install postgresql postgresql-contrib
+
 	$ sudo apt-get install pgadmin3
+
 	$ sudo -i -u postgres
+
 	$ sudo -u postgres createuser -s dev
+
 	$ sudo -u postgres psql
 	```
 
@@ -66,20 +77,30 @@ This is a sample Rails app.
 
 	```
 	$ git clone https://remko93223@bitbucket.org/remko93223/ruby-rails-mvp.git
+
 	$ cd ruby-rails-mvp/
+
 	$ rvm gemset list
+
 	$ gem install bundler
+
 	$ bundle install
+
 	$ rake db:create
+
 	$ rake db:migrate
+
 	$ bower install
 	```
 
 NOTE__: If you encounter in the `bower install`, try to fix the git config in the below. 
 
+
 	```
 	$ git config --global --unset http.proxy
+
 	$ git config --global --unset https.proxy
+
 	$ bower install
 	```
 
